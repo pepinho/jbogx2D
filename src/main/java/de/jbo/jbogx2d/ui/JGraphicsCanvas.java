@@ -127,8 +127,8 @@ public class JGraphicsCanvas extends JPanel {
      *            The visible area to be set.
      * @see de.jbo.jbogx2d.ui.JGraphicsRenderPanel#getVisibielUserSpace(de.jbo.jbogx2d.base.geom.BoundsUserSpace)
      */
-    public void getVisibielUserSpace(BoundsUserSpace visibleBounds) {
-        renderPanel.getVisibielUserSpace(visibleBounds);
+    public void getVisibleUserSpace(BoundsUserSpace visibleBounds) {
+        renderPanel.getVisibleUserSpace(visibleBounds);
     }
 
     /**

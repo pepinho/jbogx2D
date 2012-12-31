@@ -118,7 +118,7 @@ public class JGraphicsPanel extends JPanel {
         final double percent01 = 0.1;
         final double percent08 = 0.8;
         BoundsUserSpace visibleBounds = new BoundsUserSpace();
-        canvas.getVisibielUserSpace(visibleBounds);
+        canvas.getVisibleUserSpace(visibleBounds);
         visibleBounds.x += (visibleBounds.width * percent01);
         visibleBounds.y += (visibleBounds.height * percent01);
         visibleBounds.width *= percent08;
@@ -134,7 +134,7 @@ public class JGraphicsPanel extends JPanel {
         final double percent01 = 0.1;
         final double percent12 = 1.2;
         BoundsUserSpace visibleBounds = new BoundsUserSpace();
-        canvas.getVisibielUserSpace(visibleBounds);
+        canvas.getVisibleUserSpace(visibleBounds);
         visibleBounds.x -= (visibleBounds.width * percent01);
         visibleBounds.y -= (visibleBounds.height * percent01);
         visibleBounds.width *= percent12;

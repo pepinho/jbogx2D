@@ -2,8 +2,6 @@ package de.jbo.jbogx2d.base.geom;
 
 import java.awt.geom.Point2D;
 
-import de.jbo.jbogx2d.base.util.pooling.IPoolableObject;
-
 /**
  * Defines the base-class for point-coordinates withing the userspace-coordinate
  * system. <br>
@@ -16,7 +14,7 @@ import de.jbo.jbogx2d.base.util.pooling.IPoolableObject;
  * @author Josef Baro (jbo) <br>
  * @version 27.10.2004 Josef Baro - created <br>
  */
-public class PointUserSpace extends Point2D.Double implements IPoolableObject {
+public class PointUserSpace extends Point2D.Double {
     /**
      * 
      */
@@ -53,42 +51,6 @@ public class PointUserSpace extends Point2D.Double implements IPoolableObject {
      */
     public void set(double x, double y) {
         setLocation(x, y);
-    }
-
-    /*
-     * (non-Javadoc)
-     * @see de.jbo.jbogx2d.base.util.pooling.PoolableObject#onActivate()
-     */
-    @Override
-    public void onActivate() throws Exception {
-        setLocation(0.0, 0.0);
-    }
-
-    /*
-     * (non-Javadoc)
-     * @see de.jbo.jbogx2d.base.util.pooling.PoolableObject#onDestroy()
-     */
-    @Override
-    public void onDestroy() throws Exception {
-        // nothing to do
-    }
-
-    /*
-     * (non-Javadoc)
-     * @see de.jbo.jbogx2d.base.util.pooling.PoolableObject#onPassivate()
-     */
-    @Override
-    public void onPassivate() throws Exception {
-        // nothing to do
-    }
-
-    /*
-     * (non-Javadoc)
-     * @see de.jbo.jbogx2d.base.util.pooling.PoolableObject#validate()
-     */
-    @Override
-    public boolean validate() {
-        return true;
     }
 
     /**

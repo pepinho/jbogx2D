@@ -108,10 +108,10 @@ final class JGraphicsRenderPanel extends JPanel {
     /**
      * @param visibleBounds
      *            The visible-area to be displayed.
-     * @see de.jbo.jbogx2d.base.graphics.ViewHandler#getVisibielUserSpace(de.jbo.jbogx2d.base.geom.BoundsUserSpace)
+     * @see de.jbo.jbogx2d.base.graphics.ViewHandler#getVisibleUserSpace(de.jbo.jbogx2d.base.geom.BoundsUserSpace)
      */
-    public void getVisibielUserSpace(BoundsUserSpace visibleBounds) {
-        viewHandler.getVisibielUserSpace(visibleBounds);
+    public void getVisibleUserSpace(BoundsUserSpace visibleBounds) {
+        viewHandler.getVisibleUserSpace(visibleBounds);
     }
 
     /**
@@ -144,7 +144,7 @@ final class JGraphicsRenderPanel extends JPanel {
     }
 
     /**
-     *@param screen
+     * @param screen
      *            Input screen-coordinates.
      * @param userSpace
      *            Output user-space-coordinates.

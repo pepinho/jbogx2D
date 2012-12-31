@@ -16,119 +16,145 @@ import junit.framework.TestCase;
 public class TestCaseArrayListX extends TestCase {
 
     /**
-     * Test method for {@link de.jbo.jbogx2d.base.util.collection.ArrayListX#ArrayListX()}.
+     * Test method for
+     * {@link de.jbo.jbogx2d.base.util.collection.ArrayListX#ArrayListX()}.
      */
     public void testArrayListX() {
         assertTrue(true);
     }
 
     /**
-     * Test method for {@link de.jbo.jbogx2d.base.util.collection.ArrayListX#ArrayListX(int)}.
+     * Test method for
+     * {@link de.jbo.jbogx2d.base.util.collection.ArrayListX#ArrayListX(int)}.
      */
     public void testArrayListXInt() {
         assertTrue(true);
     }
 
     /**
-     * Test method for {@link de.jbo.jbogx2d.base.util.collection.ArrayListX#add(java.lang.Object)}.
+     * Test method for
+     * {@link de.jbo.jbogx2d.base.util.collection.ArrayListX#add(java.lang.Object)}
+     * .
      */
     public void testAdd() {
         assertTrue(true);
     }
 
     /**
-     * Test method for {@link de.jbo.jbogx2d.base.util.collection.ArrayListX#set(int, java.lang.Object)}.
+     * Test method for
+     * {@link de.jbo.jbogx2d.base.util.collection.ArrayListX#set(int, java.lang.Object)}
+     * .
      */
     public void testSet() {
         assertTrue(true);
     }
 
     /**
-     * Test method for {@link de.jbo.jbogx2d.base.util.collection.ArrayListX#addAll(java.util.Collection)}.
+     * Test method for
+     * {@link de.jbo.jbogx2d.base.util.collection.ArrayListX#addAll(java.util.Collection)}
+     * .
      */
     public void testAddAll() {
         assertTrue(true);
     }
 
     /**
-     * Test method for {@link de.jbo.jbogx2d.base.util.collection.ArrayListX#clear()}.
+     * Test method for
+     * {@link de.jbo.jbogx2d.base.util.collection.ArrayListX#clear()}.
      */
     public void testClear() {
         assertTrue(true);
     }
 
     /**
-     * Test method for {@link de.jbo.jbogx2d.base.util.collection.ArrayListX#contains(java.lang.Object)}.
+     * Test method for
+     * {@link de.jbo.jbogx2d.base.util.collection.ArrayListX#contains(java.lang.Object)}
+     * .
      */
     public void testContains() {
         assertTrue(true);
     }
 
     /**
-     * Test method for {@link de.jbo.jbogx2d.base.util.collection.ArrayListX#containsAll(java.util.Collection)}.
+     * Test method for
+     * {@link de.jbo.jbogx2d.base.util.collection.ArrayListX#containsAll(java.util.Collection)}
+     * .
      */
     public void testContainsAll() {
         assertTrue(true);
     }
 
     /**
-     * Test method for {@link de.jbo.jbogx2d.base.util.collection.ArrayListX#isEmpty()}.
+     * Test method for
+     * {@link de.jbo.jbogx2d.base.util.collection.ArrayListX#isEmpty()}.
      */
     public void testIsEmpty() {
         assertTrue(true);
     }
 
     /**
-     * Test method for {@link de.jbo.jbogx2d.base.util.collection.ArrayListX#iterator()}.
+     * Test method for
+     * {@link de.jbo.jbogx2d.base.util.collection.ArrayListX#iterator()}.
      */
     public void testIterator() {
         assertTrue(true);
     }
 
     /**
-     * Test method for {@link de.jbo.jbogx2d.base.util.collection.ArrayListX#remove(java.lang.Object)}.
+     * Test method for
+     * {@link de.jbo.jbogx2d.base.util.collection.ArrayListX#remove(java.lang.Object)}
+     * .
      */
     public void testRemove() {
         assertTrue(true);
     }
 
     /**
-     * Test method for {@link de.jbo.jbogx2d.base.util.collection.ArrayListX#removeAll(java.util.Collection)}.
+     * Test method for
+     * {@link de.jbo.jbogx2d.base.util.collection.ArrayListX#removeAll(java.util.Collection)}
+     * .
      */
     public void testRemoveAll() {
         assertTrue(true);
     }
 
     /**
-     * Test method for {@link de.jbo.jbogx2d.base.util.collection.ArrayListX#indexOf(java.lang.Object)}.
+     * Test method for
+     * {@link de.jbo.jbogx2d.base.util.collection.ArrayListX#indexOf(java.lang.Object)}
+     * .
      */
     public void testIndexOf() {
         assertTrue(true);
     }
 
     /**
-     * Test method for {@link de.jbo.jbogx2d.base.util.collection.ArrayListX#retainAll(java.util.Collection)}.
+     * Test method for
+     * {@link de.jbo.jbogx2d.base.util.collection.ArrayListX#retainAll(java.util.Collection)}
+     * .
      */
     public void testRetainAll() {
         assertTrue(true);
     }
 
     /**
-     * Test method for {@link de.jbo.jbogx2d.base.util.collection.ArrayListX#size()}.
+     * Test method for
+     * {@link de.jbo.jbogx2d.base.util.collection.ArrayListX#size()}.
      */
     public void testSize() {
         assertTrue(true);
     }
 
     /**
-     * Test method for {@link de.jbo.jbogx2d.base.util.collection.ArrayListX#toArray()}.
+     * Test method for
+     * {@link de.jbo.jbogx2d.base.util.collection.ArrayListX#toArray()}.
      */
     public void testToArray() {
         assertTrue(true);
     }
 
     /**
-     * Test method for {@link de.jbo.jbogx2d.base.util.collection.ArrayListX#toArray(T[])}.
+     * Test method for
+     * {@link de.jbo.jbogx2d.base.util.collection.ArrayListX#toArray(T[])}.
      */
     public void testToArrayTArray() {
         assertTrue(true);

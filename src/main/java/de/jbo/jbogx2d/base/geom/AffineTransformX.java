@@ -3,15 +3,13 @@ package de.jbo.jbogx2d.base.geom;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Point2D;
 
-import de.jbo.jbogx2d.base.util.pooling.IPoolableObject;
-
 /**
  * Defines a matrix-transformation used for all geometric operations.
  * 
  * @author Josef Baro (jbo) <br>
  * @version 04.01.2010 jbo - created <br>
  */
-public class AffineTransformX extends AffineTransform implements IPoolableObject {
+public class AffineTransformX extends AffineTransform {
     /**
      * Serial id.
      */
@@ -162,38 +160,6 @@ public class AffineTransformX extends AffineTransform implements IPoolableObject
         m10 = 0.0;
 
         setTransform(m00, m10, m01, m11, m02, m12);
-    }
-
-    /*
-     * @see de.jbo.jbogx2d.base.util.pooling.PoolableObject#onActivate()
-     */
-    @Override
-    public void onActivate() throws Exception {
-        setToIdentity();
-    }
-
-    /*
-     * @see de.jbo.jbogx2d.base.util.pooling.PoolableObject#onDestroy()
-     */
-    @Override
-    public void onDestroy() throws Exception {
-
-    }
-
-    /*
-     * @see de.jbo.jbogx2d.base.util.pooling.PoolableObject#onPassivate()
-     */
-    @Override
-    public void onPassivate() throws Exception {
-
-    }
-
-    /*
-     * @see de.jbo.jbogx2d.base.util.pooling.PoolableObject#validate()
-     */
-    @Override
-    public boolean validate() {
-        return true;
     }
 
     /**

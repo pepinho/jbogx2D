@@ -60,6 +60,7 @@ public class ArrayListX<E> implements Collection<E> {
 
     /*
      * (non-Javadoc)
+     * 
      * @see java.util.Collection#add(java.lang.Object)
      */
     @Override
@@ -91,6 +92,7 @@ public class ArrayListX<E> implements Collection<E> {
 
     /*
      * (non-Javadoc)
+     * 
      * @see java.util.Collection#addAll(java.util.Collection)
      */
     @Override
@@ -104,6 +106,7 @@ public class ArrayListX<E> implements Collection<E> {
 
     /*
      * (non-Javadoc)
+     * 
      * @see java.util.Collection#clear()
      */
     @Override
@@ -116,6 +119,7 @@ public class ArrayListX<E> implements Collection<E> {
 
     /*
      * (non-Javadoc)
+     * 
      * @see java.util.Collection#contains(java.lang.Object)
      */
     @Override
@@ -133,6 +137,7 @@ public class ArrayListX<E> implements Collection<E> {
 
     /*
      * (non-Javadoc)
+     * 
      * @see java.util.Collection#containsAll(java.util.Collection)
      */
     @Override
@@ -151,6 +156,7 @@ public class ArrayListX<E> implements Collection<E> {
 
     /*
      * (non-Javadoc)
+     * 
      * @see java.util.Collection#isEmpty()
      */
     @Override
@@ -167,6 +173,7 @@ public class ArrayListX<E> implements Collection<E> {
 
     /*
      * (non-Javadoc)
+     * 
      * @see java.util.Collection#iterator()
      */
     @Override
@@ -176,6 +183,7 @@ public class ArrayListX<E> implements Collection<E> {
 
     /*
      * (non-Javadoc)
+     * 
      * @see java.util.Collection#remove(java.lang.Object)
      */
     @Override
@@ -192,6 +200,7 @@ public class ArrayListX<E> implements Collection<E> {
 
     /*
      * (non-Javadoc)
+     * 
      * @see java.util.Collection#removeAll(java.util.Collection)
      */
     @Override
@@ -230,6 +239,7 @@ public class ArrayListX<E> implements Collection<E> {
 
     /*
      * (non-Javadoc)
+     * 
      * @see java.util.Collection#retainAll(java.util.Collection)
      */
     @Override
@@ -248,6 +258,7 @@ public class ArrayListX<E> implements Collection<E> {
 
     /*
      * (non-Javadoc)
+     * 
      * @see java.util.Collection#size()
      */
     @Override
@@ -257,6 +268,7 @@ public class ArrayListX<E> implements Collection<E> {
 
     /*
      * (non-Javadoc)
+     * 
      * @see java.util.Collection#toArray()
      */
     @Override
@@ -268,6 +280,7 @@ public class ArrayListX<E> implements Collection<E> {
 
     /*
      * (non-Javadoc)
+     * 
      * @see java.util.Collection#toArray(T[])
      */
     @SuppressWarnings("unchecked")
@@ -330,6 +343,7 @@ public class ArrayListX<E> implements Collection<E> {
 
         /*
          * (non-Javadoc)
+         * 
          * @see java.util.Iterator#hasNext()
          */
         @Override
@@ -339,6 +353,7 @@ public class ArrayListX<E> implements Collection<E> {
 
         /*
          * (non-Javadoc)
+         * 
          * @see java.util.Iterator#next()
          */
         @Override
@@ -349,6 +364,7 @@ public class ArrayListX<E> implements Collection<E> {
 
         /*
          * (non-Javadoc)
+         * 
          * @see java.util.Iterator#remove()
          */
         @Override

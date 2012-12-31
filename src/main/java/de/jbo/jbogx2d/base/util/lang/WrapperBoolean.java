@@ -8,8 +8,6 @@
 
 package de.jbo.jbogx2d.base.util.lang;
 
-import de.jbo.jbogx2d.base.util.pooling.IPoolableObject;
-
 /**
  * Implements a wrapper-class for a specific simple data-type. It can be used
  * e.g. for out-parameters in method-calls.
@@ -17,7 +15,7 @@ import de.jbo.jbogx2d.base.util.pooling.IPoolableObject;
  * @author Josef Baro (jbo) <br>
  * @version 1.0 28.02.2004: jbo created <br>
  */
-public class WrapperBoolean implements IPoolableObject {
+public class WrapperBoolean {
     /** The wrapped value. */
     public boolean value = false;
 
@@ -36,37 +34,6 @@ public class WrapperBoolean implements IPoolableObject {
      */
     public WrapperBoolean() {
         super();
-    }
-
-    /*
-     * @see de.jbo.jbogx2d.base.util.pooling.PoolableObject#onActivate()
-     */
-    @Override
-    public void onActivate() throws Exception {
-    }
-
-    /*
-     * @see de.jbo.jbogx2d.base.util.pooling.PoolableObject#onDestroy()
-     */
-    @Override
-    public void onDestroy() throws Exception {
-        // nothing to be done
-    }
-
-    /*
-     * @see de.jbo.jbogx2d.base.util.pooling.PoolableObject#onPassivate()
-     */
-    @Override
-    public void onPassivate() throws Exception {
-        // nothing to be done
-    }
-
-    /*
-     * @see de.jbo.jbogx2d.base.util.pooling.PoolableObject#validate()
-     */
-    @Override
-    public boolean validate() {
-        return true;
     }
 
     /*

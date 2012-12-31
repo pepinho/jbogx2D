@@ -59,6 +59,7 @@ public class DrawingElemContainer extends ElemContainer {
 
     /*
      * (non-Javadoc)
+     * 
      * @see de.jbo.jbogx2d.base.elements.ElemBase#getDrawing()
      */
     @Override

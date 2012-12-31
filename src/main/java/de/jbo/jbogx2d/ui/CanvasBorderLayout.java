@@ -20,8 +20,7 @@ public class CanvasBorderLayout extends BorderLayout {
     private static final long serialVersionUID = 1L;
 
     /**
-     * Constructs a border layout with the horizontal gaps
-     * between components.
+     * Constructs a border layout with the horizontal gaps between components.
      * The horizontal gap is specified by <code>hgap</code>.
      * 
      * @see #getHgap()
@@ -31,9 +30,8 @@ public class CanvasBorderLayout extends BorderLayout {
     int hgap;
 
     /**
-     * Constructs a border layout with the vertical gaps
-     * between components.
-     * The vertical gap is specified by <code>vgap</code>.
+     * Constructs a border layout with the vertical gaps between components. The
+     * vertical gap is specified by <code>vgap</code>.
      * 
      * @see #getVgap()
      * @see #setVgap(int)
@@ -42,8 +40,8 @@ public class CanvasBorderLayout extends BorderLayout {
     int vgap;
 
     /**
-     * Constant to specify components location to be the
-     * north portion of the border layout.
+     * Constant to specify components location to be the north portion of the
+     * border layout.
      * 
      * @serial
      * @see #getChild(String, boolean)
@@ -55,8 +53,8 @@ public class CanvasBorderLayout extends BorderLayout {
     Component north;
 
     /**
-     * Constant to specify components location to be the
-     * west portion of the border layout.
+     * Constant to specify components location to be the west portion of the
+     * border layout.
      * 
      * @serial
      * @see #getChild(String, boolean)
@@ -68,8 +66,8 @@ public class CanvasBorderLayout extends BorderLayout {
     Component west;
 
     /**
-     * Constant to specify components location to be the
-     * east portion of the border layout.
+     * Constant to specify components location to be the east portion of the
+     * border layout.
      * 
      * @serial
      * @see #getChild(String, boolean)
@@ -81,8 +79,8 @@ public class CanvasBorderLayout extends BorderLayout {
     Component east;
 
     /**
-     * Constant to specify components location to be the
-     * south portion of the border layout.
+     * Constant to specify components location to be the south portion of the
+     * border layout.
      * 
      * @serial
      * @see #getChild(String, boolean)
@@ -94,8 +92,8 @@ public class CanvasBorderLayout extends BorderLayout {
     Component south;
 
     /**
-     * Constant to specify components location to be the
-     * center portion of the border layout.
+     * Constant to specify components location to be the center portion of the
+     * border layout.
      * 
      * @serial
      * @see #getChild(String, boolean)
@@ -107,58 +105,52 @@ public class CanvasBorderLayout extends BorderLayout {
     Component center;
 
     /**
-     * A relative positioning constant, that can be used instead of
-     * north, south, east, west or center.
-     * mixing the two types of constants can lead to unpredicable results. If
-     * you use both types, the relative constants will take precedence.
-     * For example, if you add components using both the <code>NORTH</code> and
-     * <code>BEFORE_FIRST_LINE</code> constants in a container whose
-     * orientation is <code>LEFT_TO_RIGHT</code>, only the
-     * <code>BEFORE_FIRST_LINE</code> will be layed out.
-     * This will be the same for lastLine, firstItem, lastItem.
+     * A relative positioning constant, that can be used instead of north,
+     * south, east, west or center. mixing the two types of constants can lead
+     * to unpredicable results. If you use both types, the relative constants
+     * will take precedence. For example, if you add components using both the
+     * <code>NORTH</code> and <code>BEFORE_FIRST_LINE</code> constants in a
+     * container whose orientation is <code>LEFT_TO_RIGHT</code>, only the
+     * <code>BEFORE_FIRST_LINE</code> will be layed out. This will be the same
+     * for lastLine, firstItem, lastItem.
      * 
      * @serial
      */
     Component firstLine;
 
     /**
-     * A relative positioning constant, that can be used instead of
-     * north, south, east, west or center.
-     * Please read Description for firstLine.
+     * A relative positioning constant, that can be used instead of north,
+     * south, east, west or center. Please read Description for firstLine.
      * 
      * @serial
      */
     Component lastLine;
 
     /**
-     * A relative positioning constant, that can be used instead of
-     * north, south, east, west or center.
-     * Please read Description for firstLine.
+     * A relative positioning constant, that can be used instead of north,
+     * south, east, west or center. Please read Description for firstLine.
      * 
      * @serial
      */
     Component firstItem;
 
     /**
-     * A relative positioning constant, that can be used instead of
-     * north, south, east, west or center.
-     * Please read Description for firstLine.
+     * A relative positioning constant, that can be used instead of north,
+     * south, east, west or center. Please read Description for firstLine.
      * 
      * @serial
      */
     Component lastItem;
 
     /**
-     * Constructs a new border layout with
-     * no gaps between components.
+     * Constructs a new border layout with no gaps between components.
      */
     public CanvasBorderLayout() {
         this(0, 0);
     }
 
     /**
-     * Constructs a border layout with the specified gaps
-     * between components.
+     * Constructs a border layout with the specified gaps between components.
      * The horizontal gap is specified by <code>hgap</code> and the vertical gap
      * is specified by <code>vgap</code>.
      * 
@@ -259,10 +251,10 @@ public class CanvasBorderLayout extends BorderLayout {
     }
 
     /**
-     * Removes the specified component from this border layout. This
-     * method is called when a container calls its <code>remove</code> or
-     * <code>removeAll</code> methods. Most applications do not call this
-     * method directly.
+     * Removes the specified component from this border layout. This method is
+     * called when a container calls its <code>remove</code> or
+     * <code>removeAll</code> methods. Most applications do not call this method
+     * directly.
      * 
      * @param comp
      *            the component to be removed.
@@ -304,8 +296,8 @@ public class CanvasBorderLayout extends BorderLayout {
      *            <code>EAST</code>, <code>PAGE_START</code>,
      *            <code>PAGE_END</code>, <code>LINE_START</code>,
      *            <code>LINE_END</code>
-     * @return the component at the given location, or <code>null</code> if
-     *         the location is empty
+     * @return the component at the given location, or <code>null</code> if the
+     *         location is empty
      * @see #addLayoutComponent(java.awt.Component, java.lang.Object)
      * @since 1.5
      */
@@ -341,21 +333,20 @@ public class CanvasBorderLayout extends BorderLayout {
      * <code>PAGE_END</code>, <code>LINE_START</code>, and <code>LINE_END</code>
      * take precedence over components added with the explicit constraints
      * <code>NORTH</code>, <code>SOUTH</code>, <code>WEST</code>, and
-     * <code>EAST</code>.
-     * The <code>Container</code>'s component orientation is used to determine
-     * the location of components
-     * added with <code>LINE_START</code> and <code>LINE_END</code>.
+     * <code>EAST</code>. The <code>Container</code>'s component orientation is
+     * used to determine the location of components added with
+     * <code>LINE_START</code> and <code>LINE_END</code>.
      * 
      * @param constraints
      *            the desired absolute position, one of <code>CENTER</code>,
      *            <code>NORTH</code>, <code>SOUTH</code>, <code>EAST</code>,
      *            <code>WEST</code>
      * @param target
-     *            the {@code Container} used to obtain
-     *            the constraint location based on the target {@code Container}
-     *            's component orientation.
-     * @return the component at the given location, or <code>null</code> if
-     *         the location is empty
+     *            the {@code Container} used to obtain the constraint location
+     *            based on the target {@code Container} 's component
+     *            orientation.
+     * @return the component at the given location, or <code>null</code> if the
+     *         location is empty
      * @see #addLayoutComponent(java.awt.Component, java.lang.Object)
      * @since 1.5
      */
@@ -392,9 +383,8 @@ public class CanvasBorderLayout extends BorderLayout {
      * 
      * @param comp
      *            the component to be queried
-     * @return the constraint for the specified component,
-     *         or null if component is null or is not present
-     *         in this layout
+     * @return the constraint for the specified component, or null if component
+     *         is null or is not present in this layout
      * @see #addLayoutComponent(java.awt.Component, java.lang.Object)
      * @since 1.5
      */
@@ -428,8 +418,8 @@ public class CanvasBorderLayout extends BorderLayout {
     }
 
     /**
-     * Determines the minimum size of the <code>target</code> container
-     * using this layout manager.
+     * Determines the minimum size of the <code>target</code> container using
+     * this layout manager.
      * <p>
      * This method is called when a container calls its
      * <code>getMinimumSize</code> method. Most applications do not call this
@@ -437,8 +427,8 @@ public class CanvasBorderLayout extends BorderLayout {
      * 
      * @param target
      *            the container in which to do the layout.
-     * @return the minimum dimensions needed to lay out the subcomponents
-     *         of the specified container.
+     * @return the minimum dimensions needed to lay out the subcomponents of the
+     *         specified container.
      * @see java.awt.Container
      * @see java.awt.BorderLayout#preferredLayoutSize
      * @see java.awt.Container#getMinimumSize()
@@ -492,16 +482,15 @@ public class CanvasBorderLayout extends BorderLayout {
 
     /**
      * Determines the preferred size of the <code>target</code> container using
-     * this layout manager, based on the components
-     * in the container.
+     * this layout manager, based on the components in the container.
      * <p>
      * Most applications do not call this method directly. This method is called
      * when a container calls its <code>getPreferredSize</code> method.
      * 
      * @param target
      *            the container in which to do the layout.
-     * @return the preferred dimensions to lay out the subcomponents
-     *         of the specified container.
+     * @return the preferred dimensions to lay out the subcomponents of the
+     *         specified container.
      * @see java.awt.Container
      * @see java.awt.BorderLayout#minimumLayoutSize
      * @see java.awt.Container#getPreferredSize()
@@ -628,8 +617,8 @@ public class CanvasBorderLayout extends BorderLayout {
      * Get the component that corresponds to the given constraint location
      * 
      * @param key
-     *            The desired absolute position,
-     *            either NORTH, SOUTH, EAST, or WEST.
+     *            The desired absolute position, either NORTH, SOUTH, EAST, or
+     *            WEST.
      * @param ltr
      *            Is the component line direction left-to-right?
      * @return The corresponding component.

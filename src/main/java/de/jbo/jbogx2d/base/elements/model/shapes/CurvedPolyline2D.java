@@ -43,6 +43,7 @@ public class CurvedPolyline2D extends Polyline2D {
 
     /*
      * (non-Javadoc)
+     * 
      * @see de.jbo.jbogx2d.base.elements.model.shapes.Polyline2D#createPoint()
      */
     @Override
@@ -52,6 +53,7 @@ public class CurvedPolyline2D extends Polyline2D {
 
     /*
      * (non-Javadoc)
+     * 
      * @see
      * de.jbo.jbogx2d.base.elements.model.shapes.Polyline2D#createPoints(int)
      */
@@ -72,6 +74,7 @@ public class CurvedPolyline2D extends Polyline2D {
 
     /*
      * (non-Javadoc)
+     * 
      * @see
      * de.jbo.jbogx2d.base.elements.model.shapes.Polyline2D#insertPoint(int,
      * double, double)
@@ -89,6 +92,7 @@ public class CurvedPolyline2D extends Polyline2D {
 
     /*
      * (non-Javadoc)
+     * 
      * @see
      * de.jbo.jbogx2d.base.elements.model.shapes.Polyline2D#removePoint(int)
      */
@@ -105,6 +109,7 @@ public class CurvedPolyline2D extends Polyline2D {
 
     /*
      * (non-Javadoc)
+     * 
      * @see de.jbo.jbogx2d.base.elements.model.shapes.Polyline2D#setPoint(int,
      * double, double)
      */
@@ -121,6 +126,7 @@ public class CurvedPolyline2D extends Polyline2D {
 
     /*
      * (non-Javadoc)
+     * 
      * @see
      * de.jbo.jbogx2d.base.elements.model.shapes.Polyline2D#setPoints(de.jbo
      * .jbogx2d.base.geom.PointUserSpace[])

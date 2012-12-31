@@ -135,7 +135,7 @@ final class JGraphicsCanvasRuler extends JPanel implements IZoomListener, IScrol
             double gridUserSpaceY = myCanvas.getGridSpacingY();
 
             myCanvas.getDrawing().getUserSpaceBounds(drawingBounds);
-            myCanvas.getVisibielUserSpace(visibleBounds);
+            myCanvas.getVisibleUserSpace(visibleBounds);
             myCanvas.getBounds(viewBounds);
             viewBoundsUser.set(viewBounds.x, viewBounds.y, viewBounds.width, viewBounds.height);
 

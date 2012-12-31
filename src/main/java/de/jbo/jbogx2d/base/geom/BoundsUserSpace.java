@@ -3,17 +3,16 @@ package de.jbo.jbogx2d.base.geom;
 import java.awt.geom.Line2D;
 import java.awt.geom.Rectangle2D;
 
-import de.jbo.jbogx2d.base.util.pooling.IPoolableObject;
-
 /**
  * Implements rectangular bounds in user-space units.
  * 
  * @author Josef Baro (jbo) <br>
  * @version 13.01.2010 jbo - created <br>
  */
-public class BoundsUserSpace extends Rectangle2D.Double implements IPoolableObject {
+public class BoundsUserSpace extends Rectangle2D.Double {
     /*
      * (non-Javadoc)
+     * 
      * @see java.awt.geom.Rectangle2D.Double#getHeight()
      */
     @Override
@@ -23,6 +22,7 @@ public class BoundsUserSpace extends Rectangle2D.Double implements IPoolableObje
 
     /*
      * (non-Javadoc)
+     * 
      * @see java.awt.geom.Rectangle2D.Double#getWidth()
      */
     @Override
@@ -196,38 +196,6 @@ public class BoundsUserSpace extends Rectangle2D.Double implements IPoolableObje
         }
 
         return state;
-    }
-
-    /*
-     * @see de.jbo.jbogx2d.base.util.pooling.PoolableObject#onActivate()
-     */
-    @Override
-    public void onActivate() throws Exception {
-        setRect(0.0, 0.0, 0.0, 0.0);
-    }
-
-    /*
-     * @see de.jbo.jbogx2d.base.util.pooling.PoolableObject#onDestroy()
-     */
-    @Override
-    public void onDestroy() throws Exception {
-
-    }
-
-    /*
-     * @see de.jbo.jbogx2d.base.util.pooling.PoolableObject#onPassivate()
-     */
-    @Override
-    public void onPassivate() throws Exception {
-
-    }
-
-    /*
-     * @see de.jbo.jbogx2d.base.util.pooling.PoolableObject#validate()
-     */
-    @Override
-    public boolean validate() {
-        return true;
     }
 
     /**

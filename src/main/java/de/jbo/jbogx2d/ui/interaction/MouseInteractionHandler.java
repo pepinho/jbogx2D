@@ -140,7 +140,7 @@ public final class MouseInteractionHandler implements MouseListener, MouseMotion
                 BoundsUserSpace bounds = paintRequest.getBoundsModified();
                 if (bounds == null) {
                     bounds = new BoundsUserSpace();
-                    viewHandler.getVisibielUserSpace(bounds);
+                    viewHandler.getVisibleUserSpace(bounds, true);
                 }
                 viewHandler.onDrawingModified(viewHandler.getDrawing(), bounds);
             }

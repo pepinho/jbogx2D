@@ -28,6 +28,7 @@ public class ElemHandlesPolyline extends ElemHandlesBase {
 
     /*
      * (non-Javadoc)
+     * 
      * @see
      * de.jbo.jbogx2d.base.elements.view.ElemHandlesBase#performUpdate(de.jbo
      * .jbogx2d.base.elements.model.ElemModel)

@@ -21,6 +21,7 @@ public class ElemCurvedPolygon extends ElemPolygon {
 
     /*
      * (non-Javadoc)
+     * 
      * @see de.jbo.jbogx2d.base.elements.ElemBase#createModel()
      */
     @Override
@@ -30,6 +31,7 @@ public class ElemCurvedPolygon extends ElemPolygon {
 
     /*
      * (non-Javadoc)
+     * 
      * @see
      * de.jbo.jbogx2d.base.elements.ElemBase#createView(de.jbo.jbogx2d.base.
      * elements.model.ElemModel)

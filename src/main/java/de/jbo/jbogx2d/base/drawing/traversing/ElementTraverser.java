@@ -94,8 +94,7 @@ public abstract class ElementTraverser {
      * @see #CONTINUE Continues the traversing.
      * @see #STOP Stops the complete traversing after this method.
      * @see #STOP_CONTAINER Stops handling this container. The traversing will
-     *      be continued
-     *      on the next element on the containers level.
+     *      be continued on the next element on the containers level.
      */
     public abstract short handleAfterContainerChilds(ElemContainer container);
 

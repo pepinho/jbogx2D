@@ -163,8 +163,25 @@ public class ViewHandler implements IDrawingModifiedListener {
      * @param visibleBounds
      *            Out-parameter for the visible area.
      */
-    public void getVisibielUserSpace(BoundsUserSpace visibleBounds) {
-        visibleBounds.set(visibleUserSpace);
+    public void getVisibleUserSpace(BoundsUserSpace visibleBounds) {
+        getVisibleUserSpace(visibleBounds, false);
+    }
+
+    /**
+     * The visible area being rendered.
+     * 
+     * @param visibleBounds
+     *            Out-parameter for the visible area.
+     * @param matchedRatio
+     *            True if matched to the view's ratio, otherwise only the actual
+     *            part is returned.
+     */
+    public void getVisibleUserSpace(BoundsUserSpace visibleBounds, boolean matchedRatio) {
+        if (!matchedRatio) {
+            visibleBounds.set(visibleUserSpace);
+        } else {
+            viewBuffer.getVisibleUserSpace(visibleBounds);
+        }
     }
 
     /**

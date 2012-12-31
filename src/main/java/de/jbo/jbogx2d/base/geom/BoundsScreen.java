@@ -4,15 +4,13 @@ import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.Rectangle;
 
-import de.jbo.jbogx2d.base.util.pooling.IPoolableObject;
-
 /**
  * Implements bounds representing screen-coordinates.
  * 
  * @author Josef Baro (jbo) <br>
  * @version 25.01.2010 jbo - created <br>
  */
-public class BoundsScreen extends Rectangle implements IPoolableObject {
+public class BoundsScreen extends Rectangle {
 
     /**
      * Serial id.
@@ -94,38 +92,6 @@ public class BoundsScreen extends Rectangle implements IPoolableObject {
      */
     public BoundsScreen(Point p, Dimension d) {
         super(p, d);
-    }
-
-    /*
-     * @see de.jbo.jbogx2d.base.util.pooling.PoolableObject#onActivate()
-     */
-    @Override
-    public void onActivate() throws Exception {
-        setBounds(0, 0, 0, 0);
-    }
-
-    /*
-     * @see de.jbo.jbogx2d.base.util.pooling.PoolableObject#onDestroy()
-     */
-    @Override
-    public void onDestroy() throws Exception {
-
-    }
-
-    /*
-     * @see de.jbo.jbogx2d.base.util.pooling.PoolableObject#onPassivate()
-     */
-    @Override
-    public void onPassivate() throws Exception {
-
-    }
-
-    /*
-     * @see de.jbo.jbogx2d.base.util.pooling.PoolableObject#validate()
-     */
-    @Override
-    public boolean validate() {
-        return true;
     }
 
     /**

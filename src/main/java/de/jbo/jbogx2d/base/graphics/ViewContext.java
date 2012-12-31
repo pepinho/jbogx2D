@@ -236,14 +236,13 @@ public abstract class ViewContext implements ImageObserver {
 
     /**
      * This method is called when information about an image which was
-     * previously requested using an asynchronous interface becomes
-     * available. Asynchronous interfaces are method calls such as
-     * getWidth(ImageObserver) and drawImage(img, x, y, ImageObserver)
-     * which take an ImageObserver object as an argument. Those methods
-     * register the caller as interested either in information about
-     * the overall image itself (in the case of getWidth(ImageObserver))
-     * or about an output version of an image (in the case of the
-     * drawImage(img, x, y, [w, h,] ImageObserver) call).
+     * previously requested using an asynchronous interface becomes available.
+     * Asynchronous interfaces are method calls such as getWidth(ImageObserver)
+     * and drawImage(img, x, y, ImageObserver) which take an ImageObserver
+     * object as an argument. Those methods register the caller as interested
+     * either in information about the overall image itself (in the case of
+     * getWidth(ImageObserver)) or about an output version of an image (in the
+     * case of the drawImage(img, x, y, [w, h,] ImageObserver) call).
      * <p>
      * This method should return true if further updates are needed or false if
      * the required information has been acquired. The image which was being
@@ -259,8 +258,8 @@ public abstract class ViewContext implements ImageObserver {
      * @param img
      *            the image being observed.
      * @param infoflags
-     *            the bitwise inclusive OR of the following
-     *            flags: <code>WIDTH</code>, <code>HEIGHT</code>,
+     *            the bitwise inclusive OR of the following flags:
+     *            <code>WIDTH</code>, <code>HEIGHT</code>,
      *            <code>PROPERTIES</code>, <code>SOMEBITS</code>,
      *            <code>FRAMEBITS</code>, <code>ALLBITS</code>,
      *            <code>ERROR</code>, <code>ABORT</code>.
@@ -272,8 +271,8 @@ public abstract class ViewContext implements ImageObserver {
      *            the width.
      * @param height
      *            the height.
-     * @return <code>false</code> if the infoflags indicate that the
-     *         image is completely loaded; <code>true</code> otherwise.
+     * @return <code>false</code> if the infoflags indicate that the image is
+     *         completely loaded; <code>true</code> otherwise.
      * @see java.awt.image.ImageObserver#imageUpdate(java.awt.Image, int, int,
      *      int, int, int)
      */
@@ -353,9 +352,8 @@ public abstract class ViewContext implements ImageObserver {
     }
 
     /**
-     * Clears the complete contents of this view. The contents
-     * cleared by a rectangle filled with the current drawing's background
-     * color.
+     * Clears the complete contents of this view. The contents cleared by a
+     * rectangle filled with the current drawing's background color.
      */
     public void clearView() {
         clearView((BoundsScreen) null);

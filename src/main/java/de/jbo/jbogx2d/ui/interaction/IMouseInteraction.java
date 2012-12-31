@@ -236,13 +236,12 @@ public interface IMouseInteraction {
      *            The key-mask for the corresponding mouse-event.
      * @param wheelRotation
      *            The number of "clicks" the mouse wheel was rotated. Negative
-     *            values if the mouse wheel was rotated up/away from
-     *            the user, and positive values if the mouse wheel was rotated
+     *            values if the mouse wheel was rotated up/away from the user,
+     *            and positive values if the mouse wheel was rotated
      *            down/towards the user.
      * @param scrollAmount
-     *            The number of units that should be scrolled per
-     *            click of mouse wheel rotation.
-     *            Only valid if <code>scrollType</code> returns
+     *            The number of units that should be scrolled per click of mouse
+     *            wheel rotation. Only valid if <code>scrollType</code> returns
      *            <code>MouseWheelEvent.WHEEL_UNIT_SCROLL</code>
      * @param scrollType
      *            the type of scrolling that should take place in response to

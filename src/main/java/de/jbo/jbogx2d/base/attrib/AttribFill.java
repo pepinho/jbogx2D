@@ -176,9 +176,9 @@ public class AttribFill extends AttribBase {
     /**
      * Sets the color-index for the background color. <br>
      * For type <code>TYPE_SOLID</code>, this value has no effect. For type
-     * <code>TYPE_TEXTURE</code> this color is set for each value of the
-     * texture pattern set to "false". For Type <code>TYPE_GRADIENT</code> this
-     * color serves as the second color for the gradient.
+     * <code>TYPE_TEXTURE</code> this color is set for each value of the texture
+     * pattern set to "false". For Type <code>TYPE_GRADIENT</code> this color
+     * serves as the second color for the gradient.
      * 
      * @param l
      *            The color to be set.
@@ -189,10 +189,10 @@ public class AttribFill extends AttribBase {
 
     /**
      * Sets the color-index for the foreground color. <br>
-     * For type <code>TYPE_SOLID</code>, this value defines the fill-color.
-     * For type <code>TYPE_TEXTURE</code> this color is set for each value of
-     * the texture pattern set to "true". For Type <code>TYPE_GRADIENT</code>
-     * this color serves as the first color for the gradient.
+     * For type <code>TYPE_SOLID</code>, this value defines the fill-color. For
+     * type <code>TYPE_TEXTURE</code> this color is set for each value of the
+     * texture pattern set to "true". For Type <code>TYPE_GRADIENT</code> this
+     * color serves as the first color for the gradient.
      * 
      * @param l
      *            The color to be set.

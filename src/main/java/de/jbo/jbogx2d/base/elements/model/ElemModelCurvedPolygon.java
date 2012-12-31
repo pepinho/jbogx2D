@@ -18,6 +18,7 @@ public class ElemModelCurvedPolygon extends ElemModelPolygon {
 
     /*
      * (non-Javadoc)
+     * 
      * @see de.jbo.jbogx2d.base.elements.model.ElemModelPolyline#initShape()
      */
     @Override
