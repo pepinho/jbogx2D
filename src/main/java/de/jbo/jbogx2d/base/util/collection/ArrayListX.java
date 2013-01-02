@@ -10,6 +10,7 @@ package de.jbo.jbogx2d.base.util.collection;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.LinkedList;
 
 /**
  * Implements an array based collection. As a difference to Java's standard
@@ -265,6 +266,23 @@ public class ArrayListX<E> implements Collection<E> {
     public final int size() {
         return data.length;
     }
+    
+    /**
+     * 
+     * @return Collection of not-null-elements in this collection.
+     */
+    private final Collection<E> getNotNullElements(){
+        Collection<E> ret = new LinkedList<E>();
+        
+        for(int i = 0; i < data.length; i++){
+            E obj = data[i];
+            if (obj != null){
+                ret.add(obj);
+            }
+        }
+        
+        return ret;
+    }
 
     /*
      * (non-Javadoc)
@@ -273,8 +291,7 @@ public class ArrayListX<E> implements Collection<E> {
      */
     @Override
     public Object[] toArray() {
-        Object[] array = new Object[data.length];
-        System.arraycopy(data, 0, array, 0, size());
+        Object[] array = getNotNullElements().toArray();
         return array;
     }
 
@@ -286,11 +303,13 @@ public class ArrayListX<E> implements Collection<E> {
     @SuppressWarnings("unchecked")
     @Override
     public <T> T[] toArray(T[] a) {
-        if (a.length < size()) {
+        Collection<E> notNullElements = getNotNullElements();
+        
+        if (a.length < notNullElements.size()) {
             // Make a new array of a's runtime type, but my contents:
-            return (T[]) Arrays.copyOf(data, size(), a.getClass());
+            return (T[]) Arrays.copyOf(notNullElements.toArray(), size(), a.getClass());
         }
-        System.arraycopy(data, 0, a, 0, size());
+        System.arraycopy(notNullElements.toArray(), 0, a, 0, size());
         if (a.length > size()) {
             for (int i = size(); i < a.length; i++) {
                 a[i] = null;
