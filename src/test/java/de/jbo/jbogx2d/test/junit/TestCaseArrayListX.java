@@ -20,6 +20,7 @@ public class TestCaseArrayListX extends TestCase {
      * {@link de.jbo.jbogx2d.base.util.collection.ArrayListX#ArrayListX()}.
      */
     public void testArrayListX() {
+        System.out.println("Test!");
         assertTrue(true);
     }
 
