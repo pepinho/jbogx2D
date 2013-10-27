@@ -102,7 +102,7 @@ public class Version {
      * @see java.lang.Object#toString()
      */
     @Override
-    public String toString() {
+    public final String toString() {
         int temp = 0;
         StringBuffer buffer = new StringBuffer();
 
