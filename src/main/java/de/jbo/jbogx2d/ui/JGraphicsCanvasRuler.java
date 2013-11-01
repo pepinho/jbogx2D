@@ -52,6 +52,9 @@ final class JGraphicsCanvasRuler extends JPanel implements IZoomListener, IScrol
     /** Spacing for texts. */
     private static final int TEXT_WIDTH_SPACING = 10;
 
+    /** Default scale-tick-size. */
+    private static final int DEFAULT_SCALE_TICK_SIZE = 10;
+
     /**
      * My parent canvas.
      */
@@ -65,7 +68,7 @@ final class JGraphicsCanvasRuler extends JPanel implements IZoomListener, IScrol
     /**
      * Scale tick size in pixels.
      */
-    private int scaleTickSize = 10;
+    private int scaleTickSize = DEFAULT_SCALE_TICK_SIZE;
 
     /** Indicates if 1st update was done or not. */
     private boolean isFirstUpdate = true;
@@ -87,7 +90,7 @@ final class JGraphicsCanvasRuler extends JPanel implements IZoomListener, IScrol
      * @param mode
      *            The ruler-mode to be set.
      */
-    JGraphicsCanvasRuler(JGraphicsCanvas canvas, CanvasRulerMode mode) {
+    JGraphicsCanvasRuler(final JGraphicsCanvas canvas, final CanvasRulerMode mode) {
         super();
         myCanvas = canvas;
         rulerMode = mode;
@@ -110,11 +113,11 @@ final class JGraphicsCanvasRuler extends JPanel implements IZoomListener, IScrol
     }
 
     /**
-     * @param scaleTickSize
+     * @param newScaleTickSize
      *            the scaleTickSize to set
      */
-    public void setScaleTickSize(int scaleTickSize) {
-        this.scaleTickSize = scaleTickSize;
+    public void setScaleTickSize(final int newScaleTickSize) {
+        this.scaleTickSize = newScaleTickSize;
     }
 
     /**
@@ -167,23 +170,23 @@ final class JGraphicsCanvasRuler extends JPanel implements IZoomListener, IScrol
     /**
      * Updates the y-values.
      * 
-     * @param gridSpacingPixelX
+     * @param newGridSpacingPixelX
      *            Pixel spacing.
      * @param gridSpacingPixelY
      *            Pixel spacing.
      * @param gridSpacingUserSpace
      *            User spacing.
-     * @param visibleBounds
+     * @param newVisibleBounds
      *            Visible bounds.
      * @param drawingBounds
      *            Drawing bounds.
      */
-    private void updateValuesY(int gridSpacingPixelX, int gridSpacingPixelY, double gridSpacingUserSpace, BoundsUserSpace visibleBounds, BoundsUserSpace drawingBounds) {
+    private void updateValuesY(final int newGridSpacingPixelX, final int gridSpacingPixelY, final double gridSpacingUserSpace, final BoundsUserSpace newVisibleBounds, final BoundsUserSpace drawingBounds) {
         Dimension size = getSize();
         if (size.height > 0) {
             Insets insets = getInsets();
             WrapperDouble firstUnitY = new WrapperDouble();
-            int firstTickY = calculateFirstGridTickY(gridSpacingUserSpace, visibleBounds, drawingBounds, firstUnitY);
+            int firstTickY = calculateFirstGridTickY(gridSpacingUserSpace, newVisibleBounds, drawingBounds, firstUnitY);
 
             /*
              * Calculate rounding scales
@@ -194,7 +197,7 @@ final class JGraphicsCanvasRuler extends JPanel implements IZoomListener, IScrol
             int scaleOrigin = decimal.scale();
             int roundingScaleY = Math.max(scaleGrid, scaleOrigin);
 
-            int correctionFactor = ViewDrawingGrid.checkForMinimumScreenSpacing(gridSpacingPixelX, gridSpacingPixelY);
+            int correctionFactor = ViewDrawingGrid.checkForMinimumScreenSpacing(newGridSpacingPixelX, gridSpacingPixelY);
 
             int tick = firstTickY;
             double unit = firstUnitY.value;
@@ -227,7 +230,7 @@ final class JGraphicsCanvasRuler extends JPanel implements IZoomListener, IScrol
 
                     tick += gridSpacingPixelY * correctionFactor;
                     unit += gridSpacingUserSpace * correctionFactor;
-                    if (gridSpacingPixelY == 0 || correctionFactor == 0) {
+                    if ((gridSpacingPixelY == 0) || (correctionFactor == 0)) {
                         return;
                     }
                 }
@@ -257,17 +260,17 @@ final class JGraphicsCanvasRuler extends JPanel implements IZoomListener, IScrol
      *            Pixel spacing.
      * @param gridSpacingUserSpace
      *            User spacing.
-     * @param visibleBounds
+     * @param newVisibleBounds
      *            Visible bounds.
      * @param drawingBounds
      *            Drawing bounds.
      */
-    private void updateValuesX(int gridSpacingPixelX, int gridSpacingPixelY, double gridSpacingUserSpace, BoundsUserSpace visibleBounds, BoundsUserSpace drawingBounds) {
+    private void updateValuesX(final int gridSpacingPixelX, final int gridSpacingPixelY, final double gridSpacingUserSpace, final BoundsUserSpace newVisibleBounds, final BoundsUserSpace drawingBounds) {
         Dimension size = getSize();
         if (size.width > 0) {
             Insets insets = getInsets();
             WrapperDouble firstUnitX = new WrapperDouble();
-            int firstTickX = calculateFirstGridTickX(gridSpacingUserSpace, visibleBounds, drawingBounds, firstUnitX);
+            int firstTickX = calculateFirstGridTickX(gridSpacingUserSpace, newVisibleBounds, drawingBounds, firstUnitX);
 
             /*
              * Calculate rounding scales
@@ -315,7 +318,7 @@ final class JGraphicsCanvasRuler extends JPanel implements IZoomListener, IScrol
 
                     tick += gridSpacingPixelX * correctionFactor;
                     unit += gridSpacingUserSpace * correctionFactor;
-                    if (gridSpacingPixelX == 0 || correctionFactor == 0) {
+                    if ((gridSpacingPixelX == 0) || (correctionFactor == 0)) {
                         return;
                     }
                 }
@@ -344,7 +347,7 @@ final class JGraphicsCanvasRuler extends JPanel implements IZoomListener, IScrol
      * @param units
      *            The units to be handled.
      */
-    private void skipTexts(int skips, LinkedList<RulerUnit> units) {
+    private void skipTexts(final int skips, final LinkedList<RulerUnit> units) {
         int currentSkip = 0;
         Iterator<RulerUnit> it = units.iterator();
         while (it.hasNext()) {
@@ -364,7 +367,7 @@ final class JGraphicsCanvasRuler extends JPanel implements IZoomListener, IScrol
      * 
      * @param gridSpacingX
      *            The spacing in x-direction.
-     * @param visibleBounds
+     * @param newVisibleBounds
      *            The current visible area.
      * @param drawingBounds
      *            The complete drawing area.
@@ -372,10 +375,10 @@ final class JGraphicsCanvasRuler extends JPanel implements IZoomListener, IScrol
      *            Out-param for the calculated first x-unit value.
      * @return The first tick in x-direction
      */
-    private int calculateFirstGridTickX(double gridSpacingX, BoundsUserSpace visibleBounds, BoundsUserSpace drawingBounds, WrapperDouble firstUnitX) {
+    private int calculateFirstGridTickX(final double gridSpacingX, final BoundsUserSpace newVisibleBounds, final BoundsUserSpace drawingBounds, final WrapperDouble firstUnitX) {
         int tick = 0;
 
-        double diffX = visibleBounds.x - drawingBounds.x;
+        double diffX = newVisibleBounds.x - drawingBounds.x;
         double tickUserSpace = diffX % gridSpacingX;
         tickUserSpace = -tickUserSpace;
 
@@ -384,8 +387,8 @@ final class JGraphicsCanvasRuler extends JPanel implements IZoomListener, IScrol
         myCanvas.transformUserSpaceToScreen(b, s);
         tick = s.width;
 
-        firstUnitX.value = visibleBounds.x % gridSpacingX;
-        firstUnitX.value = visibleBounds.x - firstUnitX.value;
+        firstUnitX.value = newVisibleBounds.x % gridSpacingX;
+        firstUnitX.value = newVisibleBounds.x - firstUnitX.value;
 
         return tick;
     }
@@ -395,7 +398,7 @@ final class JGraphicsCanvasRuler extends JPanel implements IZoomListener, IScrol
      * 
      * @param gridSpacingY
      *            The spacing in y-direction.
-     * @param visibleBounds
+     * @param newVisibleBounds
      *            The current visible area.
      * @param drawingBounds
      *            The complete drawing area.
@@ -403,10 +406,10 @@ final class JGraphicsCanvasRuler extends JPanel implements IZoomListener, IScrol
      *            Out-param for the calculated first y-unit value.
      * @return The first tick in x-direction
      */
-    private int calculateFirstGridTickY(double gridSpacingY, BoundsUserSpace visibleBounds, BoundsUserSpace drawingBounds, WrapperDouble firstUnitY) {
+    private int calculateFirstGridTickY(final double gridSpacingY, final BoundsUserSpace newVisibleBounds, final BoundsUserSpace drawingBounds, final WrapperDouble firstUnitY) {
         int tick = 0;
 
-        double diffY = visibleBounds.y - drawingBounds.y;
+        double diffY = newVisibleBounds.y - drawingBounds.y;
         double tickUserSpace = diffY % gridSpacingY;
         tickUserSpace = -tickUserSpace;
 
@@ -415,8 +418,8 @@ final class JGraphicsCanvasRuler extends JPanel implements IZoomListener, IScrol
         myCanvas.transformUserSpaceToScreen(b, s);
         tick = s.height;
 
-        firstUnitY.value = visibleBounds.y % gridSpacingY;
-        firstUnitY.value = visibleBounds.y - firstUnitY.value;
+        firstUnitY.value = newVisibleBounds.y % gridSpacingY;
+        firstUnitY.value = newVisibleBounds.y - firstUnitY.value;
 
         return tick;
     }
@@ -425,7 +428,7 @@ final class JGraphicsCanvasRuler extends JPanel implements IZoomListener, IScrol
      * @see javax.swing.JComponent#paintComponent(java.awt.Graphics)
      */
     @Override
-    protected void paintComponent(Graphics g) {
+    protected void paintComponent(final Graphics g) {
         super.paintComponent(g);
 
         if (isFirstUpdate) {
@@ -459,7 +462,7 @@ final class JGraphicsCanvasRuler extends JPanel implements IZoomListener, IScrol
      * @param y
      *            The y-position.
      */
-    private void paintScaleTextY(Graphics g, String value, int x, int y) {
+    private void paintScaleTextY(final Graphics g, final String value, final int x, final int y) {
         Graphics2D g2D = (Graphics2D) g;
 
         Rectangle2D textBounds = getFont().getStringBounds(value, g2D.getFontRenderContext());
@@ -508,7 +511,7 @@ final class JGraphicsCanvasRuler extends JPanel implements IZoomListener, IScrol
      * de.jbo.jbogx2d.base.geom.BoundsUserSpace)
      */
     @Override
-    public void onZoomEnd(ViewHandler source, BoundsUserSpace boundsBefore, BoundsUserSpace boundsAfter) {
+    public void onZoomEnd(final ViewHandler source, final BoundsUserSpace boundsBefore, final BoundsUserSpace boundsAfter) {
         updateValues();
         repaint();
     }
@@ -520,7 +523,7 @@ final class JGraphicsCanvasRuler extends JPanel implements IZoomListener, IScrol
      * de.jbo.jbogx2d.base.geom.BoundsUserSpace)
      */
     @Override
-    public void onZoomStart(ViewHandler source, BoundsUserSpace boundsBefore, BoundsUserSpace boundsAfter) {
+    public void onZoomStart(final ViewHandler source, final BoundsUserSpace boundsBefore, final BoundsUserSpace boundsAfter) {
         // nothing to do
 
     }
@@ -532,7 +535,7 @@ final class JGraphicsCanvasRuler extends JPanel implements IZoomListener, IScrol
      * de.jbo.jbogx2d.base.geom.BoundsUserSpace)
      */
     @Override
-    public void onScrollEnd(ViewHandler source, BoundsUserSpace boundsBefore, BoundsUserSpace boundsAfter) {
+    public void onScrollEnd(final ViewHandler source, final BoundsUserSpace boundsBefore, final BoundsUserSpace boundsAfter) {
         updateValues();
         repaint();
     }
@@ -544,7 +547,7 @@ final class JGraphicsCanvasRuler extends JPanel implements IZoomListener, IScrol
      * de.jbo.jbogx2d.base.geom.BoundsUserSpace)
      */
     @Override
-    public void onScrollStart(ViewHandler source, BoundsUserSpace boundsBefore, BoundsUserSpace boundsAfter) {
+    public void onScrollStart(final ViewHandler source, final BoundsUserSpace boundsBefore, final BoundsUserSpace boundsAfter) {
         // nothing to do
 
     }
@@ -557,24 +560,24 @@ final class JGraphicsCanvasRuler extends JPanel implements IZoomListener, IScrol
      */
     private class RulerUnit {
         /** Tick position. */
-        int positionTickX1 = 0;
+        private int positionTickX1 = 0;
 
         /** Tick position. */
-        int positionTickY1 = 0;
+        private int positionTickY1 = 0;
 
         /** Tick position. */
-        int positionTickX2 = 0;
+        private int positionTickX2 = 0;
 
         /** Tick position. */
-        int positionTickY2 = 0;
+        private int positionTickY2 = 0;
 
         /** Unit position. */
-        int positionUnitX = 0;
+        private int positionUnitX = 0;
 
         /** Unit position. */
-        int positionUnitY = 0;
+        private int positionUnitY = 0;
 
         /** Unit text. */
-        String unitText = null;
+        private String unitText = null;
     }
 }

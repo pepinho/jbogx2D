@@ -17,6 +17,9 @@ import java.util.GregorianCalendar;
  * @version 20.02.2010 jbo - created <br>
  */
 public class Version {
+    /** Ten. :) */
+    private static final int TEN = 10;
+
     /** Major version. */
     private int versionMajor = 0;
 
@@ -41,7 +44,7 @@ public class Version {
      * @param buildDate
      *            The build-date.
      */
-    public Version(int major, int minor, int bugfix, Calendar buildDate) {
+    public Version(final int major, final int minor, final int bugfix, final Calendar buildDate) {
         versionMajor = major;
         versionMinor = minor;
         versionBugfix = bugfix;
@@ -114,32 +117,32 @@ public class Version {
         buffer.append(' ');
         buffer.append('b');
         temp = versionBuildDate.get(Calendar.YEAR);
-        if (temp < 10) {
+        if (temp < TEN) {
             buffer.append(0);
         }
         buffer.append(temp);
         temp = versionBuildDate.get(Calendar.MONTH) + 1;
-        if (temp < 10) {
+        if (temp < TEN) {
             buffer.append(0);
         }
         buffer.append(temp);
         temp = versionBuildDate.get(Calendar.DAY_OF_MONTH);
-        if (temp < 10) {
+        if (temp < TEN) {
             buffer.append(0);
         }
         buffer.append(temp);
         temp = versionBuildDate.get(Calendar.HOUR_OF_DAY);
-        if (temp < 10) {
+        if (temp < TEN) {
             buffer.append(0);
         }
         buffer.append(temp);
         temp = versionBuildDate.get(Calendar.MINUTE);
-        if (temp < 10) {
+        if (temp < TEN) {
             buffer.append(0);
         }
         buffer.append(temp);
         temp = versionBuildDate.get(Calendar.SECOND);
-        if (temp < 10) {
+        if (temp < TEN) {
             buffer.append(0);
         }
         buffer.append(temp);
