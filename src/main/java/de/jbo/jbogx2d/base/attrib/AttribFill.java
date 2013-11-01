@@ -31,6 +31,12 @@ import de.jbo.jbogx2d.base.geom.BoundsUserSpace;
  * @version 1.0 29.02.2004: jbo created <br>
  */
 public class AttribFill extends AttribBase {
+    /**
+     * Default texture code. In the default mapping this represents a solid
+     * fill-texture.
+     */
+    private static final short TEXTURE_DEFAULT = 9;
+
     /** Stores the current fill-type. */
     private AttribFillType fillType = AttribFillType.TYPE_SOLID;
 
@@ -38,7 +44,7 @@ public class AttribFill extends AttribBase {
     private AttribGradientType gradientType = AttribGradientType.GRADIENT_HORIZONTAL;
 
     /** Stores the current texture-index. */
-    private short texture = 9; // solid
+    private short texture = TEXTURE_DEFAULT;
 
     /** Stores the current foreground color. */
     private short colorForeground = 1;
@@ -59,7 +65,8 @@ public class AttribFill extends AttribBase {
     private Paint systemGradient = null;
 
     /**
-     * Creates a new fill with the following values set: <br>
+     * Creates a new fill attribute. <br>
+     * The following values are set as default:
      * <ul>
      * <li>type: solid</li>
      * <li>color foreground: 1 (default black)</li>
@@ -76,7 +83,7 @@ public class AttribFill extends AttribBase {
      * .model.ElemModel)
      */
     @Override
-    public void update(ElemModel model) {
+    public void update(final ElemModel model) {
         systemColorForeground = Jbogx2D.getAttributeHandler().getColor(colorForeground);
         systemColorBackground = Jbogx2D.getAttributeHandler().getColor(colorBackground);
 
@@ -183,7 +190,7 @@ public class AttribFill extends AttribBase {
      * @param l
      *            The color to be set.
      */
-    public void setColorBackground(short l) {
+    public void setColorBackground(final short l) {
         colorBackground = l;
     }
 
@@ -197,7 +204,7 @@ public class AttribFill extends AttribBase {
      * @param l
      *            The color to be set.
      */
-    public void setColorForeground(short l) {
+    public void setColorForeground(final short l) {
         colorForeground = l;
     }
 
@@ -218,7 +225,7 @@ public class AttribFill extends AttribBase {
      * @param type
      *            The type to be set.
      */
-    public void setFillType(AttribFillType type) {
+    public void setFillType(final AttribFillType type) {
         fillType = type;
     }
 
@@ -230,7 +237,7 @@ public class AttribFill extends AttribBase {
      * @param s
      *            The texture index to be set.
      */
-    public void setTexture(short s) {
+    public void setTexture(final short s) {
         texture = s;
     }
 
@@ -265,7 +272,7 @@ public class AttribFill extends AttribBase {
      * @param type
      *            The gradient type to be used for this fill.
      */
-    public void setGradientType(AttribGradientType type) {
+    public void setGradientType(final AttribGradientType type) {
         gradientType = type;
     }
 

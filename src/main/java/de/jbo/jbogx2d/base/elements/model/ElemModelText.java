@@ -47,7 +47,7 @@ public class ElemModelText extends ElemModel {
      * @param element
      *            The referenced parent element.
      */
-    public ElemModelText(ElemBase element) {
+    public ElemModelText(final ElemBase element) {
         super(element);
     }
 
@@ -66,7 +66,7 @@ public class ElemModelText extends ElemModel {
      * .base.geom.BoundsUserSpace)
      */
     @Override
-    protected void calculateBounds(BoundsUserSpace bounds) {
+    protected void calculateBounds(final BoundsUserSpace bounds) {
         BoundsUserSpace b = new BoundsUserSpace();
         BoundsUserSpace temp = new BoundsUserSpace();
         PointUserSpace p = new PointUserSpace(basePoint.x, basePoint.y);
@@ -79,7 +79,7 @@ public class ElemModelText extends ElemModel {
         double ascent = attribText.getSystemAscent();
 
         /*
-         * Wir errechnen die Bounds zuerst auf Basis des gänzlich
+         * Wir errechnen die Bounds zuerst auf Basis des gaenzlich
          * untransformierten Texts (also Waagerecht mit Original basePoint.
          */
         try {
@@ -98,8 +98,8 @@ public class ElemModelText extends ElemModel {
 
         b.x = x;
         b.y = y;
-        for (int i = 0; i < text.length; i++) {
-            layout = new TextLayout(text[i], attribText.getSystemAttributes(), frc);
+        for (String element2 : text) {
+            layout = new TextLayout(element2, attribText.getSystemAttributes(), frc);
             temp.setFrame(layout.getBounds());
             temp.x = x;
             temp.y = y;
@@ -133,7 +133,7 @@ public class ElemModelText extends ElemModel {
      * .base.geom.AffineTransformX)
      */
     @Override
-    public void transform(AffineTransformX transform) {
+    public void transform(final AffineTransformX transform) {
         attribText.setSize((float) transform.scalarMul(attribText.getSize()));
 
         transform.transform(basePoint, basePoint);
@@ -149,7 +149,7 @@ public class ElemModelText extends ElemModel {
      * .base.geom.PointUserSpace)
      */
     @Override
-    public double getDistanceTo(PointUserSpace point) {
+    public double getDistanceTo(final PointUserSpace point) {
         double distance = 0.0;
         BoundsUserSpace bounds = new BoundsUserSpace();
         getBounds(bounds);
@@ -163,7 +163,7 @@ public class ElemModelText extends ElemModel {
      * .base.geom.PointUserSpace)
      */
     @Override
-    public boolean isPointInside(PointUserSpace point) {
+    public boolean isPointInside(final PointUserSpace point) {
         boolean isInside = false;
         BoundsUserSpace bounds = new BoundsUserSpace();
         getBounds(bounds);
@@ -176,7 +176,7 @@ public class ElemModelText extends ElemModel {
      * double, double, double)
      */
     @Override
-    public boolean intersects(double x, double y, double w, double h) {
+    public boolean intersects(final double x, final double y, final double w, final double h) {
         boolean intersects = false;
         BoundsUserSpace bounds = new BoundsUserSpace();
         getBounds(bounds);
@@ -190,7 +190,7 @@ public class ElemModelText extends ElemModel {
      * .base.geom.BoundsUserSpace)
      */
     @Override
-    public boolean intersects(BoundsUserSpace bounds) {
+    public boolean intersects(final BoundsUserSpace bounds) {
         return intersects(bounds.x, bounds.y, bounds.width, bounds.height);
     }
 
@@ -218,7 +218,7 @@ public class ElemModelText extends ElemModel {
      * @param point
      *            Out-parameter receiving the base-point content.
      */
-    public void getBasePoint(PointUserSpace point) {
+    public void getBasePoint(final PointUserSpace point) {
         point.set(basePoint);
     }
 
@@ -237,7 +237,7 @@ public class ElemModelText extends ElemModel {
      * @param space
      *            The new coordinates to be set.
      */
-    public void setBasePoint(PointUserSpace space) {
+    public void setBasePoint(final PointUserSpace space) {
         setBasePoint(space.getX(), space.getY());
     }
 
@@ -249,7 +249,7 @@ public class ElemModelText extends ElemModel {
      * @param y
      *            The y-coordinate to be set.
      */
-    public void setBasePoint(double x, double y) {
+    public void setBasePoint(final double x, final double y) {
         basePoint.setLocation(x, y);
         setBoundsDirty(true);
     }
@@ -260,7 +260,7 @@ public class ElemModelText extends ElemModel {
      * @param string
      *            The new text to be set.
      */
-    public void setText(String[] string) {
+    public void setText(final String[] string) {
         text = new String[string.length];
         System.arraycopy(string, 0, text, 0, text.length);
     }

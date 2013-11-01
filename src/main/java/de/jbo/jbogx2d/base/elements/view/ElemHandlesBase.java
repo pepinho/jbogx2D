@@ -21,6 +21,32 @@ import de.jbo.jbogx2d.base.geom.PointUserSpace;
  * @version 07.06.2007 jbo - created
  */
 public class ElemHandlesBase extends ElemHandles {
+    /** Default handles count. */
+    public static final int HANDLES_COUNT = 8;
+
+    /** Handle north-west. */
+    public static final int NORTHWEST = 0;
+
+    /** Handle north. */
+    public static final int NORTH = 1;
+
+    /** Handle north-east. */
+    public static final int NORTH_EAST = 2;
+
+    /** Handle east. */
+    public static final int EAST = 3;
+
+    /** Handle south-east. */
+    public static final int SOUTH_EAST = 4;
+
+    /** Handle south. */
+    public static final int SOUTH = 5;
+
+    /** Handle south-west. */
+    public static final int SOUTH_WEST = 6;
+
+    /** Handle west. */
+    public static final int WEST = 7;
 
     /**
      * Creates a new instance.
@@ -46,15 +72,15 @@ public class ElemHandlesBase extends ElemHandles {
         double rightX = leftX + bounds.width;
         double bottomY = topY + bounds.height;
 
-        PointUserSpace[] points = new PointUserSpace[8];
-        points[0] = new PointUserSpace(leftX, topY);
-        points[1] = new PointUserSpace(leftX + halfWidth, topY);
-        points[2] = new PointUserSpace(rightX, topY);
-        points[3] = new PointUserSpace(rightX, topY + halfHeight);
-        points[4] = new PointUserSpace(rightX, bottomY);
-        points[5] = new PointUserSpace(rightX - halfWidth, bottomY);
-        points[6] = new PointUserSpace(leftX, bottomY);
-        points[7] = new PointUserSpace(leftX, bottomY - halfHeight);
+        PointUserSpace[] points = new PointUserSpace[HANDLES_COUNT];
+        points[NORTHWEST] = new PointUserSpace(leftX, topY);
+        points[NORTH] = new PointUserSpace(leftX + halfWidth, topY);
+        points[NORTH_EAST] = new PointUserSpace(rightX, topY);
+        points[EAST] = new PointUserSpace(rightX, topY + halfHeight);
+        points[SOUTH_EAST] = new PointUserSpace(rightX, bottomY);
+        points[SOUTH] = new PointUserSpace(rightX - halfWidth, bottomY);
+        points[SOUTH_WEST] = new PointUserSpace(leftX, bottomY);
+        points[WEST] = new PointUserSpace(leftX, bottomY - halfHeight);
 
         return points;
     }

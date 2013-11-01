@@ -32,6 +32,16 @@ import de.jbo.jbogx2d.base.Jbogx2D;
  */
 public final class TestApplication {
     /**
+     * Height of the frame.
+     */
+    private static final int HEIGHT = 600;
+
+    /**
+     * Width of the frame.
+     */
+    private static final int WIDTH = 800;
+
+    /**
      * Creates a new instance.
      */
     private TestApplication() {
@@ -44,7 +54,7 @@ public final class TestApplication {
      * @param args
      *            Command-line arguments.
      */
-    public static void main(String[] args) {
+    public static void main(final String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
                 try {
@@ -70,14 +80,14 @@ public final class TestApplication {
 
                 JButton buttonZoomIn = new JButton("Zoom +");
                 buttonZoomIn.addActionListener(new ActionListener() {
-                    public void actionPerformed(ActionEvent evt) {
+                    public void actionPerformed(final ActionEvent evt) {
                         panel.zoomPlus();
                     }
                 });
                 buttonsPanel.add(buttonZoomIn);
                 JButton buttonZoomOut = new JButton("Zoom -");
                 buttonZoomOut.addActionListener(new ActionListener() {
-                    public void actionPerformed(ActionEvent evt) {
+                    public void actionPerformed(final ActionEvent evt) {
                         panel.zoomMinus();
                     }
                 });
@@ -85,7 +95,7 @@ public final class TestApplication {
 
                 JButton buttonZoomOriginal = new JButton("Zoom 1:1");
                 buttonZoomOriginal.addActionListener(new ActionListener() {
-                    public void actionPerformed(ActionEvent evt) {
+                    public void actionPerformed(final ActionEvent evt) {
                         panel.zoomOriginal();
                     }
                 });
@@ -94,7 +104,7 @@ public final class TestApplication {
                 final JCheckBox checkAntiAliasing = new JCheckBox("anti-alias");
                 checkAntiAliasing.addItemListener(new ItemListener() {
                     @Override
-                    public void itemStateChanged(ItemEvent e) {
+                    public void itemStateChanged(final ItemEvent e) {
                         panel.setAntiAliasing(checkAntiAliasing.isSelected());
                     }
                 });
@@ -102,7 +112,7 @@ public final class TestApplication {
 
                 frame.getContentPane().add(panel, BorderLayout.CENTER);
 
-                frame.setSize(800, 600);
+                frame.setSize(WIDTH, HEIGHT);
                 frame.setVisible(true);
             }
         });

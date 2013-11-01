@@ -25,6 +25,7 @@ import de.jbo.jbogx2d.base.util.collection.ArrayListX;
  * @version 1.0 29.02.2004: jbo created <br>
  */
 public class AttribFillTextureMap {
+
     /** No fill. */
     private static final boolean[][] PATTERN0 = { { false, false, false, false }, { false, false, false, false }, { false, false, false, false }, { false, false, false, false } };
 
