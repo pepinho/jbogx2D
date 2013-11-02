@@ -125,12 +125,13 @@ public class ArrayListX<E> implements Collection<E> {
      */
     @Override
     public boolean contains(Object o) {
-        assert (o != null);
         boolean ret = false;
-        for (E item : data) {
-            if ((item != null) && item.equals(o)) {
-                ret = true;
-                break;
+        if (o != null) {
+            for (E item : data) {
+                if ((item != null) && item.equals(o)) {
+                    ret = true;
+                    break;
+                }
             }
         }
         return ret;
@@ -191,9 +192,10 @@ public class ArrayListX<E> implements Collection<E> {
     public boolean remove(Object o) {
         boolean ret = false;
         int index = indexOf(o);
-        if (index <= 0) {
+        if (index >= 0) {
             data[index] = null;
             currentIndex = index;
+            ret = true;
         }
 
         return ret;
@@ -306,9 +308,9 @@ public class ArrayListX<E> implements Collection<E> {
 
         if (a.length < notNullElements.size()) {
             // Make a new array of a's runtime type, but my contents:
-            return (T[]) Arrays.copyOf(notNullElements.toArray(), size(), a.getClass());
+            return (T[]) Arrays.copyOf(notNullElements.toArray(), notNullElements.size(), a.getClass());
         }
-        System.arraycopy(notNullElements.toArray(), 0, a, 0, size());
+        System.arraycopy(notNullElements.toArray(), 0, a, 0, notNullElements.size());
         if (a.length > size()) {
             for (int i = size(); i < a.length; i++) {
                 a[i] = null;
@@ -376,8 +378,11 @@ public class ArrayListX<E> implements Collection<E> {
          */
         @Override
         public E next() {
-            assert (index < data.length);
-            return data[index++];
+            E ret = null;
+            if (index < data.length) {
+                ret = data[index++];
+            }
+            return ret;
         }
 
         /*
@@ -387,8 +392,9 @@ public class ArrayListX<E> implements Collection<E> {
          */
         @Override
         public void remove() {
-            assert (index < data.length);
-            data[index] = null;
+            if (index < data.length) {
+                data[index] = null;
+            }
         }
 
     }

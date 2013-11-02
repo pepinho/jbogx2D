@@ -75,6 +75,7 @@ public final class Jbogx2D {
             buildDate.setTime(d);
         } catch (Exception ex) {
             getErrorHandler().handleError(ex, true, true);
+            buildDate.setTime(new Date());
         }
         VERSION = new Version(VERSION_MAJOR, VERSION_MINOR, VERSION_BUGFIX, buildDate);
     }

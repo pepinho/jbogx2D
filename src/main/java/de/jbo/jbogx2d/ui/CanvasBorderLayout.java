@@ -1,10 +1,10 @@
 package de.jbo.jbogx2d.ui;
 
-import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Insets;
+import java.awt.LayoutManager2;
 
 /**
  * Extends the default border-layout specially for the graphics canvas. The
@@ -13,11 +13,16 @@ import java.awt.Insets;
  * @author Josef Baro (jbo) <br>
  * @version 07.02.2010 jbo - created <br>
  */
-public class CanvasBorderLayout extends BorderLayout {
+public class CanvasBorderLayout implements LayoutManager2, java.io.Serializable {
     /**
      * Serial id.
      */
     private static final long serialVersionUID = 1L;
+
+    /**
+     * Default layout alignment.
+     */
+    private static final float DEFAULT_LAYOUT_ALIGNMENT = 0.5f;
 
     /**
      * Constructs a border layout with the horizontal gaps between components.
@@ -25,6 +30,7 @@ public class CanvasBorderLayout extends BorderLayout {
      * 
      * @see #getHgap()
      * @see #setHgap(int)
+     * 
      * @serial
      */
     private int hgap;
@@ -105,6 +111,7 @@ public class CanvasBorderLayout extends BorderLayout {
     private Component center;
 
     /**
+     * 
      * A relative positioning constant, that can be used instead of north,
      * south, east, west or center. mixing the two types of constants can lead
      * to unpredicable results. If you use both types, the relative constants
@@ -143,6 +150,107 @@ public class CanvasBorderLayout extends BorderLayout {
     private Component lastItem;
 
     /**
+     * The north layout constraint (top of container).
+     */
+    public static final String NORTH = "North";
+
+    /**
+     * The south layout constraint (bottom of container).
+     */
+    public static final String SOUTH = "South";
+
+    /**
+     * The east layout constraint (right side of container).
+     */
+    public static final String EAST = "East";
+
+    /**
+     * The west layout constraint (left side of container).
+     */
+    public static final String WEST = "West";
+
+    /**
+     * The center layout constraint (middle of container).
+     */
+    public static final String CENTER = "Center";
+
+    /**
+     * Synonym for PAGE_START. Exists for compatibility with previous versions.
+     * PAGE_START is preferred.
+     * 
+     * @see #PAGE_START
+     * @since 1.2
+     */
+    public static final String BEFORE_FIRST_LINE = "First";
+
+    /**
+     * Synonym for PAGE_END. Exists for compatibility with previous versions.
+     * PAGE_END is preferred.
+     * 
+     * @see #PAGE_END
+     * @since 1.2
+     */
+    public static final String AFTER_LAST_LINE = "Last";
+
+    /**
+     * Synonym for LINE_START. Exists for compatibility with previous versions.
+     * LINE_START is preferred.
+     * 
+     * @see #LINE_START
+     * @since 1.2
+     */
+    public static final String BEFORE_LINE_BEGINS = "Before";
+
+    /**
+     * Synonym for LINE_END. Exists for compatibility with previous versions.
+     * LINE_END is preferred.
+     * 
+     * @see #LINE_END
+     * @since 1.2
+     */
+    public static final String AFTER_LINE_ENDS = "After";
+
+    /**
+     * The component comes before the first line of the layout's content. For
+     * Western, left-to-right and top-to-bottom orientations, this is equivalent
+     * to NORTH.
+     * 
+     * @see java.awt.Component#getComponentOrientation
+     * @since 1.4
+     */
+    public static final String PAGE_START = BEFORE_FIRST_LINE;
+
+    /**
+     * The component comes after the last line of the layout's content. For
+     * Western, left-to-right and top-to-bottom orientations, this is equivalent
+     * to SOUTH.
+     * 
+     * @see java.awt.Component#getComponentOrientation
+     * @since 1.4
+     */
+    public static final String PAGE_END = AFTER_LAST_LINE;
+
+    /**
+     * The component goes at the beginning of the line direction for the layout.
+     * For Western, left-to-right and top-to-bottom orientations, this is
+     * equivalent to WEST.
+     * 
+     * @see java.awt.Component#getComponentOrientation
+     * @since 1.4
+     */
+    public static final String LINE_START = BEFORE_LINE_BEGINS;
+
+    /**
+     * The component goes at the end of the line direction for the layout. For
+     * Western, left-to-right and top-to-bottom orientations, this is equivalent
+     * to EAST.
+     * 
+     * @see java.awt.Component#getComponentOrientation
+     * @since 1.4
+     */
+    public static final String LINE_END = AFTER_LINE_ENDS;
+
+    /**
      * Constructs a new border layout with no gaps between components.
      */
     public CanvasBorderLayout() {
@@ -170,7 +278,6 @@ public class CanvasBorderLayout extends BorderLayout {
      * @return The horizontal gap.
      * @since JDK1.1
      */
-    @Override
     public int getHgap() {
         return hgap;
     }
@@ -182,7 +289,6 @@ public class CanvasBorderLayout extends BorderLayout {
      *            the horizontal gap between components
      * @since JDK1.1
      */
-    @Override
     public void setHgap(final int horGap) {
         this.hgap = horGap;
     }
@@ -193,7 +299,6 @@ public class CanvasBorderLayout extends BorderLayout {
      * @return The vertical gap.
      * @since JDK1.1
      */
-    @Override
     public int getVgap() {
         return vgap;
     }
@@ -205,7 +310,6 @@ public class CanvasBorderLayout extends BorderLayout {
      *            the vertical gap between components
      * @since JDK1.1
      */
-    @Override
     public void setVgap(final int value) {
         this.vgap = value;
     }
@@ -261,7 +365,6 @@ public class CanvasBorderLayout extends BorderLayout {
      * @see #addLayoutComponent(java.awt.Component, java.lang.Object)
      * @since 1.5
      */
-    @Override
     public Component getLayoutComponent(final Object constraints) {
         if (CENTER.equals(constraints)) {
             return center;
@@ -310,7 +413,6 @@ public class CanvasBorderLayout extends BorderLayout {
      * @see #addLayoutComponent(java.awt.Component, java.lang.Object)
      * @since 1.5
      */
-    @Override
     public Component getLayoutComponent(final Container target, final Object constraints) {
         boolean ltr = target.getComponentOrientation().isLeftToRight();
         Component result = null;
@@ -348,7 +450,6 @@ public class CanvasBorderLayout extends BorderLayout {
      * @see #addLayoutComponent(java.awt.Component, java.lang.Object)
      * @since 1.5
      */
-    @Override
     public Object getConstraints(final Component comp) {
         // fix for 6242148 : API method
         // java.awt.BorderLayout.getConstraints(null) should return null
@@ -607,5 +708,103 @@ public class CanvasBorderLayout extends BorderLayout {
             result = null;
         }
         return result;
+    }
+
+    /*
+     * (non-Javadoc)
+     * 
+     * @see java.awt.LayoutManager#addLayoutComponent(java.lang.String,
+     * java.awt.Component)
+     */
+    @Override
+    public void addLayoutComponent(String name, Component comp) {
+        synchronized (comp.getTreeLock()) {
+            /* Special case: treat null the same as "Center". */
+            if (name == null) {
+                name = "Center";
+            }
+
+            /*
+             * Assign the component to one of the known regions of the layout.
+             */
+            if ("Center".equals(name)) {
+                center = comp;
+            } else if ("North".equals(name)) {
+                north = comp;
+            } else if ("South".equals(name)) {
+                south = comp;
+            } else if ("East".equals(name)) {
+                east = comp;
+            } else if ("West".equals(name)) {
+                west = comp;
+            } else if (BEFORE_FIRST_LINE.equals(name)) {
+                firstLine = comp;
+            } else if (AFTER_LAST_LINE.equals(name)) {
+                lastLine = comp;
+            } else if (BEFORE_LINE_BEGINS.equals(name)) {
+                firstItem = comp;
+            } else if (AFTER_LINE_ENDS.equals(name)) {
+                lastItem = comp;
+            } else {
+                throw new IllegalArgumentException("cannot add to layout: unknown constraint: " + name);
+            }
+        }
+    }
+
+    /*
+     * (non-Javadoc)
+     * 
+     * @see java.awt.LayoutManager2#addLayoutComponent(java.awt.Component,
+     * java.lang.Object)
+     */
+    @Override
+    public void addLayoutComponent(Component comp, Object constraints) {
+        synchronized (comp.getTreeLock()) {
+            if ((constraints == null) || (constraints instanceof String)) {
+                addLayoutComponent((String) constraints, comp);
+            } else {
+                throw new IllegalArgumentException("cannot add to layout: constraint must be a string (or null)");
+            }
+        }
+    }
+
+    /*
+     * (non-Javadoc)
+     * 
+     * @see java.awt.LayoutManager2#maximumLayoutSize(java.awt.Container)
+     */
+    @Override
+    public Dimension maximumLayoutSize(Container target) {
+        return new Dimension(Integer.MAX_VALUE, Integer.MAX_VALUE);
+    }
+
+    /*
+     * (non-Javadoc)
+     * 
+     * @see java.awt.LayoutManager2#getLayoutAlignmentX(java.awt.Container)
+     */
+    @Override
+    public float getLayoutAlignmentX(Container target) {
+        return DEFAULT_LAYOUT_ALIGNMENT;
+    }
+
+    /*
+     * (non-Javadoc)
+     * 
+     * @see java.awt.LayoutManager2#getLayoutAlignmentY(java.awt.Container)
+     */
+    @Override
+    public float getLayoutAlignmentY(Container target) {
+        return DEFAULT_LAYOUT_ALIGNMENT;
+    }
+
+    /*
+     * (non-Javadoc)
+     * 
+     * @see java.awt.LayoutManager2#invalidateLayout(java.awt.Container)
+     */
+    @Override
+    public void invalidateLayout(Container target) {
+
     }
 }

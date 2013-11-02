@@ -15,6 +15,7 @@ import javax.swing.JPanel;
 import de.jbo.jbogx2d.base.Jbogx2D;
 import de.jbo.jbogx2d.base.attrib.AttribFill;
 import de.jbo.jbogx2d.base.attrib.AttribFillType;
+import de.jbo.jbogx2d.base.attrib.AttribLine;
 import de.jbo.jbogx2d.base.drawing.Drawing;
 import de.jbo.jbogx2d.base.drawing.DrawingLayer;
 import de.jbo.jbogx2d.base.elements.ElemPolygon;
@@ -85,16 +86,20 @@ public class JGraphicsPanel extends JPanel {
          * Create test-elements...
          */
         int width = 2;
+        int spacing = 1;
         AttribFill fill = new AttribFill();
         fill.setFillType(AttribFillType.TYPE_SOLID);
         fill.setColorBackground((short) 2);
         fill.setColorForeground((short) 3);
+        AttribLine line = new AttribLine();
+        line.setColor((short) 1);
+        line.setWidth(0.1f);
         DrawingLayer layer = drawing.getLayer(DrawingLayer.NAME_DEFAULT);
         layer.setFiltered(false);
         BoundsUserSpace bounds = new BoundsUserSpace();
         drawing.getUserSpaceBounds(bounds);
-        for (int x = (int) bounds.x; x < bounds.width; x += width) {
-            for (int y = (int) bounds.y; y < bounds.height; y += width) {
+        for (int x = (int) bounds.x; x < bounds.width; x += width + spacing) {
+            for (int y = (int) bounds.y; y < bounds.height; y += width + spacing) {
                 ElemPolygon polygon = new ElemPolygon();
                 polygon.setPointCount(4);
                 polygon.setPoint(0, new PointUserSpace(x, y));
@@ -104,6 +109,8 @@ public class JGraphicsPanel extends JPanel {
                 polygon.getAttribFill().setColorBackground(fill.getColorBackground());
                 polygon.getAttribFill().setColorForeground(fill.getColorForeground());
                 polygon.getAttribFill().setFillType(fill.getFillType());
+                polygon.getAttribLine().setColor(line.getColor());
+                polygon.getAttribLine().setWidth(line.getWidth());
                 polygon.updateAttributes();
                 layer.addElemLast(polygon);
             }
