@@ -50,13 +50,13 @@ public class ViewContextBuffer extends ViewContext {
     /**
      * Creates a new instance.
      * 
-     * @param viewComponent
+     * @param comp
      *            Referenced window component. The new buffer will have the
      *            exact same dimension as the referenced component.
      */
-    public ViewContextBuffer(Component viewComponent) {
-        this.viewComponent = viewComponent;
-        Dimension size = viewComponent.getSize();
+    public ViewContextBuffer(Component comp) {
+        this.viewComponent = comp;
+        Dimension size = comp.getSize();
         setSize(size.width, size.height);
     }
 
@@ -77,7 +77,7 @@ public class ViewContextBuffer extends ViewContext {
         if (image != null) {
             gc = (Graphics2D) image.getGraphics();
             if (gc != null) {
-                gc.setRenderingHints(mapRenderingHints);
+                gc.setRenderingHints(getRenderingHints());
             }
         }
         return gc;

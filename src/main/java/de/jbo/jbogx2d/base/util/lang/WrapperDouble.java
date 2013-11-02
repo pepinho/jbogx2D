@@ -17,7 +17,7 @@ package de.jbo.jbogx2d.base.util.lang;
  */
 public class WrapperDouble {
     /** The wrapped value. */
-    public double value = 0;
+    private double value = 0;
 
     /**
      * Creates a new instance wrapping the given value.
@@ -58,6 +58,21 @@ public class WrapperDouble {
     @Override
     public int hashCode() {
         return (int) value;
+    }
+
+    /**
+     * @return the value
+     */
+    public final double getValue() {
+        return value;
+    }
+
+    /**
+     * @param newValue
+     *            the value to set
+     */
+    public final void setValue(double newValue) {
+        this.value = newValue;
     }
 
 }

@@ -27,7 +27,7 @@ import de.jbo.jbogx2d.base.geom.PointUserSpace;
  */
 public class ElemModelPolyline extends ElemModel {
     /** The shape used for rendering and storing the coordinates. */
-    protected Polyline2D shape = null;
+    private Polyline2D shape = null;
 
     /** The line attributes. */
     private final AttribLine attribLine = new AttribLine();
@@ -176,6 +176,15 @@ public class ElemModelPolyline extends ElemModel {
      */
     public Shape getShape() {
         return shape;
+    }
+
+    /**
+     * 
+     * @param s
+     *            The shape to be set.
+     */
+    protected void setShape(Polyline2D s) {
+        shape = s;
     }
 
     /**

@@ -12,6 +12,8 @@ import java.awt.geom.AffineTransform;
 import java.awt.geom.PathIterator;
 import java.util.NoSuchElementException;
 
+import de.jbo.jbogx2d.base.geom.PointUserSpace;
+
 /**
  * Implements the path-iterator used to render polylines.
  * 
@@ -20,28 +22,28 @@ import java.util.NoSuchElementException;
  */
 public class PathIteratorPolyline implements PathIterator {
     /** The line to be handled. */
-    Polyline2D line;
+    private Polyline2D line;
 
     /** The transformation to be used. */
-    AffineTransform affine;
+    private AffineTransform affine;
 
     /** Index used for iteration. */
-    int index;
+    private int index;
 
     /** Segment-type to be used for iteration. */
-    int segmentLineType = SEG_LINETO;
+    private int segmentLineType = SEG_LINETO;
 
     /**
      * Creates a new instance.
      * 
-     * @param line
+     * @param theLine
      *            The line to be handled.
      * @param transform
      *            The transformation to be used.
      */
-    public PathIteratorPolyline(Polyline2D line, AffineTransform transform) {
+    public PathIteratorPolyline(final Polyline2D theLine, final AffineTransform transform) {
         super();
-        this.line = line;
+        this.line = theLine;
         affine = transform;
     }
 
@@ -49,15 +51,17 @@ public class PathIteratorPolyline implements PathIterator {
      * @see java.awt.geom.PathIterator#currentSegment(double[])
      */
     @Override
-    public int currentSegment(double[] coords) {
+    public int currentSegment(final double[] coords) {
         int type = 0;
 
         if (isDone()) {
             throw new NoSuchElementException("polyline iterator out of bounds");
         }
 
-        coords[0] = line.points[index].x;
-        coords[1] = line.points[index].y;
+        PointUserSpace[] points = line.getPoints();
+
+        coords[0] = points[index].x;
+        coords[1] = points[index].y;
 
         if (index == 0) {
             type = SEG_MOVETO;
@@ -76,15 +80,15 @@ public class PathIteratorPolyline implements PathIterator {
      * @see java.awt.geom.PathIterator#currentSegment(float[])
      */
     @Override
-    public int currentSegment(float[] coords) {
+    public int currentSegment(final float[] coords) {
         int type = 0;
 
         if (isDone()) {
             throw new NoSuchElementException("polyline iterator out of bounds");
         }
-
-        coords[0] = (float) line.points[index].x;
-        coords[1] = (float) line.points[index].y;
+        PointUserSpace[] points = line.getPoints();
+        coords[0] = (float) points[index].x;
+        coords[1] = (float) points[index].y;
 
         if (index == 0) {
             type = SEG_MOVETO;

@@ -34,10 +34,10 @@ public abstract class ElemHandles {
     private ElemView elemView = null;
 
     /** Line attributes for this instance. */
-    protected AttribLine attribsLine = new AttribLine();
+    private AttribLine attribsLine = new AttribLine();
 
     /** True if rendering in Xor-mode, False otherwise. */
-    protected boolean isXor = true;
+    private boolean isXor = true;
 
     /**
      * Creates a new instance.
@@ -59,7 +59,7 @@ public abstract class ElemHandles {
      * @param ev
      *            The view to be handled.
      */
-    public void init(ElemView ev) {
+    public void init(final ElemView ev) {
         elemView = ev;
     }
 
@@ -82,7 +82,7 @@ public abstract class ElemHandles {
      * @return The handle id (0 to n) or -1 if no handle found under the given
      *         position.
      */
-    public int getHandleId(PointUserSpace point, double radius) {
+    public int getHandleId(final PointUserSpace point, final double radius) {
         int handleId = -1;
         double halfRadius = radius / 2;
         BoundsUserSpace radiusBounds = new BoundsUserSpace(point.x - halfRadius, point.y - halfRadius, radius, radius);
@@ -108,11 +108,11 @@ public abstract class ElemHandles {
     }
 
     /**
-     * @param isVisible
+     * @param set
      *            the isVisible to set
      */
-    public void setVisible(boolean isVisible) {
-        this.isVisible = isVisible;
+    public void setVisible(final boolean set) {
+        this.isVisible = set;
     }
 
     /**
@@ -131,7 +131,7 @@ public abstract class ElemHandles {
      * @param view
      *            The context to render to.
      */
-    public void paint(ViewContext view) {
+    public void paint(final ViewContext view) {
         Graphics2D gc = view.getGraphicsContext();
         gc.setColor(attribsLine.getSystemColor());
         gc.setStroke(attribsLine.getSystemStroke());
@@ -142,8 +142,7 @@ public abstract class ElemHandles {
         view.transformScreenToUserSpace(bscr, bus);
         Shape shape = null;
 
-        for (int i = 0; i < points.length; i++) {
-            PointUserSpace handle = points[i];
+        for (PointUserSpace handle : points) {
             shape = createHandleShape(handle, bus.width, bus.height);
             if (isXor) {
                 gc.setXORMode(view.getBackgroundColorSystem());
@@ -181,7 +180,7 @@ public abstract class ElemHandles {
      * @param color
      *            the color to set
      */
-    public void setColor(short color) {
+    public void setColor(final short color) {
         attribsLine.setColor(color);
     }
 
@@ -193,10 +192,25 @@ public abstract class ElemHandles {
     }
 
     /**
-     * @param isXor
+     * @param set
      *            the isXor to set
      */
-    public void setXor(boolean isXor) {
-        this.isXor = isXor;
+    public void setXor(final boolean set) {
+        this.isXor = set;
+    }
+
+    /**
+     * @return the attribsLine
+     */
+    public final AttribLine getAttribsLine() {
+        return attribsLine;
+    }
+
+    /**
+     * @param set
+     *            the attribsLine to set
+     */
+    public final void setAttribsLine(final AttribLine set) {
+        this.attribsLine = set;
     }
 }

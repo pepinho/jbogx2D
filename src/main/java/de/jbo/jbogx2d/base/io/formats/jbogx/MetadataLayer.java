@@ -21,14 +21,14 @@ public class MetadataLayer {
     private long filePos = 0;
 
     /**
-     * @param name
+     * @param newName
      *            The layer's name.
-     * @param filePos
+     * @param newFilePos
      *            The fileposition.
      */
-    public MetadataLayer(String name, long filePos) {
-        this.name = name;
-        this.filePos = filePos;
+    public MetadataLayer(final String newName, final long newFilePos) {
+        this.name = newName;
+        this.filePos = newFilePos;
     }
 
     /**

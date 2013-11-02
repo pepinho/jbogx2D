@@ -23,14 +23,14 @@ public class DrawingIOEvent {
     /**
      * Creates a new event instance.
      * 
-     * @param type
+     * @param newType
      *            The event-type.
-     * @param data
+     * @param newData
      *            The event-data.
      */
-    public DrawingIOEvent(DrawingIOEventType type, Object data) {
-        this.type = type;
-        this.data = data;
+    public DrawingIOEvent(final DrawingIOEventType newType, final Object newData) {
+        this.type = newType;
+        this.data = newData;
     }
 
     /**
@@ -41,11 +41,11 @@ public class DrawingIOEvent {
     }
 
     /**
-     * @param type
+     * @param newType
      *            the type to set
      */
-    public final void setType(DrawingIOEventType type) {
-        this.type = type;
+    public final void setType(final DrawingIOEventType newType) {
+        this.type = newType;
     }
 
     /**
@@ -56,11 +56,11 @@ public class DrawingIOEvent {
     }
 
     /**
-     * @param data
+     * @param newData
      *            the data to set
      */
-    public final void setData(Object data) {
-        this.data = data;
+    public final void setData(final Object newData) {
+        this.data = newData;
     }
 
 }

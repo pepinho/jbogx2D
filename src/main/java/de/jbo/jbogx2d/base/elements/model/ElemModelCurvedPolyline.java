@@ -34,7 +34,7 @@ public class ElemModelCurvedPolyline extends ElemModelPolyline {
      */
     @Override
     protected void initShape() {
-        shape = new CurvedPolyline2D();
+        setShape(new CurvedPolyline2D());
     }
 
 }

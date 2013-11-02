@@ -29,13 +29,13 @@ import de.jbo.jbogx2d.base.graphics.ViewContext;
  */
 public abstract class ElemBase {
     /** The underlying element model. */
-    protected ElemModel model = null;
+    private ElemModel model = null;
 
     /** The view used for rendering this element. */
-    protected ElemView view = null;
+    private ElemView view = null;
 
     /** The element's parent container. */
-    protected ElemContainer parent = null;
+    private ElemContainer parent = null;
 
     /**
      * Creates a new instance.
@@ -97,7 +97,7 @@ public abstract class ElemBase {
      * @return The parent at the given level, or null if we have no parent or we
      *         are on the same level.
      */
-    public ElemBase getParent(short level) {
+    public ElemBase getParent(final short level) {
         ElemBase p = null;
 
         if (level >= Drawing.LEVEL_ROOT) {
@@ -133,7 +133,7 @@ public abstract class ElemBase {
      * @param p
      *            The parent to be set.
      */
-    protected void setParent(ElemContainer p) {
+    protected void setParent(final ElemContainer p) {
         parent = p;
     }
 
@@ -171,7 +171,7 @@ public abstract class ElemBase {
      *            Out-parameter receiving the calculated bounds.
      * @see de.jbo.jbogx2d.base.elements.ElemBase#getBounds(de.jbo.jbogx2d.base.geom.RectUserSpace)
      */
-    public void getBounds(BoundsUserSpace bounds) {
+    public void getBounds(final BoundsUserSpace bounds) {
         model.getBounds(bounds);
     }
 
@@ -190,7 +190,7 @@ public abstract class ElemBase {
      *            geometric modification.
      * @see de.jbo.jbogx2d.base.elements.ElemBaseBoundsCaching#setBoundsDirty(boolean)
      */
-    public void setBoundsDirty(boolean b) {
+    public void setBoundsDirty(final boolean b) {
         model.setBoundsDirty(b);
     }
 
@@ -202,7 +202,7 @@ public abstract class ElemBase {
      * @return The state of the traversion (depends of the
      *         traverser-implementation).
      */
-    public short traverse(ElementTraverser traverser) {
+    public short traverse(final ElementTraverser traverser) {
         return traverser.handleElement(this);
     }
 
@@ -229,7 +229,7 @@ public abstract class ElemBase {
      *            The point to calculate the distance to.
      * @return The distance in the user-space system.
      */
-    public double getDistanceTo(PointUserSpace point) {
+    public double getDistanceTo(final PointUserSpace point) {
         return model.getDistanceTo(point);
     }
 
@@ -240,7 +240,7 @@ public abstract class ElemBase {
      *            The bounds to be checked.
      * @return True if the bounds intersect, False otherwise.
      */
-    public boolean intersects(BoundsUserSpace bounds) {
+    public boolean intersects(final BoundsUserSpace bounds) {
         return model.intersects(bounds);
     }
 
@@ -257,7 +257,7 @@ public abstract class ElemBase {
      *            The height of the rectangle.
      * @return True if the rectangle intersects this element.
      */
-    public boolean intersects(double x, double y, double w, double h) {
+    public boolean intersects(final double x, final double y, final double w, final double h) {
         return model.intersects(x, y, w, h);
     }
 
@@ -337,19 +337,19 @@ public abstract class ElemBase {
     /**
      * Sets the model to be used by this element.
      * 
-     * @param model
+     * @param value
      *            The model to be set.
      */
-    public void setModel(ElemModel model) {
+    public void setModel(final ElemModel value) {
         if (this.model != null) {
             this.model.setElement(null);
         }
-        this.model = model;
+        this.model = value;
 
         ElemView myView = getView();
 
         if (myView != null) {
-            myView.setModel(model);
+            myView.setModel(value);
         }
     }
 

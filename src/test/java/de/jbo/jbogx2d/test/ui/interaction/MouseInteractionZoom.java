@@ -49,8 +49,8 @@ public class MouseInteractionZoom extends MouseInteractionAdapter {
      * de.jbo.jbogx2d.base.graphics.ViewHandler)
      */
     @Override
-    public void init(MouseInteractionHandler interactionHandler, ViewHandler viewHandler) {
-        this.viewHandler = viewHandler;
+    public void init(MouseInteractionHandler interactionHandler, ViewHandler view) {
+        this.viewHandler = view;
         xorRectangle.setPointCount(4);
         xorRectangle.getAttribFill().setFillType(AttribFillType.TYPE_HOLLOW);
         paintRequest.addXorElement(xorRectangle);

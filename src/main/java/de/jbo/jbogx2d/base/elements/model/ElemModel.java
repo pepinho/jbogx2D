@@ -29,7 +29,7 @@ public abstract class ElemModel {
     private String name = null;
 
     /** The bounds of the element. */
-    protected BoundsUserSpace boundsCache = new BoundsUserSpace();
+    private BoundsUserSpace boundsCache = new BoundsUserSpace();
 
     /** Indicates if the bounds are dirty and have to be re-calculated. */
     private boolean isBoundsDirty = true;

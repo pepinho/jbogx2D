@@ -38,11 +38,11 @@ public final class MetadataFile {
     }
 
     /**
-     * @param fileVersion
+     * @param newFileVersion
      *            the fileVersion to set
      */
-    public void setFileVersion(Version fileVersion) {
-        this.fileVersion = fileVersion;
+    public void setFileVersion(final Version newFileVersion) {
+        this.fileVersion = newFileVersion;
     }
 
     /**
@@ -58,7 +58,7 @@ public final class MetadataFile {
      * @param layer
      *            The layer to be added.
      */
-    public void addLayer(MetadataLayer layer) {
+    public void addLayer(final MetadataLayer layer) {
         layers.add(layer);
     }
 
@@ -76,7 +76,7 @@ public final class MetadataFile {
      *            The stream to write to.
      * @return True if successful, False otherwise.
      */
-    public boolean write(ObjectOutputStream stream) {
+    public boolean write(final ObjectOutputStream stream) {
         boolean ret = false;
         try {
             stream.write(fileVersion.getVersionMajor());
@@ -104,7 +104,7 @@ public final class MetadataFile {
      *            The stream to read from.
      * @return True if successful, False otherwise.
      */
-    public boolean read(InputStream stream) {
+    public boolean read(final InputStream stream) {
         // TODO implement read...
         return false;
     }

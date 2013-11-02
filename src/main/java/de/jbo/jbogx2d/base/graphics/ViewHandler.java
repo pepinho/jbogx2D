@@ -219,10 +219,10 @@ public class ViewHandler implements IDrawingModifiedListener {
         visibleUserSpace.set(visibleBounds);
 
         /*
-         * VisibleBounds matchen mit den Seitenverhältnissen des sichtbaren
+         * VisibleBounds matchen mit den Seitenverhï¿½ltnissen des sichtbaren
          * views. So stellen wir sicher dass der Quadtree alle sichtbaren
-         * Elemente liefert, für den FAll dass die übergebenen bounds nicht dem
-         * Seitenverhältnis des Views entsprechen.
+         * Elemente liefert, fï¿½r den FAll dass die ï¿½bergebenen bounds nicht dem
+         * Seitenverhï¿½ltnis des Views entsprechen.
          */
         BoundsUserSpace vbMatched = new BoundsUserSpace();
         viewBuffer.getVisibleUserSpace(vbMatched);
@@ -345,7 +345,7 @@ public class ViewHandler implements IDrawingModifiedListener {
             }
             viewXor.flushView(flushBounds, viewBuffer);
             mouseInteractionHandler.paintXorElemens(viewXor);
-            viewScreen.setGraphicsContext((Graphics2D) g);
+            viewScreen.setGraphicsContext((Graphics2D) g, true);
 
             viewScreen.flushView(flushBounds, viewXor);
 

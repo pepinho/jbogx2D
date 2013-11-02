@@ -27,17 +27,17 @@ import de.jbo.jbogx2d.base.geom.PointUserSpace;
  */
 public class Polyline2D implements Shape {
     /** The base-points. */
-    protected PointUserSpace[] points = null;
+    private PointUserSpace[] points = null;
 
     /**
      * Creates a new instance.
      * 
-     * @param points
+     * @param p
      *            The poly-endpoints to be used.
      */
-    public Polyline2D(PointUserSpace[] points) {
+    public Polyline2D(PointUserSpace[] p) {
         this();
-        setPoints(points);
+        setPoints(p);
     }
 
     /**
@@ -321,7 +321,7 @@ public class Polyline2D implements Shape {
      */
     public boolean intersects(double x, double y, double w, double h) {
         Crossings c = Crossings.findCrossings(getPathIterator(null), x, y, x + w, y + h);
-        return (c == null || !c.isEmpty());
+        return ((c == null) || !c.isEmpty());
     }
 
     /**

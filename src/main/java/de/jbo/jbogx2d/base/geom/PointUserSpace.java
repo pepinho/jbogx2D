@@ -54,7 +54,8 @@ public class PointUserSpace extends Point2D.Double {
     }
 
     /**
-     * Checks if this point instance consists of valid coordinate values: <br>
+     * Checks if this point instance consists of valid coordinate values. They
+     * should look like: <br>
      * <ul>
      * <li>non infinite value</li>
      * <li>a valid Number value</li>

@@ -29,12 +29,12 @@ public class ViewElem2QuadTreeTraverser extends ElementTraverser {
     /**
      * Creates a new instance.
      * 
-     * @param quadTreeRoot
+     * @param root
      *            The quad-tree root-node to be handled.
      */
-    public ViewElem2QuadTreeTraverser(ViewQuadTreeNode quadTreeRoot) {
+    public ViewElem2QuadTreeTraverser(ViewQuadTreeNode root) {
         super();
-        this.quadTreeRoot = quadTreeRoot;
+        this.quadTreeRoot = root;
         setVisitContainerChilds(true);
         setDirectionFirstToLast(true);
     }

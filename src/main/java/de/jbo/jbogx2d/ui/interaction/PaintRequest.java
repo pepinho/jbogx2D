@@ -55,11 +55,11 @@ public class PaintRequest {
     }
 
     /**
-     * @param isResetXor
+     * @param set
      *            the isResetXor to set
      */
-    public final void setResetXor(boolean isResetXor) {
-        this.isResetXor = isResetXor;
+    public final void setResetXor(final boolean set) {
+        this.isResetXor = set;
     }
 
     /**
@@ -77,20 +77,20 @@ public class PaintRequest {
     }
 
     /**
-     * @param isRepaintRequested
+     * @param set
      *            the isRepaintRequested to set
      */
-    public final void setRepaintRequested(boolean isRepaintRequested) {
-        this.isRepaintRequested = isRepaintRequested;
+    public final void setRepaintRequested(final boolean set) {
+        this.isRepaintRequested = set;
     }
 
     /**
-     * @param boundsModified
+     * @param set
      *            the boundsModified to set
      */
-    public final void setBoundsModified(BoundsUserSpace boundsModified) {
-        if (boundsModified != null) {
-            this.boundsModified = new BoundsUserSpace(boundsModified.x, boundsModified.y, boundsModified.width, boundsModified.height);
+    public final void setBoundsModified(final BoundsUserSpace set) {
+        if (set != null) {
+            this.boundsModified = new BoundsUserSpace(set.x, set.y, set.width, set.height);
         } else {
             this.boundsModified = null;
         }
@@ -102,7 +102,7 @@ public class PaintRequest {
      * @param xor
      *            Element to be added.
      */
-    public final void addXorElement(IMouseInteractionXorElement xor) {
+    public final void addXorElement(final IMouseInteractionXorElement xor) {
         xorElements.add(xor);
     }
 
@@ -112,7 +112,7 @@ public class PaintRequest {
      * @param xor
      *            Element to be removed.
      */
-    public final void removeXorElement(IMouseInteractionXorElement xor) {
+    public final void removeXorElement(final IMouseInteractionXorElement xor) {
         xorElements.remove(xor);
     }
 

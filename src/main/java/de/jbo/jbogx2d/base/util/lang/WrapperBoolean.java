@@ -17,7 +17,7 @@ package de.jbo.jbogx2d.base.util.lang;
  */
 public class WrapperBoolean {
     /** The wrapped value. */
-    public boolean value = false;
+    private boolean value = false;
 
     /**
      * Creates a new instance wrapping the given value.
@@ -58,6 +58,21 @@ public class WrapperBoolean {
     @Override
     public int hashCode() {
         return (value) ? 1 : 0;
+    }
+
+    /**
+     * @return the value
+     */
+    public final boolean getValue() {
+        return value;
+    }
+
+    /**
+     * @param set
+     *            the value to set
+     */
+    public final void setValue(boolean set) {
+        this.value = set;
     }
 
 }

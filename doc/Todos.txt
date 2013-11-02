@@ -2,10 +2,10 @@ Quad-Tree:
 **********
 - Modifizierung an Elementen je Layer sollten deren Quadtrees updaten
 - Dies am besten per Events umsetzen
-- ZOrder ist ein Problem. Zur Laufzeit eingefügte Elemente benötigen eine 
-  konsistente ZOrder, da sonst später die Reihenfolge nicht mehr hergestellt 
+- ZOrder ist ein Problem. Zur Laufzeit eingefÃ¼gte Elemente benÃ¶tigen eine 
+  konsistente ZOrder, da sonst spÃ¤ter die Reihenfolge nicht mehr hergestellt 
   werden kann.
-- mit Double-ZOrder könnte es gehen. Diese macht dann aber beim sortieren im
-  Quadtree spätestens Probleme...argl. Dort wird ein Int-Index benötigt.
-  Bei Doubles müsste man mit herkömmlicher Sortierung arbeiten, das wäre deutlich
+- mit Double-ZOrder kÃ¶nnte es gehen. Diese macht dann aber beim sortieren im
+  Quadtree spÃ¤testens Probleme...argl. Dort wird ein Int-Index benÃ¶tigt.
+  Bei Doubles mÃ¼sste man mit herkÃ¶mmlicher Sortierung arbeiten, das wÃ¤re deutlich
   teurer, was die Performance angeht.

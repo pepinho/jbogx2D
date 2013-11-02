@@ -266,21 +266,20 @@ public class ArrayListX<E> implements Collection<E> {
     public final int size() {
         return data.length;
     }
-    
+
     /**
      * 
      * @return Collection of not-null-elements in this collection.
      */
-    private final Collection<E> getNotNullElements(){
+    private Collection<E> getNotNullElements() {
         Collection<E> ret = new LinkedList<E>();
-        
-        for(int i = 0; i < data.length; i++){
-            E obj = data[i];
-            if (obj != null){
+
+        for (E obj : data) {
+            if (obj != null) {
                 ret.add(obj);
             }
         }
-        
+
         return ret;
     }
 
@@ -304,7 +303,7 @@ public class ArrayListX<E> implements Collection<E> {
     @Override
     public <T> T[] toArray(T[] a) {
         Collection<E> notNullElements = getNotNullElements();
-        
+
         if (a.length < notNullElements.size()) {
             // Make a new array of a's runtime type, but my contents:
             return (T[]) Arrays.copyOf(notNullElements.toArray(), size(), a.getClass());
@@ -358,7 +357,7 @@ public class ArrayListX<E> implements Collection<E> {
      */
     private class IteratorArrayListX implements Iterator<E> {
         /** Current index we are traversing. */
-        int index = 0;
+        private int index = 0;
 
         /*
          * (non-Javadoc)

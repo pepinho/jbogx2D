@@ -157,8 +157,8 @@ public class ViewDrawingGrid {
         stopUserSpace.y = viewBounds.y + viewBounds.height;
 
         /*
-         * Prüfung über die drawingBounds, fall weniger als 100% Zoomlevel
-         * sichtbar sind, sollen die drawingBounds die Grenze für das Gitter
+         * Prï¿½fung ï¿½ber die drawingBounds, fall weniger als 100% Zoomlevel
+         * sichtbar sind, sollen die drawingBounds die Grenze fï¿½r das Gitter
          * sein
          */
         startUserSpace.x = Math.max(drawingBounds.x, startUserSpace.x);
@@ -186,8 +186,8 @@ public class ViewDrawingGrid {
     public final void paint(final ViewContext view) {
 
         /*
-         * Ausserhalb der Zeichnungsbreite oder -höhe? Dann können wir
-         * aussteigen und müssen nichts zeichnen...
+         * Ausserhalb der Zeichnungsbreite oder -hï¿½he? Dann kï¿½nnen wir
+         * aussteigen und mï¿½ssen nichts zeichnen...
          */
         if ((startUserSpace.x > stopUserSpace.x) || (startUserSpace.y > stopUserSpace.y)) {
             return;
@@ -201,8 +201,8 @@ public class ViewDrawingGrid {
         gc.setColor(attribsLine.getSystemColor());
 
         /*
-         * Wir prüfen, ob der Pixelabstand des Gitters unter ein bestimmtes
-         * Limit fällt. Ist das der Fall, zeichnen wir nur noch jeden n-ten
+         * Wir prï¿½fen, ob der Pixelabstand des Gitters unter ein bestimmtes
+         * Limit fï¿½llt. Ist das der Fall, zeichnen wir nur noch jeden n-ten
          * Punkt
          */
         int correctionFactor = checkForMinimumScreenSpacing(spacingScreen.x, spacingScreen.y);
@@ -234,9 +234,7 @@ public class ViewDrawingGrid {
             }
 
         }
-        gc.setTransform(view.matrixUserSpace2Screen);
-        // gc.setStroke(attribsLine.getSystemStroke());
-        // gc.draw(drawingBounds);
+        gc.setTransform(view.getMatrixUserSpace2Screen());
     }
 
     /**

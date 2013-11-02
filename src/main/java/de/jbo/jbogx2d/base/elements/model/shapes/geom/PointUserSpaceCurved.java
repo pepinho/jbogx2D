@@ -20,7 +20,7 @@ public class PointUserSpaceCurved extends PointUserSpace {
     private static final long serialVersionUID = 4461917183153663746L;
 
     /** Control point for the corresponding poly-point. */
-    public PointUserSpace controlPoint = null;
+    private PointUserSpace controlPoint = null;
 
     /**
      * Creates a new instance.
@@ -39,6 +39,21 @@ public class PointUserSpaceCurved extends PointUserSpace {
      */
     public PointUserSpaceCurved() {
         super();
+    }
+
+    /**
+     * @return the controlPoint
+     */
+    public final PointUserSpace getControlPoint() {
+        return controlPoint;
+    }
+
+    /**
+     * @param cp
+     *            the controlPoint to set
+     */
+    public final void setControlPoint(PointUserSpace cp) {
+        this.controlPoint = cp;
     }
 
 }

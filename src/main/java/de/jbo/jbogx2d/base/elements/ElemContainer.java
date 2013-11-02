@@ -26,14 +26,14 @@ import de.jbo.jbogx2d.base.geom.BoundsUserSpace;
  */
 public class ElemContainer extends ElemBase {
     /** List of child elements. */
-    protected LinkedList<ElemBase> childList = null;
+    private LinkedList<ElemBase> childList = null;
 
     /**
      * Creates a new instance.
      */
     public ElemContainer() {
         super();
-        childList = ((ElemModelContainer) model).getChildList();
+        childList = ((ElemModelContainer) getModel()).getChildList();
     }
 
     /*

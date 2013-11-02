@@ -65,7 +65,7 @@ public class Polygon2D extends Polyline2D {
     @Override
     public boolean contains(double x, double y, double w, double h) {
         Crossings c = Crossings.findCrossings(getPathIterator(null), x, y, x + w, y + h);
-        return (c != null && c.covers(y, y + h));
+        return ((c != null) && c.covers(y, y + h));
     }
 
     /*

@@ -35,16 +35,16 @@ public class BoundsUserSpace extends Rectangle2D.Double {
      */
     private static final long serialVersionUID = -1505731990528878091L;
 
-    /** Identifies the quadrant in the north-east corner */
+    /** Identifies the quadrant in the north-east corner. */
     public static final int QUADRANT_NE = 1;
 
-    /** Identifies the quadrant in the north-west corner */
+    /** Identifies the quadrant in the north-west corner. */
     public static final int QUADRANT_NW = 2;
 
     /** Identifies the quadrant in the south-west corner. */
     public static final int QUADRANT_SW = 3;
 
-    /** Identifies the quadrant in the sourth-east corner */
+    /** Identifies the quadrant in the sourth-east corner. */
     public static final int QUADRANT_SE = 4;
 
     /**
@@ -238,9 +238,9 @@ public class BoundsUserSpace extends Rectangle2D.Double {
 
         // Hoehe anpassen
         if (widthHeightRatio1 > widthHeightRatio2) {
-            height = height * widthHeightRatio1 / widthHeightRatio2;
+            height = (height * widthHeightRatio1) / widthHeightRatio2;
         } else if (widthHeightRatio1 < widthHeightRatio2) {
-            width = width * widthHeightRatio2 / widthHeightRatio1;
+            width = (width * widthHeightRatio2) / widthHeightRatio1;
         }
     }
 
@@ -308,7 +308,7 @@ public class BoundsUserSpace extends Rectangle2D.Double {
      */
     @Override
     public boolean intersects(double x1, double y1, double w, double h) {
-        return (x1 + w > x && y1 + h > y && x1 < x + getWidth() && y1 < y + getHeight());
+        return (((x1 + w) > x) && ((y1 + h) > y) && (x1 < (x + getWidth())) && (y1 < (y + getHeight())));
     }
 
     /*
@@ -316,7 +316,7 @@ public class BoundsUserSpace extends Rectangle2D.Double {
      */
     @Override
     public boolean contains(double x1, double y1, double w, double h) {
-        return (x1 >= x && y1 >= y && (x1 + w) <= x + getWidth() && (y1 + h) <= y + getHeight());
+        return ((x1 >= x) && (y1 >= y) && ((x1 + w) <= (x + getWidth())) && ((y1 + h) <= (y + getHeight())));
     }
 
 }

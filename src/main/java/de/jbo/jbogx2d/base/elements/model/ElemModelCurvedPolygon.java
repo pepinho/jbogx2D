@@ -23,7 +23,7 @@ public class ElemModelCurvedPolygon extends ElemModelPolygon {
      */
     @Override
     protected void initShape() {
-        shape = new CurvedPolygon2D();
+        setShape(new CurvedPolygon2D());
     }
 
     /**

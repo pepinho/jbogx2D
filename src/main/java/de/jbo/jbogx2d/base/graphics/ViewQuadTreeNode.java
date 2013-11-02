@@ -25,7 +25,7 @@ public class ViewQuadTreeNode {
     private final BoundsUserSpace quadrantBounds = new BoundsUserSpace();
 
     /** List of elements stored directly under this node. */
-    protected LinkedList<ElemBase> elemList = new LinkedList<ElemBase>();
+    private LinkedList<ElemBase> elemList = new LinkedList<ElemBase>();
 
     /** The parent tree-node. */
     private ViewQuadTreeNode parent = null;
@@ -47,14 +47,14 @@ public class ViewQuadTreeNode {
      * 
      * @param maxDepth
      *            Maximum-depth of the quadrant child-nodes.
-     * @param parent
+     * @param parentNode
      *            The parent node.
      * @param boundsUserSpace
      *            The node's user-space bounds.
      */
-    public ViewQuadTreeNode(int maxDepth, ViewQuadTreeNode parent, BoundsUserSpace boundsUserSpace) {
+    public ViewQuadTreeNode(int maxDepth, ViewQuadTreeNode parentNode, BoundsUserSpace boundsUserSpace) {
         super();
-        this.parent = parent;
+        this.parent = parentNode;
         quadrantBounds.set(boundsUserSpace);
 
         if (getDepth() <= maxDepth) {

@@ -17,7 +17,7 @@ package de.jbo.jbogx2d.base.util.lang;
  */
 public class WrapperShort {
     /** The wrapped value. */
-    public short value = 0;
+    private short value = 0;
 
     /**
      * Creates a new instance wrapping the given value.
@@ -58,6 +58,21 @@ public class WrapperShort {
     @Override
     public int hashCode() {
         return value;
+    }
+
+    /**
+     * @return the value
+     */
+    public final short getValue() {
+        return value;
+    }
+
+    /**
+     * @param newValue
+     *            the value to set
+     */
+    public final void setValue(short newValue) {
+        this.value = newValue;
     }
 
 }

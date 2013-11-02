@@ -169,6 +169,7 @@ public class CurvedPolygon2D extends Polygon2D {
      *            The index of the point to be updated.
      */
     private void updateControlPoint(int index) {
+        PointUserSpace[] points = getPoints();
         PointUserSpaceCurved p1 = (PointUserSpaceCurved) points[index];
         PointUserSpace p2 = null;
         int count = getPointCount();
@@ -182,12 +183,13 @@ public class CurvedPolygon2D extends Polygon2D {
         }
         distance = p1.distance(p2);
         angle = p1.angle(p2);
-
-        if (p1.controlPoint == null) {
-            p1.controlPoint = new PointUserSpace(p1.x, p1.y);
+        PointUserSpace controlPoint = p1.getControlPoint();
+        if (controlPoint == null) {
+            controlPoint = new PointUserSpace(p1.x, p1.y);
+            p1.setControlPoint(controlPoint);
         } else {
-            p1.controlPoint.set(p1.x, p1.y);
+            controlPoint.set(p1.x, p1.y);
         }
-        p1.controlPoint.addPolar(distance * CONTROL_POINT_DIST_FACTOR, angle);
+        controlPoint.addPolar(distance * CONTROL_POINT_DIST_FACTOR, angle);
     }
 }

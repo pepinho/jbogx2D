@@ -12,6 +12,8 @@ import java.awt.geom.AffineTransform;
 import java.awt.geom.PathIterator;
 import java.util.NoSuchElementException;
 
+import de.jbo.jbogx2d.base.geom.PointUserSpace;
+
 /**
  * Implements the path-iterator used for rendering polygons.
  * 
@@ -20,16 +22,16 @@ import java.util.NoSuchElementException;
  */
 public class PathIteratorPolygon implements PathIterator {
     /** The polygon being handled. */
-    Polygon2D polygon;
+    private Polygon2D polygon;
 
     /** The transformation being used. */
-    AffineTransform affine;
+    private AffineTransform affine;
 
     /** Index used for iteration. */
-    int index;
+    private int index;
 
     /** Segment type used for iteration. */
-    int segmentLineType = SEG_LINETO;
+    private int segmentLineType = SEG_LINETO;
 
     /**
      * Creates a new instance.
@@ -55,19 +57,19 @@ public class PathIteratorPolygon implements PathIterator {
         if (isDone()) {
             throw new NoSuchElementException("polyline iterator out of bounds");
         }
-
+        PointUserSpace[] points = polygon.getPoints();
         if (index == 0) {
             type = SEG_MOVETO;
-            coords[0] = polygon.points[index].x;
-            coords[1] = polygon.points[index].y;
+            coords[0] = points[index].x;
+            coords[1] = points[index].y;
 
             if (affine != null) {
                 affine.transform(coords, 0, coords, 0, 1);
             }
-        } else if (index < polygon.points.length - 1) {
+        } else if (index < (points.length - 1)) {
             type = segmentLineType;
-            coords[0] = polygon.points[index].x;
-            coords[1] = polygon.points[index].y;
+            coords[0] = points[index].x;
+            coords[1] = points[index].y;
 
             if (affine != null) {
                 affine.transform(coords, 0, coords, 0, 1);
@@ -89,19 +91,20 @@ public class PathIteratorPolygon implements PathIterator {
         if (isDone()) {
             throw new NoSuchElementException("polyline iterator out of bounds");
         }
+        PointUserSpace[] points = polygon.getPoints();
 
         if (index == 0) {
             type = SEG_MOVETO;
-            coords[0] = (float) polygon.points[index].x;
-            coords[1] = (float) polygon.points[index].y;
+            coords[0] = (float) points[index].x;
+            coords[1] = (float) points[index].y;
 
             if (affine != null) {
                 affine.transform(coords, 0, coords, 0, 1);
             }
-        } else if (index <= polygon.points.length - 1) {
+        } else if (index <= (points.length - 1)) {
             type = segmentLineType;
-            coords[0] = (float) polygon.points[index].x;
-            coords[1] = (float) polygon.points[index].y;
+            coords[0] = (float) points[index].x;
+            coords[1] = (float) points[index].y;
 
             if (affine != null) {
                 affine.transform(coords, 0, coords, 0, 1);

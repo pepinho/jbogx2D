@@ -49,7 +49,7 @@ public class AttribLine extends AttribBase {
     private BasicStroke systemStroke = null;
 
     /**
-     * Creates a new instance with the given default values: <br>
+     * Creates a new instance. The given default values are: <br>
      * <ul>
      * <li>width: 1.0</li>
      * <li>stroke-id: 1</li>

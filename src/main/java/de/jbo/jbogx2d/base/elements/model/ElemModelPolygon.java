@@ -45,6 +45,6 @@ public class ElemModelPolygon extends ElemModelPolyline {
      */
     @Override
     protected void initShape() {
-        shape = new Polygon2D();
+        setShape(new Polygon2D());
     }
 }

@@ -43,7 +43,7 @@ public class ViewContextScreen extends ViewContext {
     protected Graphics2D createGraphicsContext() {
         Graphics2D gc = (Graphics2D) screenComponent.getGraphics();
         if (gc != null) {
-            gc.setRenderingHints(mapRenderingHints);
+            gc.setRenderingHints(getRenderingHints());
         }
         return gc;
     }
@@ -59,17 +59,6 @@ public class ViewContextScreen extends ViewContext {
         bounds.y = 0;
         bounds.width = screenComponent.getWidth();
         bounds.height = screenComponent.getHeight();
-    }
-
-    /**
-     * Sets a new external graphics-context to be used for rendering.
-     * 
-     * @param gc
-     *            The rendering context to be set.
-     */
-    public void setGraphicsContext(Graphics2D gc) {
-        graphicsContext = gc;
-        isExternalGraphicsSet = true;
     }
 
     /*

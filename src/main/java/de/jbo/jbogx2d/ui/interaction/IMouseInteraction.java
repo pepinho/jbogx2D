@@ -11,7 +11,7 @@ import de.jbo.jbogx2d.base.geom.PointUserSpace;
 import de.jbo.jbogx2d.base.graphics.ViewHandler;
 
 /**
- * Interface for a basic mouse-interaction
+ * Interface for a basic mouse-interaction.
  * 
  * @author Josef Baro (jbo) <br>
  * @version 25.01.2010 jbo - created <br>

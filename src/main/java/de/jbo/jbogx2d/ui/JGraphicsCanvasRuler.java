@@ -200,7 +200,7 @@ final class JGraphicsCanvasRuler extends JPanel implements IZoomListener, IScrol
             int correctionFactor = ViewDrawingGrid.checkForMinimumScreenSpacing(newGridSpacingPixelX, gridSpacingPixelY);
 
             int tick = firstTickY;
-            double unit = firstUnitY.value;
+            double unit = firstUnitY.getValue();
             String widestUnit = "";
 
             rulerUnitsY.clear();
@@ -284,7 +284,7 @@ final class JGraphicsCanvasRuler extends JPanel implements IZoomListener, IScrol
             int correctionFactor = ViewDrawingGrid.checkForMinimumScreenSpacing(gridSpacingPixelX, gridSpacingPixelY);
 
             int tick = firstTickX;
-            double unit = firstUnitX.value;
+            double unit = firstUnitX.getValue();
             String widestUnit = "";
 
             rulerUnitsX.clear();
@@ -387,8 +387,8 @@ final class JGraphicsCanvasRuler extends JPanel implements IZoomListener, IScrol
         myCanvas.transformUserSpaceToScreen(b, s);
         tick = s.width;
 
-        firstUnitX.value = newVisibleBounds.x % gridSpacingX;
-        firstUnitX.value = newVisibleBounds.x - firstUnitX.value;
+        firstUnitX.setValue(newVisibleBounds.x % gridSpacingX);
+        firstUnitX.setValue(newVisibleBounds.x - firstUnitX.getValue());
 
         return tick;
     }
@@ -418,8 +418,8 @@ final class JGraphicsCanvasRuler extends JPanel implements IZoomListener, IScrol
         myCanvas.transformUserSpaceToScreen(b, s);
         tick = s.height;
 
-        firstUnitY.value = newVisibleBounds.y % gridSpacingY;
-        firstUnitY.value = newVisibleBounds.y - firstUnitY.value;
+        firstUnitY.setValue(newVisibleBounds.y % gridSpacingY);
+        firstUnitY.setValue(newVisibleBounds.y - firstUnitY.getValue());
 
         return tick;
     }

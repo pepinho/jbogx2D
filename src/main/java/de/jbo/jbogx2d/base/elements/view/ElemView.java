@@ -40,12 +40,12 @@ public abstract class ElemView {
     /**
      * Creates a new instance.
      * 
-     * @param model
+     * @param m
      *            The model to be rendered.
      */
-    public ElemView(ElemModel model) {
+    public ElemView(ElemModel m) {
         super();
-        setModel(model);
+        setModel(m);
     }
 
     /**
@@ -181,10 +181,10 @@ public abstract class ElemView {
     }
 
     /**
-     * @param model
+     * @param m
      *            The model to set.
      */
-    public void setModel(ElemModel model) {
-        this.model = model;
+    public void setModel(ElemModel m) {
+        this.model = m;
     }
 }

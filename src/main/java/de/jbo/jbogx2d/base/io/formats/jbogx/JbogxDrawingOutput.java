@@ -20,7 +20,7 @@ import de.jbo.jbogx2d.base.drawing.DrawingLayer;
 import de.jbo.jbogx2d.base.io.StreamedDrawingOutput;
 
 /**
- * Drawing output generating "jbogx" format: <br>
+ * Drawing output generating "jbogx" format. The format is defined as follows: <br>
  * <ul>
  * <li>ZIP compressed base-file containing:
  * <ul>

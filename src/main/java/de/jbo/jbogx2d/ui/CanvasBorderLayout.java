@@ -27,7 +27,7 @@ public class CanvasBorderLayout extends BorderLayout {
      * @see #setHgap(int)
      * @serial
      */
-    int hgap;
+    private int hgap;
 
     /**
      * Constructs a border layout with the vertical gaps between components. The
@@ -37,7 +37,7 @@ public class CanvasBorderLayout extends BorderLayout {
      * @see #setVgap(int)
      * @serial
      */
-    int vgap;
+    private int vgap;
 
     /**
      * Constant to specify components location to be the north portion of the
@@ -50,7 +50,7 @@ public class CanvasBorderLayout extends BorderLayout {
      * @see #getLayoutAlignmentY
      * @see #removeLayoutComponent
      */
-    Component north;
+    private Component north;
 
     /**
      * Constant to specify components location to be the west portion of the
@@ -63,7 +63,7 @@ public class CanvasBorderLayout extends BorderLayout {
      * @see #getLayoutAlignmentY
      * @see #removeLayoutComponent
      */
-    Component west;
+    private Component west;
 
     /**
      * Constant to specify components location to be the east portion of the
@@ -76,7 +76,7 @@ public class CanvasBorderLayout extends BorderLayout {
      * @see #getLayoutAlignmentY
      * @see #removeLayoutComponent
      */
-    Component east;
+    private Component east;
 
     /**
      * Constant to specify components location to be the south portion of the
@@ -89,7 +89,7 @@ public class CanvasBorderLayout extends BorderLayout {
      * @see #getLayoutAlignmentY
      * @see #removeLayoutComponent
      */
-    Component south;
+    private Component south;
 
     /**
      * Constant to specify components location to be the center portion of the
@@ -102,7 +102,7 @@ public class CanvasBorderLayout extends BorderLayout {
      * @see #getLayoutAlignmentY
      * @see #removeLayoutComponent
      */
-    Component center;
+    private Component center;
 
     /**
      * A relative positioning constant, that can be used instead of north,
@@ -116,7 +116,7 @@ public class CanvasBorderLayout extends BorderLayout {
      * 
      * @serial
      */
-    Component firstLine;
+    private Component firstLine;
 
     /**
      * A relative positioning constant, that can be used instead of north,
@@ -124,7 +124,7 @@ public class CanvasBorderLayout extends BorderLayout {
      * 
      * @serial
      */
-    Component lastLine;
+    private Component lastLine;
 
     /**
      * A relative positioning constant, that can be used instead of north,
@@ -132,7 +132,7 @@ public class CanvasBorderLayout extends BorderLayout {
      * 
      * @serial
      */
-    Component firstItem;
+    private Component firstItem;
 
     /**
      * A relative positioning constant, that can be used instead of north,
@@ -140,7 +140,7 @@ public class CanvasBorderLayout extends BorderLayout {
      * 
      * @serial
      */
-    Component lastItem;
+    private Component lastItem;
 
     /**
      * Constructs a new border layout with no gaps between components.
@@ -154,14 +154,14 @@ public class CanvasBorderLayout extends BorderLayout {
      * The horizontal gap is specified by <code>hgap</code> and the vertical gap
      * is specified by <code>vgap</code>.
      * 
-     * @param hgap
+     * @param horGap
      *            the horizontal gap.
-     * @param vgap
+     * @param verGap
      *            the vertical gap.
      */
-    public CanvasBorderLayout(int hgap, int vgap) {
-        this.hgap = hgap;
-        this.vgap = vgap;
+    public CanvasBorderLayout(final int horGap, final int verGap) {
+        this.hgap = horGap;
+        this.vgap = verGap;
     }
 
     /**
@@ -178,13 +178,13 @@ public class CanvasBorderLayout extends BorderLayout {
     /**
      * Sets the horizontal gap between components.
      * 
-     * @param hgap
+     * @param horGap
      *            the horizontal gap between components
      * @since JDK1.1
      */
     @Override
-    public void setHgap(int hgap) {
-        this.hgap = hgap;
+    public void setHgap(final int horGap) {
+        this.hgap = horGap;
     }
 
     /**
@@ -201,53 +201,13 @@ public class CanvasBorderLayout extends BorderLayout {
     /**
      * Sets the vertical gap between components.
      * 
-     * @param vgap
+     * @param value
      *            the vertical gap between components
      * @since JDK1.1
      */
     @Override
-    public void setVgap(int vgap) {
-        this.vgap = vgap;
-    }
-
-    /**
-     * @deprecated replaced by
-     *             <code>addLayoutComponent(Component, Object)</code>.
-     */
-    @Deprecated
-    @Override
-    public void addLayoutComponent(String name, Component comp) {
-        synchronized (comp.getTreeLock()) {
-            /* Special case: treat null the same as "Center". */
-            if (name == null) {
-                name = "Center";
-            }
-
-            /*
-             * Assign the component to one of the known regions of the layout.
-             */
-            if ("Center".equals(name)) {
-                center = comp;
-            } else if ("North".equals(name)) {
-                north = comp;
-            } else if ("South".equals(name)) {
-                south = comp;
-            } else if ("East".equals(name)) {
-                east = comp;
-            } else if ("West".equals(name)) {
-                west = comp;
-            } else if (BEFORE_FIRST_LINE.equals(name)) {
-                firstLine = comp;
-            } else if (AFTER_LAST_LINE.equals(name)) {
-                lastLine = comp;
-            } else if (BEFORE_LINE_BEGINS.equals(name)) {
-                firstItem = comp;
-            } else if (AFTER_LINE_ENDS.equals(name)) {
-                lastItem = comp;
-            } else {
-                throw new IllegalArgumentException("cannot add to layout: unknown constraint: " + name);
-            }
-        }
+    public void setVgap(final int value) {
+        this.vgap = value;
     }
 
     /**
@@ -262,7 +222,7 @@ public class CanvasBorderLayout extends BorderLayout {
      * @see java.awt.Container#removeAll()
      */
     @Override
-    public void removeLayoutComponent(Component comp) {
+    public void removeLayoutComponent(final Component comp) {
         synchronized (comp.getTreeLock()) {
             if (comp == center) {
                 center = null;
@@ -288,7 +248,7 @@ public class CanvasBorderLayout extends BorderLayout {
     }
 
     /**
-     * Gets the component that was added using the given constraint
+     * Gets the component that was added using the given constraint.
      * 
      * @param constraints
      *            the desired constraint, one of <code>CENTER</code>,
@@ -302,7 +262,7 @@ public class CanvasBorderLayout extends BorderLayout {
      * @since 1.5
      */
     @Override
-    public Component getLayoutComponent(Object constraints) {
+    public Component getLayoutComponent(final Object constraints) {
         if (CENTER.equals(constraints)) {
             return center;
         } else if (NORTH.equals(constraints)) {
@@ -351,7 +311,7 @@ public class CanvasBorderLayout extends BorderLayout {
      * @since 1.5
      */
     @Override
-    public Component getLayoutComponent(Container target, Object constraints) {
+    public Component getLayoutComponent(final Container target, final Object constraints) {
         boolean ltr = target.getComponentOrientation().isLeftToRight();
         Component result = null;
 
@@ -379,7 +339,7 @@ public class CanvasBorderLayout extends BorderLayout {
     }
 
     /**
-     * Gets the constraints for the specified component
+     * Gets the constraints for the specified component.
      * 
      * @param comp
      *            the component to be queried
@@ -389,7 +349,7 @@ public class CanvasBorderLayout extends BorderLayout {
      * @since 1.5
      */
     @Override
-    public Object getConstraints(Component comp) {
+    public Object getConstraints(final Component comp) {
         // fix for 6242148 : API method
         // java.awt.BorderLayout.getConstraints(null) should return null
         if (comp == null) {
@@ -434,7 +394,7 @@ public class CanvasBorderLayout extends BorderLayout {
      * @see java.awt.Container#getMinimumSize()
      */
     @Override
-    public Dimension minimumLayoutSize(Container target) {
+    public Dimension minimumLayoutSize(final Container target) {
         synchronized (target.getTreeLock()) {
             Dimension dim = new Dimension(0, 0);
 
@@ -496,7 +456,7 @@ public class CanvasBorderLayout extends BorderLayout {
      * @see java.awt.Container#getPreferredSize()
      */
     @Override
-    public Dimension preferredLayoutSize(Container target) {
+    public Dimension preferredLayoutSize(final Container target) {
         synchronized (target.getTreeLock()) {
             Dimension dim = new Dimension(0, 0);
 
@@ -562,7 +522,7 @@ public class CanvasBorderLayout extends BorderLayout {
      * @see java.awt.Container#doLayout()
      */
     @Override
-    public void layoutContainer(Container target) {
+    public void layoutContainer(final Container target) {
         synchronized (target.getTreeLock()) {
             Insets insets = target.getInsets();
             int top = insets.top;
@@ -614,7 +574,7 @@ public class CanvasBorderLayout extends BorderLayout {
     }
 
     /**
-     * Get the component that corresponds to the given constraint location
+     * Get the component that corresponds to the given constraint location.
      * 
      * @param key
      *            The desired absolute position, either NORTH, SOUTH, EAST, or
@@ -623,7 +583,7 @@ public class CanvasBorderLayout extends BorderLayout {
      *            Is the component line direction left-to-right?
      * @return The corresponding component.
      */
-    private Component getChild(String key, boolean ltr) {
+    private Component getChild(final String key, final boolean ltr) {
         Component result = null;
 
         if (key == NORTH) {
@@ -643,7 +603,7 @@ public class CanvasBorderLayout extends BorderLayout {
         } else if (key == CENTER) {
             result = center;
         }
-        if (result != null && !result.isVisible()) {
+        if ((result != null) && !result.isVisible()) {
             result = null;
         }
         return result;

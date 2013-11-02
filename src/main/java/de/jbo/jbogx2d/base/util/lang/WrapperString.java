@@ -17,7 +17,7 @@ package de.jbo.jbogx2d.base.util.lang;
  */
 public class WrapperString {
     /** The wrapped value. */
-    public String value = null;
+    private String value = null;
 
     /**
      * Creates a new instance wrapping the given value.
@@ -58,6 +58,21 @@ public class WrapperString {
     @Override
     public int hashCode() {
         return value.hashCode();
+    }
+
+    /**
+     * @return the value
+     */
+    public final String getValue() {
+        return value;
+    }
+
+    /**
+     * @param newValue
+     *            the value to set
+     */
+    public final void setValue(String newValue) {
+        this.value = newValue;
     }
 
 }

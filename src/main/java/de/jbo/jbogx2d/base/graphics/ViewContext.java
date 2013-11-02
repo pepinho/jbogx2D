@@ -55,7 +55,7 @@ public abstract class ViewContext implements ImageObserver {
     protected static final AffineTransform TRANSFORMATION_NONE = new AffineTransform();
 
     /** The graphics-context this views renders on. */
-    protected Graphics2D graphicsContext = null;
+    private Graphics2D graphicsContext = null;
 
     /** The visible rectangle in user-space coordinates for this instance. */
     private final BoundsUserSpace userSpaceVisible = new BoundsUserSpace();
@@ -64,25 +64,25 @@ public abstract class ViewContext implements ImageObserver {
      * Matrix for transformation of user-space coordinates to
      * screen-coordinates.
      */
-    protected AffineTransformX matrixUserSpace2Screen = new AffineTransformX();
+    private AffineTransformX matrixUserSpace2Screen = new AffineTransformX();
 
     /**
      * Matrix for transformation of screen-coordinates to user-space
      * coordinates.
      */
-    protected AffineTransformX matrixScreen2UserSpace = new AffineTransformX();
+    private AffineTransformX matrixScreen2UserSpace = new AffineTransformX();
 
     /** State of an image-observer process during rendering of images. */
-    protected int imageObserverState = IMAGE_OBSERVER_STATE_OK;
+    private int imageObserverState = IMAGE_OBSERVER_STATE_OK;
 
     /** The background color for this view. */
     private Color backgroundColorSystem = Color.white;
 
     /** Map storing the renderingHints for the graphics context. */
-    protected final HashMap<RenderingHints.Key, Object> mapRenderingHints = new HashMap<RenderingHints.Key, Object>();
+    private final HashMap<RenderingHints.Key, Object> mapRenderingHints = new HashMap<RenderingHints.Key, Object>();
 
     /** Indicates if the graphics context was set from external source. */
-    protected boolean isExternalGraphicsSet = false;
+    private boolean isExternalGraphicsSet = false;
 
     /**
      * Creates a new instance.
@@ -285,10 +285,20 @@ public abstract class ViewContext implements ImageObserver {
             ret = false;
         } else if (((infoflags & ImageObserver.ERROR) != 0) || ((infoflags & ImageObserver.ABORT) != 0)) {
             imageObserverState = IMAGE_OBSERVER_STATE_ERROR;
-            ret = false; // nicht länger informieren lassen
+            ret = false; // nicht lï¿½nger informieren lassen
         }
 
         return ret;
+    }
+
+    /**
+     * Indicates if the image-update currently running is finished or not.
+     * 
+     * @return True if finished, False otherwise.
+     * @see ImageObserver
+     */
+    public boolean isImageUpdateFinished() {
+        return (imageObserverState == IMAGE_OBSERVER_STATE_OK);
     }
 
     /**
@@ -684,6 +694,12 @@ public abstract class ViewContext implements ImageObserver {
         return backgroundColorSystem;
     }
 
+    /**
+     * Activates or deactivates the XOR handling.
+     * 
+     * @param set
+     *            Value to be set.
+     */
     public void setXOR(boolean set) {
         if (graphicsContext == null) {
             graphicsContext = createGraphicsContext();
@@ -710,6 +726,33 @@ public abstract class ViewContext implements ImageObserver {
      */
     public static void setCreateVolatileImage(final boolean value) {
         ViewContext.isCreateVolatileImage = value;
+    }
+
+    /**
+     * Sets a new external graphics-context to be used for rendering.
+     * 
+     * @param gc
+     *            The rendering context to be set.
+     * @param isExternal
+     *            True if external context (not created within a view-context).
+     */
+    public void setGraphicsContext(Graphics2D gc, boolean isExternal) {
+        graphicsContext = gc;
+        isExternalGraphicsSet = isExternal;
+    }
+
+    /**
+     * @return the mapRenderingHints
+     */
+    public final HashMap<RenderingHints.Key, Object> getRenderingHints() {
+        return mapRenderingHints;
+    }
+
+    /**
+     * @return the matrixUserSpace2Screen
+     */
+    protected final AffineTransformX getMatrixUserSpace2Screen() {
+        return matrixUserSpace2Screen;
     }
 
 }

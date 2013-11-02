@@ -14,18 +14,18 @@ package de.jbo.jbogx2d.base.io.event;
  * @version 21.02.2010 jbo - created <br>
  */
 public enum DrawingIOEventType {
-    /** Bytes processed (data = percentage) */
-    BYTES_PROCESSED(),
-    /** Operation was started (data = <code>DrawingInput</code> instance) */
+    /** Bytes processed (data = percentage). */
+    PERCENTAGE_PROCESSED(),
+    /** Operation was started (data = <code>DrawingInput</code> instance). */
     INPUT_START(),
-    /** Operation ended (data = <code>DrawingInput</code> instance) */
+    /** Operation ended (data = <code>DrawingInput</code> instance). */
     INPUT_END(),
-    /** Operation interrupted (data = <code>DrawingInput</code> instance) */
+    /** Operation interrupted (data = <code>DrawingInput</code> instance). */
     INPUT_INTERRUPT(),
-    /** Operation was started (data = <code>DrawingOutput</code> instance) */
+    /** Operation was started (data = <code>DrawingOutput</code> instance). */
     OUTPUT_START(),
-    /** Operation ended (data = <code>DrawingOutput</code> instance) */
+    /** Operation ended (data = <code>DrawingOutput</code> instance). */
     OUTPUT_END(),
-    /** Operation interrupted (data = <code>DrawingOutput</code> instance */
+    /** Operation interrupted (data = <code>DrawingOutput</code> instance. */
     OUTPUT_INTERRUPT();
 }

@@ -17,7 +17,7 @@ package de.jbo.jbogx2d.base.util.lang;
  */
 public class WrapperLong {
     /** The wrapped value. */
-    public long value = 0;
+    private long value = 0;
 
     /**
      * Creates a new instance wrapping the given value.
@@ -58,6 +58,21 @@ public class WrapperLong {
     @Override
     public int hashCode() {
         return (int) value;
+    }
+
+    /**
+     * @return the value
+     */
+    public final long getValue() {
+        return value;
+    }
+
+    /**
+     * @param newValue
+     *            the value to set
+     */
+    public final void setValue(long newValue) {
+        this.value = newValue;
     }
 
 }

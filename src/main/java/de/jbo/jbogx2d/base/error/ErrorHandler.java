@@ -19,7 +19,7 @@ import java.util.Vector;
  */
 public abstract class ErrorHandler {
     /** The vector storing stacked non-fatal Exceptions during an operation. */
-    protected final Vector<Throwable> exceptionStack = new Vector<Throwable>();
+    private final Vector<Throwable> exceptionStack = new Vector<Throwable>();
 
     /**
      * Returns the count of exceptions currently stored in the exception stack.

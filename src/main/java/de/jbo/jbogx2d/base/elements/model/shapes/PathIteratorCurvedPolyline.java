@@ -13,6 +13,7 @@ import java.awt.geom.PathIterator;
 import java.util.NoSuchElementException;
 
 import de.jbo.jbogx2d.base.elements.model.shapes.geom.PointUserSpaceCurved;
+import de.jbo.jbogx2d.base.geom.PointUserSpace;
 
 /**
  * Implements the path-iterator used for rendering a curved polyline.
@@ -22,29 +23,29 @@ import de.jbo.jbogx2d.base.elements.model.shapes.geom.PointUserSpaceCurved;
  */
 public class PathIteratorCurvedPolyline implements PathIterator {
     /** The polyline being rendered. */
-    CurvedPolyline2D line;
+    private CurvedPolyline2D line;
 
     /** Transformation used for rendering. */
-    AffineTransform affine;
+    private AffineTransform affine;
 
     /** End-index used for iteration. */
-    int endIndex = 0;
+    private int endIndex = 0;
 
     /** Index used for iteration. */
-    int index = -1;
+    private int index = -1;
 
     /**
      * Creates a new instance.
      * 
-     * @param line
+     * @param theLine
      *            The line being handled.
      * @param transform
      *            The transformation being used.
      */
-    public PathIteratorCurvedPolyline(CurvedPolyline2D line, AffineTransform transform) {
+    public PathIteratorCurvedPolyline(final CurvedPolyline2D theLine, final AffineTransform transform) {
         super();
-        this.line = line;
-        endIndex = line.getPointCount();
+        this.line = theLine;
+        endIndex = theLine.getPointCount();
         affine = transform;
     }
 
@@ -52,25 +53,25 @@ public class PathIteratorCurvedPolyline implements PathIterator {
      * @see java.awt.geom.PathIterator#currentSegment(double[])
      */
     @Override
-    public int currentSegment(double[] coords) {
+    public int currentSegment(final double[] coords) {
         int type = 0;
         if (isDone()) {
             throw new NoSuchElementException("polyline iterator out of bounds");
         }
-
+        PointUserSpace[] points = line.getPoints();
         if (index == 0) {
             type = SEG_MOVETO;
-            coords[0] = (float) line.points[index].x;
-            coords[1] = (float) line.points[index].y;
+            coords[0] = (float) points[index].x;
+            coords[1] = (float) points[index].y;
             // GeneralPathIterator
         } else if (index < line.getPointCount()) {
             type = SEG_QUADTO;
-            coords[0] = (float) line.points[index - 1].x;
-            coords[1] = (float) line.points[index - 1].y;
-            coords[2] = (float) line.points[index].x;
-            coords[3] = (float) line.points[index].y;
-            coords[4] = (float) line.points[index].x;
-            coords[5] = (float) line.points[index].y;
+            coords[0] = (float) points[index - 1].x;
+            coords[1] = (float) points[index - 1].y;
+            coords[2] = (float) points[index].x;
+            coords[3] = (float) points[index].y;
+            coords[4] = (float) points[index].x;
+            coords[5] = (float) points[index].y;
         }
 
         if (affine != null) {
@@ -84,34 +85,37 @@ public class PathIteratorCurvedPolyline implements PathIterator {
      * @see java.awt.geom.PathIterator#currentSegment(float[])
      */
     @Override
-    public int currentSegment(float[] coords) {
+    public int currentSegment(final float[] coords) {
         PointUserSpaceCurved point = null;
 
         int type = -1;
         if (isDone()) {
             throw new NoSuchElementException("polyline iterator out of bounds");
         }
+        PointUserSpace[] points = line.getPoints();
 
         if (index == -1) {
-            point = (PointUserSpaceCurved) line.points[index + 1];
+            point = (PointUserSpaceCurved) points[index + 1];
             type = SEG_MOVETO;
             coords[0] = (float) point.x;
             coords[1] = (float) point.y;
         } else if (index == 0) {
-            point = (PointUserSpaceCurved) line.points[index];
+            point = (PointUserSpaceCurved) points[index];
+            PointUserSpace controlPoint = point.getControlPoint();
             type = SEG_LINETO;
-            coords[0] = (float) point.controlPoint.x;
-            coords[1] = (float) point.controlPoint.y;
+            coords[0] = (float) controlPoint.x;
+            coords[1] = (float) controlPoint.y;
             // GeneralPathIterator
         } else if (index < (endIndex - 1)) {
             type = SEG_QUADTO;
-            point = (PointUserSpaceCurved) line.points[index];
+            point = (PointUserSpaceCurved) points[index];
+            PointUserSpace controlPoint = point.getControlPoint();
             coords[0] = (float) point.x;
             coords[1] = (float) point.y;
-            coords[2] = (float) point.controlPoint.x;
-            coords[3] = (float) point.controlPoint.y;
+            coords[2] = (float) controlPoint.x;
+            coords[3] = (float) controlPoint.y;
         } else {
-            point = (PointUserSpaceCurved) line.points[index];
+            point = (PointUserSpaceCurved) points[index];
             type = SEG_LINETO;
             coords[0] = (float) point.x;
             coords[1] = (float) point.y;
