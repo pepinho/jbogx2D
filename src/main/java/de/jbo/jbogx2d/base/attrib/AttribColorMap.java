@@ -20,167 +20,167 @@ import de.jbo.jbogx2d.base.util.collection.ArrayListX;
  */
 public class AttribColorMap {
     /**
-     * 
+     * Default colors count.
      */
     public static final int DEFAULT_COLORS_COUNT = 32;
 
     /**
-     * 
+     * Default color.
      */
     public static final NamedColor PALEGOLDENROD = new NamedColor("palegoldenrod", 255, 215, 0);
 
     /**
-     * 
+     * Default color.
      */
     public static final NamedColor GREYSMOKE = new NamedColor("greysmoke", 238, 232, 170);
 
     /**
-     * 
+     * Default color.
      */
     public static final NamedColor NAVYBLUE = new NamedColor("navyblue", 0, 0, 128);
 
     /**
-     * 
+     * Default color.
      */
     public static final NamedColor CORNFLOWERBLUE = new NamedColor("cornflowerblue", 100, 149, 237);
 
     /**
-     * 
+     * Default color.
      */
     public static final NamedColor DEEPSKYBLUE = new NamedColor("deepskyblue", 0, 191, 255);
 
     /**
-     * 
+     * Default color.
      */
     public static final NamedColor DARKGREEN = new NamedColor("darkgreen", 0, 100, 0);
 
     /**
-     * 
+     * Default color.
      */
     public static final NamedColor SEAGREEN = new NamedColor("seagreen", 46, 139, 87);
 
     /**
-     * 
+     * Default color.
      */
     public static final NamedColor LAWNGREEN = new NamedColor("lawngreen", 124, 252, 0);
 
     /**
-     * 
+     * Default color.
      */
     public static final NamedColor RED3 = new NamedColor("red3", 205, 0, 0);
 
     /**
-     * 
+     * Default color.
      */
     public static final NamedColor VIOLETRED = new NamedColor("violetred", 208, 32, 144);
 
     /**
-     * 
+     * Default color.
      */
     public static final NamedColor TOMATO = new NamedColor("tomato", 255, 99, 71);
 
     /**
-     * 
+     * Default color.
      */
     public static final NamedColor ORANGERED = new NamedColor("orangered", 255, 69, 0);
 
     /**
-     * 
+     * Default color.
      */
     public static final NamedColor GAINSBORO = new NamedColor("gainsboro", 220, 220, 220);
 
     /**
-     * 
+     * Default color.
      */
     public static final NamedColor WHITESMOKE = new NamedColor("whitesmoke", 245, 245, 245);
 
     /**
-     * 
+     * Default color.
      */
     public static final NamedColor GREYDARK = new NamedColor("greydark", 102, 102, 102);
 
     /**
-     * 
+     * Default color.
      */
     public static final NamedColor GREYMEDIUM = new NamedColor("greymedium", 127, 127, 127);
 
     /**
-     * 
+     * Default color.
      */
     public static final NamedColor GREYLIGHT = new NamedColor("greylight", 211, 211, 211);
 
     /**
-     * 
+     * Default color.
      */
     public static final NamedColor PINK = new NamedColor("pink", 255, 192, 203);
 
     /**
-     * 
+     * Default color.
      */
     public static final NamedColor PURPLE = new NamedColor("purple", 160, 32, 240);
 
     /**
-     * 
+     * Default color.
      */
     public static final NamedColor VIOLET = new NamedColor("violet", 238, 130, 238);
 
     /**
-     * 
+     * Default color.
      */
     public static final NamedColor ORANGE = new NamedColor("orange", 255, 165, 0);
 
     /**
-     * 
+     * Default color.
      */
     private static final NamedColor BROWN = new NamedColor("brown", 165, 42, 42);
 
     /**
-     * 
+     * Default color.
      */
     private static final NamedColor CHOCOLATE = new NamedColor("chocolate", 210, 105, 30);
 
     /**
-     * 
+     * Default color.
      */
     private static final NamedColor CYAN = new NamedColor("cyan", 0, 255, 255);
 
     /**
-     * 
+     * Default color.
      */
     private static final NamedColor MAGENTA = new NamedColor("magenta", 255, 0, 255);
 
     /**
-     * 
+     * Default color.
      */
     public static final NamedColor YELLOW = new NamedColor("yellow", 255, 255, 0);
 
     /**
-     * 
+     * Default color.
      */
     public static final NamedColor GREY = new NamedColor("grey", 192, 192, 192);
 
     /**
-     * 
+     * Default color.
      */
     public static final NamedColor BLUE = new NamedColor("blue", 0, 0, 255);
 
     /**
-     * 
+     * Default color.
      */
     public static final NamedColor GREEN = new NamedColor("green", 0, 255, 0);
 
     /**
-     * 
+     * Default color.
      */
     public static final NamedColor RED = new NamedColor("red", 255, 0, 0);
 
     /**
-     * 
+     * Default color.
      */
     public static final NamedColor BLACK = new NamedColor("black", 0, 0, 0);
 
     /**
-     * 
+     * Default color.
      */
     public static final NamedColor WHITE = new NamedColor("white", 255, 255, 255);
 

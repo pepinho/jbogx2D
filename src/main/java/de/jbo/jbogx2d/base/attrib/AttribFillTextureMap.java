@@ -469,4 +469,14 @@ public class AttribFillTextureMap {
         patternMap.set(patternId, pattern);
     }
 
+    /**
+     * 
+     * @param patternId
+     *            The pattern-id.
+     * @return The pattern.
+     */
+    public final synchronized boolean[][] getTexturePattern(final short patternId) {
+        return patternMap.get(patternId);
+    }
+
 }

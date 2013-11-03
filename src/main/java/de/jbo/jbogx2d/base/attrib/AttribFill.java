@@ -97,10 +97,15 @@ public class AttribFill extends AttribBase {
             if (gradientType.equals(AttribGradientType.GRADIENT_HORIZONTAL)) {
                 gradientType.setX1(b.x);
                 gradientType.setX2(b.x + b.width);
+                gradientType.setY1(0.0);
+                gradientType.setY2(0.0);
             } else if (gradientType.equals(AttribGradientType.GRADIENT_VERTICAL)) {
+                gradientType.setX1(0.0);
+                gradientType.setX2(0.0);
                 gradientType.setY1(b.y);
                 gradientType.setY2(b.y + b.height);
-            } else if (gradientType.equals(AttribGradientType.GRADIENT_RADIAL)) {
+            } else {
+                // radial
                 gradientType.setX1(b.getCenterX());
                 gradientType.setY1(b.getCenterY());
                 gradientType.setX2(b.width / 2.0);
