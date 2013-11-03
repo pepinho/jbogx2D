@@ -1,9 +1,14 @@
 <project>
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>de.jbo.jbogx2d</groupId>
-	<artifactId>jbogx2d.base</artifactId>
+	<artifactId>jbogx2d-base</artifactId>
 	<version>1.0.0</version>
-	
+
+	<properties>
+		<timestamp>b${maven.build.timestamp}</timestamp>
+		<maven.build.timestamp.format>yyyyMMddHHmmss</maven.build.timestamp.format>
+	</properties>
+
 	<dependencies>
 		<dependency>
 			<groupId>commons-collections</groupId>
@@ -16,4 +21,24 @@
 			<version>4.11</version>
 		</dependency>
 	</dependencies>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<inherited>true</inherited>
+				<configuration>
+					<archive>
+						<manifest>
+							<addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+							<addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+						</manifest>
+						<manifestEntries>
+							<Implementation-Build>${timestamp}</Implementation-Build>
+						</manifestEntries>
+					</archive>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 </project>

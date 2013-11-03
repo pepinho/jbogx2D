@@ -8,9 +8,7 @@
 
 package de.jbo.jbogx2d.base;
 
-import java.io.IOException;
 import java.io.InputStream;
-import java.text.DateFormat;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Locale;
@@ -47,9 +45,6 @@ public final class Jbogx2D {
     /** The bugfix-version. */
     private static final int VERSION_BUGFIX = 0;
 
-    /** The build date (autom. created during project build. */
-    private static final String VERSION_BUILD_DATE_STRING = "@VERSION_BUILD_DATE@";
-
     /** The current version. */
     private static final Version VERSION;
 
@@ -69,15 +64,15 @@ public final class Jbogx2D {
     private static AttributeHandler attributeHandler = new AttributeHandler();
 
     static {
-        GregorianCalendar buildDate = new GregorianCalendar();
-        try {
-            Date d = DateFormat.getInstance().parse(VERSION_BUILD_DATE_STRING);
-            buildDate.setTime(d);
-        } catch (Exception ex) {
-            getErrorHandler().handleError(ex, true, true);
+        Version version = Version.getVersionFromBuild(Jbogx2D.class);
+
+        if (version == null) {
+            GregorianCalendar buildDate = new GregorianCalendar();
             buildDate.setTime(new Date());
+            version = new Version(VERSION_MAJOR, VERSION_MINOR, VERSION_BUGFIX, buildDate);
         }
-        VERSION = new Version(VERSION_MAJOR, VERSION_MINOR, VERSION_BUGFIX, buildDate);
+
+        VERSION = version;
     }
 
     /**
@@ -171,7 +166,9 @@ public final class Jbogx2D {
      *            The handler to be registered.
      */
     public static void setErrorHandler(final ErrorHandler errHandler) {
-        assert (errHandler != null);
+        if (errHandler == null) {
+            throw new IllegalArgumentException("You MUST provide a valid ErrorHandler instance!");
+        }
         errorHandler = errHandler;
     }
 
@@ -207,7 +204,7 @@ public final class Jbogx2D {
         try {
             properties.load(is);
             state = true;
-        } catch (IOException e) {
+        } catch (Exception e) {
             getErrorHandler().handleError(e, true, true);
         }
 
