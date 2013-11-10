@@ -37,15 +37,6 @@ public class MouseInteractionXorPolygon extends ElemPolygon implements IMouseInt
         super();
     }
 
-    /*
-     * @see de.jbo.jbogx2d.base.elements.ElemBase#updateAttributes()
-     */
-    @Override
-    public void updateAttributes() {
-        getAttribLine().setStroke((short) 2);
-        super.updateAttributes();
-    }
-
     /**
      * Adds the given point.
      * 
