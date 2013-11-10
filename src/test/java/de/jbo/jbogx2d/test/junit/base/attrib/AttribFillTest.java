@@ -97,7 +97,7 @@ public class AttribFillTest {
         assertEquals(AttribColorMap.BLACK, foreGround);
 
         texture = fill.getSystemTexture();
-        assertTexture(fill.getTexture(), texture.getImage(), foreGround, backGround);
+        assertTexture(textureMap, fill.getTexture(), texture.getImage(), foreGround, backGround);
 
         fill.setFillType(AttribFillType.TYPE_GRADIENT);
         fill.setGradientType(AttribGradientType.GRADIENT_RADIAL);
@@ -154,6 +154,8 @@ public class AttribFillTest {
      * Checks the given bitmap if it matches the texture id and the given
      * colors.
      * 
+     * @param map
+     *            The map to be used.
      * @param texture
      *            The texture to be checked.
      * @param img
@@ -163,8 +165,8 @@ public class AttribFillTest {
      * @param backGround
      *            The background color.
      */
-    public static void assertTexture(short texture, BufferedImage img, Color foreGround, Color backGround) {
-        boolean[][] pattern = textureMap.getTexturePattern(texture);
+    public static void assertTexture(AttribFillTextureMap map, short texture, BufferedImage img, Color foreGround, Color backGround) {
+        boolean[][] pattern = map.getTexturePattern(texture);
         for (int r = 0; r < pattern.length; r++) {
             boolean[] row = pattern[r];
             for (int c = 0; c < row.length; c++) {
@@ -251,7 +253,7 @@ public class AttribFillTest {
         Color foreGround = fill.getSystemColorForeground();
 
         TexturePaint texture = fill.getSystemTexture();
-        assertTexture(fill.getTexture(), texture.getImage(), foreGround, backGround);
+        assertTexture(textureMap, fill.getTexture(), texture.getImage(), foreGround, backGround);
     }
 
     /**
