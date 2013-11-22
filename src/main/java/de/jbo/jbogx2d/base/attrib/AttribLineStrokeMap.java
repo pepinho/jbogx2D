@@ -21,70 +21,70 @@ import de.jbo.jbogx2d.base.util.collection.ArrayListX;
  */
 public class AttribLineStrokeMap {
     /** Default pattern. */
-    private static final float[] DEFAULT_HIDDEN = { 0.0f, 10.0f };
+    public static final float[] DEFAULT_HIDDEN = { 0.0f, 10.0f };
 
     /** Default pattern. */
-    private static final float[] DEFAULT_SOLID = { 20.0f, 0.0f };
+    public static final float[] DEFAULT_SOLID = { 20.0f, 0.0f };
 
     /** Default pattern. */
-    private static final float[] DEFAULT_DOTTED = { 3.0f, 3.0f };
+    public static final float[] DEFAULT_DOTTED = { 3.0f, 3.0f };
 
     /** Default pattern. */
-    private static final float[] DEFAULT_DASHED = { 17.0f, 6.0f };
+    public static final float[] DEFAULT_DASHED = { 17.0f, 6.0f };
 
     /** Default pattern. */
-    private static final float[] DEFAULT_DASHED_DOTTED = { 9.0f, 6.0f, 3.0f, 6.0f };
+    public static final float[] DEFAULT_DASHED_DOTTED = { 9.0f, 6.0f, 3.0f, 6.0f };
 
     /** Default pattern. */
-    private static final float[] DEFAULT_DASHED_DOT_DOT = { 10.0f, 3.0f, 3.0f, 3.0f, 3.0f, 3.0f };
+    public static final float[] DEFAULT_DASHED_DOT_DOT = { 10.0f, 3.0f, 3.0f, 3.0f, 3.0f, 3.0f };
 
     /** Default pattern. */
-    private static final float[] DEFAULT_LONG_DASHED = { 20.0f, 10.0f };
+    public static final float[] DEFAULT_LONG_DASHED = { 20.0f, 10.0f };
 
     /** Default pattern. */
-    private static final float[] DEFAULT_DASH_THREE_DOTTED = { 10.0f, 4.0f, 2.0f, 4.0f, 2.0f, 4.0f, 2.0f, 4.0f };
+    public static final float[] DEFAULT_DASH_THREE_DOTTED = { 10.0f, 4.0f, 2.0f, 4.0f, 2.0f, 4.0f, 2.0f, 4.0f };
 
     /** Default pattern. */
-    private static final float[] DEFAULT_TWO_DASH_TWO_DOTTED = { 10.0f, 4.0f, 10.0f, 4.0f, 2.0f, 4.0f, 2.0f, 4.0f };
+    public static final float[] DEFAULT_TWO_DASH_TWO_DOTTED = { 10.0f, 4.0f, 10.0f, 4.0f, 2.0f, 4.0f, 2.0f, 4.0f };
 
     /** Default pattern. */
-    private static final float[] DEFAULT_DASH02_02 = { 2.0f, 2.0f };
+    public static final float[] DEFAULT_DASH02_02 = { 2.0f, 2.0f };
 
     /** Default pattern. */
-    private static final float[] DEFAULT_DASH02_06 = { 2.0f, 6.0f };
+    public static final float[] DEFAULT_DASH02_06 = { 2.0f, 6.0f };
 
     /** Default pattern. */
-    private static final float[] DEFAULT_DASH02_14 = { 2.0f, 14.0f };
+    public static final float[] DEFAULT_DASH02_14 = { 2.0f, 14.0f };
 
     /** Default pattern. */
-    private static final float[] DEFAULT_DASH04_06 = { 4.0f, 6.0f };
+    public static final float[] DEFAULT_DASH04_06 = { 4.0f, 6.0f };
 
     /** Default pattern. */
-    private static final float[] DEFAULT_DASH04_12 = { 4.0f, 12.0f };
+    public static final float[] DEFAULT_DASH04_12 = { 4.0f, 12.0f };
 
     /** Default pattern. */
-    private static final float[] DEFAULT_DASH08_08 = { 8.0f, 8.0f };
+    public static final float[] DEFAULT_DASH08_08 = { 8.0f, 8.0f };
 
     /** Default pattern. */
-    private static final float[] DEFAULT_DASH10_06 = { 10.0f, 6.0f };
+    public static final float[] DEFAULT_DASH10_06 = { 10.0f, 6.0f };
 
     /** Default pattern. */
-    private static final float[] DEFAULT_DASH12_03 = { 12.0f, 3.0f };
+    public static final float[] DEFAULT_DASH12_03 = { 12.0f, 3.0f };
 
     /** Default pattern. */
-    private static final float[] DEFAULT_DASH04_02 = { 4.0f, 2.0f };
+    public static final float[] DEFAULT_DASH04_02 = { 4.0f, 2.0f };
 
     /** Default pattern. */
-    private static final float[] DEFAULT_DASH02_10 = { 2.0f, 10.0f };
+    public static final float[] DEFAULT_DASH02_10 = { 2.0f, 10.0f };
 
     /** Default pattern. */
-    private static final float[] DEFAULT_DASH10_10 = { 10.0f, 10.0f };
+    public static final float[] DEFAULT_DASH10_10 = { 10.0f, 10.0f };
 
     /** Default pattern. */
-    private static final float[] DEFAULT_DASH10_06_02_06 = { 10.0f, 6.0f, 2.0f, 6.0f };
+    public static final float[] DEFAULT_DASH10_06_02_06 = { 10.0f, 6.0f, 2.0f, 6.0f };
 
     /** Default pattern. */
-    private static final float[] DEFAULT_DASH06_06 = { 6.0f, 6.0f };
+    public static final float[] DEFAULT_DASH06_06 = { 6.0f, 6.0f };
 
     /** Map storing the stroke-mappings. */
     private final ArrayListX<float[]> strokeMap = new ArrayListX<float[]>();
