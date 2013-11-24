@@ -20,6 +20,7 @@ import java.awt.TexturePaint;
 import java.awt.geom.Point2D;
 import java.awt.image.BufferedImage;
 
+import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -60,6 +61,15 @@ public class AttribFillTest {
     public static void setUpClass() {
         Jbogx2D.init();
         textureMap = new AttribFillTextureMap();
+    }
+
+    /**
+     * @throws java.lang.Exception
+     *             Possible exception.
+     */
+    @AfterClass
+    public static void tearDownAfterClass() throws Exception {
+        Jbogx2D.close();
     }
 
     /**
