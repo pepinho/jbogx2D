@@ -55,13 +55,13 @@ public final class Jbogx2D {
     private static boolean isInitialized = false;
 
     /** The properties of this module. */
-    private static Properties properties = new Properties();
+    private static Properties properties = null;
 
     /** The currently registered error-handler. */
-    private static ErrorHandler errorHandler = new ErrorHandlerBase();
+    private static ErrorHandler errorHandler = null;
 
     /** The main attribute handler. */
-    private static AttributeHandler attributeHandler = new AttributeHandler();
+    private static AttributeHandler attributeHandler = null;
 
     static {
         Version version = Version.getVersionFromBuild(Jbogx2D.class);
@@ -108,11 +108,14 @@ public final class Jbogx2D {
     public static boolean init() {
         boolean state = false;
 
+        errorHandler = new ErrorHandlerBase();
+
         try {
             /*
              * TODO: add initialization here...
              */
-
+            attributeHandler = new AttributeHandler();
+            properties = new Properties();
             /*
              * End of initialization
              */
