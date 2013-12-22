@@ -37,7 +37,7 @@ public abstract class ElementTraverserCollectElements extends ElementTraverser {
      */
     public ElementTraverserCollectElements(LinkedList<ElemBase> elementsCollection) {
         super();
-        this.elementsList = elementsCollection;
+        setElementsList(elementsCollection);
     }
 
     /**
