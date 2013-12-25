@@ -7,6 +7,8 @@
 //
 package de.jbo.jbogx2d.base.util;
 
+import java.io.PrintStream;
+
 /**
  * Utility class for timing of operations.
  * 
@@ -26,6 +28,9 @@ public class StopTimer {
     /** Counter of the last split-time. */
     private int splitCounter = 0;
 
+    /** PrintStream to be used. */
+    private PrintStream myStream = System.out;
+
     /**
      * Creates a new instance.
      */
@@ -34,13 +39,23 @@ public class StopTimer {
     }
 
     /**
+     * Stream to be used.
+     * 
+     * @param stream
+     *            The stream.
+     */
+    public void setStream(PrintStream stream) {
+        this.myStream = stream;
+    }
+
+    /**
      * Starts a new timing.
      */
     public void start() {
-        stopTime = 0;
+        setStopTime(0);
         splitCounter = 0;
-        startTime = System.currentTimeMillis();
-        splitTime = startTime;
+        setStartTime(System.currentTimeMillis());
+        setSplitTime(getStartTime());
     }
 
     /**
@@ -50,10 +65,10 @@ public class StopTimer {
      *            Message to be printed to console.
      */
     public void split(String message) {
-        stopTime = System.currentTimeMillis();
+        setStopTime(System.currentTimeMillis());
         splitCounter++;
-        System.out.println("StopTimer - split (" + splitCounter + ") - " + message + " -> " + (stopTime - splitTime) + " ms");
-        splitTime = stopTime;
+        myStream.println("StopTimer - split (" + splitCounter + ") - " + message + " -> " + (getStopTime() - getSplitTime()) + " ms");
+        setSplitTime(getStopTime());
     }
 
     /**
@@ -63,7 +78,52 @@ public class StopTimer {
      *            Message to be printed to console.
      */
     public void stop(String message) {
-        stopTime = System.currentTimeMillis();
-        System.out.println("StopTimer - start -> stop - " + message + " -> " + (stopTime - startTime) + " ms");
+        setStopTime(System.currentTimeMillis());
+        myStream.println("StopTimer - start -> stop - " + message + " -> " + (getStopTime() - getStartTime()) + " ms");
+    }
+
+    /**
+     * @return the startTime
+     */
+    public long getStartTime() {
+        return startTime;
+    }
+
+    /**
+     * @param start
+     *            the startTime to set
+     */
+    public void setStartTime(long start) {
+        this.startTime = start;
+    }
+
+    /**
+     * @return the stopTime
+     */
+    public long getStopTime() {
+        return stopTime;
+    }
+
+    /**
+     * @param stop
+     *            the stopTime to set
+     */
+    public void setStopTime(long stop) {
+        this.stopTime = stop;
+    }
+
+    /**
+     * @return the splitTime
+     */
+    public long getSplitTime() {
+        return splitTime;
+    }
+
+    /**
+     * @param split
+     *            the splitTime to set
+     */
+    public void setSplitTime(long split) {
+        this.splitTime = split;
     }
 }

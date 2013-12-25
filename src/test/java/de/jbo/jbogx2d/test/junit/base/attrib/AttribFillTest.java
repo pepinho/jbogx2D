@@ -158,6 +158,18 @@ public class AttribFillTest {
         foreGround = fill.getSystemColorForeground();
         assertEquals(AttribColorMap.WHITE, backGround);
         assertEquals(AttribColorMap.BLACK, foreGround);
+
+        final double alpha = 0.5;
+        final int alphaModifier = 255;
+        fill.setAlpha(alpha);
+        assertEquals(alpha, fill.getAlpha(), 0.0);
+        fill.update(elem.getModel());
+        backGround = fill.getSystemColorBackground();
+        foreGround = fill.getSystemColorForeground();
+        Color expectedBackGround = new Color(AttribColorMap.WHITE.getRed(), AttribColorMap.WHITE.getGreen(), AttribColorMap.WHITE.getBlue(), (int) (alphaModifier * alpha));
+        Color expectedForeGround = new Color(AttribColorMap.BLACK.getRed(), AttribColorMap.BLACK.getGreen(), AttribColorMap.BLACK.getBlue(), (int) (alphaModifier * alpha));
+        assertEquals(expectedBackGround, backGround);
+        assertEquals(expectedForeGround, foreGround);
     }
 
     /**

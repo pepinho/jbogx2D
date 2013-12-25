@@ -64,6 +64,9 @@ public class AttribFill extends AttribBase {
     /** The updated gradient. */
     private Paint systemGradient = null;
 
+    /** Alpha level for transparency (< 1.0). */
+    private double alpha = 1.0;
+
     /**
      * Creates a new fill attribute. <br>
      * The following values are set as default:
@@ -84,8 +87,8 @@ public class AttribFill extends AttribBase {
      */
     @Override
     public void update(final ElemModel model) {
-        systemColorForeground = Jbogx2D.getAttributeHandler().getColor(colorForeground);
-        systemColorBackground = Jbogx2D.getAttributeHandler().getColor(colorBackground);
+        systemColorForeground = Jbogx2D.getAttributeHandler().getColor(colorForeground, alpha);
+        systemColorBackground = Jbogx2D.getAttributeHandler().getColor(colorBackground, alpha);
 
         // Type texture, so we update the system texture.
         if (fillType == AttribFillType.TYPE_TEXTURE) {
@@ -279,6 +282,21 @@ public class AttribFill extends AttribBase {
      */
     public void setGradientType(final AttribGradientType type) {
         gradientType = type;
+    }
+
+    /**
+     * @return the alpha
+     */
+    public double getAlpha() {
+        return alpha;
+    }
+
+    /**
+     * @param a
+     *            the alpha to set
+     */
+    public void setAlpha(double a) {
+        this.alpha = a;
     }
 
 }

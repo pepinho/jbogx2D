@@ -18,6 +18,7 @@ import de.jbo.jbogx2d.base.attrib.AttribFillType;
 import de.jbo.jbogx2d.base.attrib.AttribLine;
 import de.jbo.jbogx2d.base.drawing.Drawing;
 import de.jbo.jbogx2d.base.drawing.DrawingLayer;
+import de.jbo.jbogx2d.base.elements.ElemCircle;
 import de.jbo.jbogx2d.base.elements.ElemPolygon;
 import de.jbo.jbogx2d.base.geom.BoundsUserSpace;
 import de.jbo.jbogx2d.base.geom.PointUserSpace;
@@ -87,13 +88,15 @@ public class JGraphicsPanel extends JPanel {
          */
         int width = 2;
         int spacing = 1;
+        final float lineWidth = 0.1f;
+        final double alpha = 0.5;
         AttribFill fill = new AttribFill();
         fill.setFillType(AttribFillType.TYPE_SOLID);
         fill.setColorBackground((short) 2);
         fill.setColorForeground((short) 3);
         AttribLine line = new AttribLine();
         line.setColor((short) 1);
-        line.setWidth(0.1f);
+        line.setWidth(lineWidth);
         DrawingLayer layer = drawing.getLayer(DrawingLayer.NAME_DEFAULT);
         layer.setFiltered(false);
         BoundsUserSpace bounds = new BoundsUserSpace();
@@ -115,6 +118,17 @@ public class JGraphicsPanel extends JPanel {
                 layer.addElemLast(polygon);
             }
         }
+
+        ElemCircle circle = new ElemCircle(bounds.getCenterX(), bounds.getCenterY(), bounds.height / 2.0);
+        circle.getAttribFill().setFillType(AttribFillType.TYPE_SOLID);
+        circle.getAttribFill().setColorBackground((short) 4);
+        circle.getAttribFill().setColorForeground((short) 4);
+        circle.getAttribFill().setFillType(fill.getFillType());
+        circle.getAttribFill().setAlpha(alpha);
+        circle.getAttribLine().setColor(line.getColor());
+        circle.getAttribLine().setWidth(line.getWidth());
+        circle.updateAttributes();
+        layer.addElemLast(circle);
 
     }
 

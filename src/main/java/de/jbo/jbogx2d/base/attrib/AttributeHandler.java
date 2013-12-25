@@ -28,6 +28,11 @@ import java.awt.TexturePaint;
  * @version 1.0 29.02.2004: jbo created <br>
  */
 public class AttributeHandler {
+    /**
+     * Alpha modifier.
+     */
+    private static final int ALPHA_MODIFIER = 255;
+
     /** Maps the line strokes. */
     private final AttribLineStrokeMap lineStrokeMap = new AttribLineStrokeMap();
 
@@ -49,6 +54,20 @@ public class AttributeHandler {
      */
     public final synchronized Color getColor(final short colorIndex) {
         return colorMap.getColor(colorIndex);
+    }
+
+    /**
+     * Returns the Color currently mapped for the given color index.
+     * 
+     * @param colorIndex
+     *            The color index to return the mapped Color for.
+     * @param alpha
+     *            Alpha level.
+     * @return The color currently mapped under the given index.
+     */
+    public final synchronized Color getColor(final short colorIndex, double alpha) {
+        Color base = colorMap.getColor(colorIndex);
+        return new Color(base.getRed(), base.getGreen(), base.getBlue(), (int) (alpha * ALPHA_MODIFIER));
     }
 
     /**
