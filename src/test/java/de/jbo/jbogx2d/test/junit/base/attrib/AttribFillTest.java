@@ -99,7 +99,7 @@ public class AttribFillTest {
         assertNull(texture);
 
         fill.setFillType(AttribFillType.TYPE_TEXTURE);
-        fill.update(elem.getModel());
+        elem.updateAttributes();
 
         backGround = fill.getSystemColorBackground();
         foreGround = fill.getSystemColorForeground();
@@ -111,7 +111,7 @@ public class AttribFillTest {
 
         fill.setFillType(AttribFillType.TYPE_GRADIENT);
         fill.setGradientType(AttribGradientType.GRADIENT_RADIAL);
-        fill.update(elem.getModel());
+        elem.updateAttributes();
 
         gradient = fill.getSystemGradient();
         assertNotNull(gradient);
@@ -128,7 +128,7 @@ public class AttribFillTest {
         modelCircle.getBounds(bounds);
 
         fill.setGradientType(AttribGradientType.GRADIENT_HORIZONTAL);
-        fill.update(modelCircle);
+        elem.updateAttributes();
 
         gradient = fill.getSystemGradient();
         assertNotNull(gradient);
@@ -140,7 +140,7 @@ public class AttribFillTest {
         assertEquals(bounds.x + bounds.width, gradient2.getPoint2().getX(), 0.0);
 
         fill.setGradientType(AttribGradientType.GRADIENT_VERTICAL);
-        fill.update(modelCircle);
+        elem.updateAttributes();
 
         gradient = fill.getSystemGradient();
         assertNotNull(gradient);
@@ -152,7 +152,7 @@ public class AttribFillTest {
         assertEquals(bounds.y + bounds.height, gradient2.getPoint2().getY(), 0.0);
 
         fill.setFillType(AttribFillType.TYPE_SOLID);
-        fill.update(elem.getModel());
+        elem.updateAttributes();
 
         backGround = fill.getSystemColorBackground();
         foreGround = fill.getSystemColorForeground();
@@ -163,7 +163,7 @@ public class AttribFillTest {
         final int alphaModifier = 255;
         fill.setAlpha(alpha);
         assertEquals(alpha, fill.getAlpha(), 0.0);
-        fill.update(elem.getModel());
+        elem.updateAttributes();
         backGround = fill.getSystemColorBackground();
         foreGround = fill.getSystemColorForeground();
         Color expectedBackGround = new Color(AttribColorMap.WHITE.getRed(), AttribColorMap.WHITE.getGreen(), AttribColorMap.WHITE.getBlue(), (int) (alphaModifier * alpha));

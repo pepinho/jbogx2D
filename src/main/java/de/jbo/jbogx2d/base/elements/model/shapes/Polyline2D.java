@@ -206,7 +206,7 @@ public class Polyline2D implements Shape {
         } else {
             points = insertPoint(points, index);
         }
-        points[count].setLocation(x, y);
+        points[index].setLocation(x, y);
         state = true;
 
         return state;
@@ -266,7 +266,7 @@ public class Polyline2D implements Shape {
     protected PointUserSpace[] removePoint(int index, PointUserSpace[] p) {
         PointUserSpace[] newPoints = null;
 
-        if ((index > 0) && (index < getPointCount(p))) {
+        if ((index >= 0) && (index < getPointCount(p))) {
             newPoints = createPoints(p.length - 1);
 
             System.arraycopy(p, 0, newPoints, 0, index);

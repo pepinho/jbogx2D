@@ -48,14 +48,13 @@ public class StopTimerTest {
     public void testSplit() {
         timer.start();
         timer.split("Test split");
-        long split = timer.getSplitTime();
+        long split1 = timer.getSplitTime();
         long stop = timer.getStopTime();
-        String messageExpected = "StopTimer - split (1) - Test split -> " + (stop - split) + " ms";
+        String messageExpected = "StopTimer - split (1) - Test split -> " + (stop - split1) + " ms";
         assertEquals(messageExpected, stream.getOutput());
         timer.split("Test split 2");
-        split = timer.getSplitTime();
         stop = timer.getStopTime();
-        messageExpected = "StopTimer - split (2) - Test split 2 -> " + (stop - split) + " ms";
+        messageExpected = "StopTimer - split (2) - Test split 2 -> " + (stop - split1) + " ms";
         assertEquals(messageExpected, stream.getOutput());
     }
 

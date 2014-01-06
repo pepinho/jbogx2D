@@ -42,8 +42,7 @@ public abstract class ElemModel {
      */
     public ElemModel(final ElemBase elem) {
         super();
-        this.element = elem;
-
+        setElement(elem);
     }
 
     /**

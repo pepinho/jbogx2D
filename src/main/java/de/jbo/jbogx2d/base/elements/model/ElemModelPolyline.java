@@ -47,7 +47,7 @@ public class ElemModelPolyline extends ElemModel {
      * Initializes the renering shape.
      */
     protected void initShape() {
-        shape = new Polyline2D();
+        setShape(new Polyline2D());
     }
 
     /*
