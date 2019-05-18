@@ -66,7 +66,7 @@ public class PathIteratorPolygon implements PathIterator {
             if (affine != null) {
                 affine.transform(coords, 0, coords, 0, 1);
             }
-        } else if (index < (points.length - 1)) {
+        } else if (index < (points.length)) {
             type = segmentLineType;
             coords[0] = points[index].x;
             coords[1] = points[index].y;
