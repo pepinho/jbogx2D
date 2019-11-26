@@ -48,13 +48,68 @@ public class Polygon2D extends Polyline2D {
      */
     @Override
     public boolean contains(double x, double y) {
-        boolean contains = false;
-
-        if (getPointCount() > 2) {
-            int cross = Curve.pointCrossingsForPath(getPathIterator(null), x, y);
-            contains = (cross != 0);
+        getPoints();
+        if (npoints <= 2 || !getBoundingBox().contains(x, y)) {
+            return false;
         }
-        return contains;
+        int hits = 0;
+
+        int lastx = xpoints[npoints - 1];
+        int lasty = ypoints[npoints - 1];
+        int curx, cury;
+
+        // Walk the edges of the polygon
+        for (int i = 0; i < npoints; lastx = curx, lasty = cury, i++) {
+            curx = xpoints[i];
+            cury = ypoints[i];
+
+            if (cury == lasty) {
+                continue;
+            }
+
+            int leftx;
+            if (curx < lastx) {
+                if (x >= lastx) {
+                    continue;
+                }
+                leftx = curx;
+            } else {
+                if (x >= curx) {
+                    continue;
+                }
+                leftx = lastx;
+            }
+
+            double test1, test2;
+            if (cury < lasty) {
+                if (y < cury || y >= lasty) {
+                    continue;
+                }
+                if (x < leftx) {
+                    hits++;
+                    continue;
+                }
+                test1 = x - curx;
+                test2 = y - cury;
+            } else {
+                if (y < lasty || y >= cury) {
+                    continue;
+                }
+                if (x < leftx) {
+                    hits++;
+                    continue;
+                }
+                test1 = x - lastx;
+                test2 = y - lasty;
+            }
+
+            if (test1 < (test2 / (lasty - cury) * (lastx - curx))) {
+                hits++;
+            }
+        }
+
+        return ((hits & 1) != 0);
+
     }
 
     /*

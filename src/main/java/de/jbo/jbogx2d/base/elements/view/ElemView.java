@@ -99,7 +99,7 @@ public abstract class ElemView {
      */
     private void initHandles() {
         try {
-            handles = elemHandleClass.newInstance();
+            handles = elemHandleClass.getConstructor().newInstance();
             handles.init(this);
             handles.update();
         } catch (Exception e) {

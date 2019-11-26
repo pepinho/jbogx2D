@@ -137,7 +137,7 @@ public class AttribText extends AttribBase {
 
         // Set attributes
         Font font = ah.getFont(fontId);
-        systemAttributes.put(TextAttribute.SIZE, new Float(size));
+        systemAttributes.put(TextAttribute.SIZE, Float.valueOf(size));
         systemAttributes.put(TextAttribute.FAMILY, font.getFamily());
         systemAttributes.put(TextAttribute.FONT, font);
 
@@ -227,7 +227,7 @@ public class AttribText extends AttribBase {
     public final void setSize(final float f) {
         // Set attributes
         size = f;
-        systemAttributes.put(TextAttribute.SIZE, new Float(size));
+        systemAttributes.put(TextAttribute.SIZE, Float.valueOf(size));
     }
 
     /**

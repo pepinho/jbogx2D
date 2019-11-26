@@ -284,11 +284,11 @@ public final class MouseInteractionHandler implements MouseListener, MouseMotion
      */
     private int getButton(MouseEvent e) {
         int ret = MouseEvent.BUTTON1;
-        if ((e.getModifiers() & MouseEvent.BUTTON1_DOWN_MASK) == MouseEvent.BUTTON1_DOWN_MASK) {
+        if ((e.getModifiersEx() & MouseEvent.BUTTON1_DOWN_MASK) == MouseEvent.BUTTON1_DOWN_MASK) {
             ret = MouseEvent.BUTTON1;
-        } else if ((e.getModifiers() & MouseEvent.BUTTON2_DOWN_MASK) == MouseEvent.BUTTON2_DOWN_MASK) {
+        } else if ((e.getModifiersEx() & MouseEvent.BUTTON2_DOWN_MASK) == MouseEvent.BUTTON2_DOWN_MASK) {
             ret = MouseEvent.BUTTON2;
-        } else if ((e.getModifiers() & MouseEvent.BUTTON3_DOWN_MASK) == MouseEvent.BUTTON3_DOWN_MASK) {
+        } else if ((e.getModifiersEx() & MouseEvent.BUTTON3_DOWN_MASK) == MouseEvent.BUTTON3_DOWN_MASK) {
             ret = MouseEvent.BUTTON3;
         }
         return ret;

@@ -8,6 +8,7 @@
 package de.jbo.jbogx2d.base.util.math;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 /**
  * Implements mathematical util functions.
@@ -46,7 +47,7 @@ public final class MathUtils {
      */
     public static double round(double value, int scale) {
         BigDecimal val = BigDecimal.valueOf(value);
-        val = val.setScale(scale, BigDecimal.ROUND_HALF_UP);
+        val = val.setScale(scale, RoundingMode.HALF_UP);
         return val.doubleValue();
     }
 
@@ -60,9 +61,7 @@ public final class MathUtils {
      * @return The rounded value.
      */
     public static String roundToString(double value, int scale) {
-        BigDecimal val = BigDecimal.valueOf(value);
-        val = val.setScale(scale, BigDecimal.ROUND_HALF_UP);
-        return val.toString();
+        return Double.toString(round(value, scale));
     }
 
 }

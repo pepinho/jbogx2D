@@ -129,7 +129,7 @@ public class AttribTextTest {
 
         assertEquals(font, systemAttributes.get(TextAttribute.FONT));
         assertEquals(font.getFamily(), systemAttributes.get(TextAttribute.FAMILY));
-        assertEquals(new Float(size), systemAttributes.get(TextAttribute.SIZE));
+        assertEquals(Float.valueOf(size), systemAttributes.get(TextAttribute.SIZE));
         assertEquals(TextAttribute.WEIGHT_BOLD, systemAttributes.get(TextAttribute.WEIGHT));
         assertEquals(TextAttribute.POSTURE_OBLIQUE, systemAttributes.get(TextAttribute.POSTURE));
         assertEquals(TextAttribute.UNDERLINE_ON, systemAttributes.get(TextAttribute.UNDERLINE));
