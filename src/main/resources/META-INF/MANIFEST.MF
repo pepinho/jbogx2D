@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Archiver-Version: Plexus Archiver
+Created-By: Apache Maven 3.6.1
+Built-By: josef
+Build-Jdk: 12.0.1
+Specification-Title: jbogx2d-base
+Specification-Version: 1.0.0
+Implementation-Title: jbogx2d-base
+Implementation-Version: 1.0.0
+Implementation-Vendor-Id: de.jbo.jbogx2d
+Implementation-Build: b20191126101855
+
