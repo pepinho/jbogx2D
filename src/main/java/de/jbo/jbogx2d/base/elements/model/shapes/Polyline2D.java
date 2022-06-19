@@ -15,7 +15,6 @@ import java.awt.geom.PathIterator;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 
-import sun.awt.geom.Crossings;
 import de.jbo.jbogx2d.base.geom.AffineTransformX;
 import de.jbo.jbogx2d.base.geom.PointUserSpace;
 
@@ -320,8 +319,9 @@ public class Polyline2D implements Shape {
      * @see java.awt.Shape#intersects(double, double, double, double)
      */
     public boolean intersects(double x, double y, double w, double h) {
-        Crossings c = Crossings.findCrossings(getPathIterator(null), x, y, x + w, y + h);
-        return ((c == null) || !c.isEmpty());
+        Rectangle2D rect = new Rectangle2D.Double();
+        rect.setFrame(x, y, w, h);
+        return intersects(rect);
     }
 
     /**
@@ -414,7 +414,17 @@ public class Polyline2D implements Shape {
      * @see java.awt.Shape#intersects(java.awt.geom.Rectangle2D)
      */
     public boolean intersects(Rectangle2D r) {
-        return intersects(r.getX(), r.getY(), r.getWidth(), r.getHeight());
+        for(int i = 0; i < points.length - 1; i++) {
+            double x1 = points[i].x;
+            double y1 = points[i].y;
+            double x2 = points[i + 1].x;
+            double y2 = points[i + 1].y;
+            
+            if (r.intersectsLine(x1, y1, x2, y2)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**

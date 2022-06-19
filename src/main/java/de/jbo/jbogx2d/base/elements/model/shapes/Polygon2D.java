@@ -13,8 +13,6 @@ import java.awt.geom.PathIterator;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 
-import sun.awt.geom.Crossings;
-import sun.awt.geom.Curve;
 import de.jbo.jbogx2d.base.geom.PointUserSpace;
 
 /**
@@ -47,27 +45,29 @@ public class Polygon2D extends Polyline2D {
      * double)
      */
     @Override
-    public boolean contains(double x, double y) {
-        getPoints();
-        if (npoints <= 2 || !getBoundingBox().contains(x, y)) {
+    public boolean contains(double x, double y) {        
+        PointUserSpace[] points = getPoints();
+        int npoints = points.length;
+
+        if (points.length <= 2 || !getBounds2D().contains(x, y)) {
             return false;
         }
         int hits = 0;
 
-        int lastx = xpoints[npoints - 1];
-        int lasty = ypoints[npoints - 1];
-        int curx, cury;
+        double lastx = points[npoints - 1].x;
+        double lasty = points[npoints - 1].y;
+        double curx, cury;
 
         // Walk the edges of the polygon
         for (int i = 0; i < npoints; lastx = curx, lasty = cury, i++) {
-            curx = xpoints[i];
-            cury = ypoints[i];
+            curx = points[i].x;
+            cury = points[i].y;
 
             if (cury == lasty) {
                 continue;
             }
 
-            int leftx;
+            double leftx;
             if (curx < lastx) {
                 if (x >= lastx) {
                     continue;
@@ -119,8 +119,35 @@ public class Polygon2D extends Polyline2D {
      */
     @Override
     public boolean contains(double x, double y, double w, double h) {
-        Crossings c = Crossings.findCrossings(getPathIterator(null), x, y, x + w, y + h);
-        return ((c != null) && c.covers(y, y + h));
+        double x1 = x;
+        double y1 = y;
+        
+        // upper-left
+        if (contains(x1, y1)) {
+            return true;
+        }
+        
+        // upper-right
+        x1 = x + w;
+        if (contains(x1, y1)) {
+            return true;
+        }
+        
+        // lower-right
+        x1 = x + w;
+        y1 = y + h;
+        if (contains(x1, y1)) {
+            return true;
+        }
+        
+        // lower-left
+        x1 = x;
+        y1 = y + h;
+        if (contains(x1, y1)) {
+            return true;
+        }
+        
+        return false;
     }
 
     /*
