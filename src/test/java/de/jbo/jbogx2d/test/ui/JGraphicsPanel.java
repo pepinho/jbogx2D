@@ -63,8 +63,8 @@ public class JGraphicsPanel extends JPanel {
          */
         drawing.setColorBackground((short) 0);
 
-        final double gridX = 10;
-        final double gridY = 10;
+        final double gridX = 1;
+        final double gridY = 1;
 
         /*
          * The view is initialized with the drawing...

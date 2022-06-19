@@ -7,15 +7,18 @@
 //
 package de.jbo.jbogx2d.test.junit.base.elements.model;
 
-import static org.junit.Assert.fail;
+import static org.junit.Assert.*;
 
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import de.jbo.jbogx2d.base.Jbogx2D;
 import de.jbo.jbogx2d.base.elements.ElemText;
 import de.jbo.jbogx2d.base.elements.model.ElemModelText;
+import de.jbo.jbogx2d.base.geom.AffineTransformX;
 import de.jbo.jbogx2d.base.geom.BoundsUserSpace;
+import de.jbo.jbogx2d.base.geom.PointUserSpace;
 
 /**
  * @author Josef Baro (jbo)
@@ -32,6 +35,7 @@ public class ElemModelTextTest {
      */
     @BeforeClass
     public static void setUpBeforeClass() throws Exception {
+        Jbogx2D.init();
     }
 
     /**
@@ -40,6 +44,7 @@ public class ElemModelTextTest {
     @Before
     public void setUp() throws Exception {
         text = new ElemText();
+        text.setText(new String[] { "test" });
         model = (ElemModelText) text.getModel();
     }
 
@@ -50,10 +55,10 @@ public class ElemModelTextTest {
      */
     @Test
     public void testCalculateBounds() {
-        text.setText(new String[] { "test" });
+        BoundsUserSpace boundsExpected = new BoundsUserSpace(0.0, -1.00537109375, 1.583984375, 1.2578125);        
         BoundsUserSpace bounds = new BoundsUserSpace();
         text.getBounds(bounds);
-
+        assertEquals(boundsExpected, bounds);
     }
 
     /**
@@ -63,7 +68,12 @@ public class ElemModelTextTest {
      */
     @Test
     public void testTransform() {
-        fail("Not yet implemented");
+        PointUserSpace pointExpected = new PointUserSpace(10.0, 10.0);
+        AffineTransformX transform = new AffineTransformX();
+        transform.translate(10.0, 10.0);        
+        model.transform(transform);
+        PointUserSpace point = model.getBasePoint();
+        assertEquals(pointExpected, point);
     }
 
     /**
@@ -73,7 +83,10 @@ public class ElemModelTextTest {
      */
     @Test
     public void testGetDistanceTo() {
-        fail("Not yet implemented");
+        double expected = 8.416015625;
+        PointUserSpace pointDistanceTo = new PointUserSpace(10.0, 10.0);
+        double distanceTo = model.getDistanceTo(pointDistanceTo);
+        assertEquals(expected, distanceTo, 0.0);
     }
 
     /**
@@ -83,7 +96,12 @@ public class ElemModelTextTest {
      */
     @Test
     public void testIsPointInside() {
-        fail("Not yet implemented");
+        // bounds: 0.0, -1.00537109375, 1.583984375, 1.2578125          
+        assertTrue(text.isPointInside(new PointUserSpace(0.0, 0.0)));
+        assertTrue(text.isPointInside(new PointUserSpace(1.58, 0.0)));
+        assertTrue(text.isPointInside(new PointUserSpace(1.0, 0.2)));
+        assertFalse(text.isPointInside(new PointUserSpace(-0.01, 0.0)));
+        assertFalse(text.isPointInside(new PointUserSpace(0.0, 1.59)));
     }
 
     /**
@@ -93,7 +111,11 @@ public class ElemModelTextTest {
      */
     @Test
     public void testIntersectsDoubleDoubleDoubleDouble() {
-        fail("Not yet implemented");
+        BoundsUserSpace boundsTrue = new BoundsUserSpace(0.0, -1.1, 1.6, 1.3);
+        BoundsUserSpace boundsFalse = new BoundsUserSpace(2.0, 2.0, 1.0, 1.0);
+        
+        assertTrue(model.intersects(boundsTrue.x, boundsTrue.y, boundsTrue.width, boundsTrue.height));
+        assertFalse(model.intersects(boundsFalse.x, boundsFalse.y, boundsFalse.width, boundsFalse.height));
     }
 
     /**
@@ -103,7 +125,11 @@ public class ElemModelTextTest {
      */
     @Test
     public void testIntersectsBoundsUserSpace() {
-        fail("Not yet implemented");
+        BoundsUserSpace boundsTrue = new BoundsUserSpace(0.0, -1.1, 1.6, 1.3);
+        BoundsUserSpace boundsFalse = new BoundsUserSpace(2.0, 2.0, 1.0, 1.0);
+        
+        assertTrue(model.intersects(boundsTrue));
+        assertFalse(model.intersects(boundsFalse));
     }
 
     /**
@@ -112,7 +138,7 @@ public class ElemModelTextTest {
      */
     @Test
     public void testGetAttribLine() {
-        fail("Not yet implemented");
+        assertNull(model.getAttribLine());
     }
 
     /**
@@ -121,7 +147,7 @@ public class ElemModelTextTest {
      */
     @Test
     public void testGetAttribFill() {
-        fail("Not yet implemented");
+        assertNull(model.getAttribFill());
     }
 
     /**
@@ -130,7 +156,7 @@ public class ElemModelTextTest {
      */
     @Test
     public void testGetAttribText() {
-        fail("Not yet implemented");
+        assertNotNull(model.getAttribText());
     }
 
     /**
@@ -140,7 +166,7 @@ public class ElemModelTextTest {
      */
     @Test
     public void testElemModelText() {
-        fail("Not yet implemented");
+        assertEquals(text, model.getElement());
     }
 
     /**
@@ -150,7 +176,8 @@ public class ElemModelTextTest {
      */
     @Test
     public void testGetBasePointPointUserSpace() {
-        fail("Not yet implemented");
+        PointUserSpace expected = new PointUserSpace(0.0, 0.0);
+        assertEquals(expected, model.getBasePoint());
     }
 
     /**
@@ -159,7 +186,7 @@ public class ElemModelTextTest {
      */
     @Test
     public void testGetText() {
-        fail("Not yet implemented");
+       assertArrayEquals(new String[] {"test"}, model.getText());
     }
 
     /**
@@ -169,7 +196,9 @@ public class ElemModelTextTest {
      */
     @Test
     public void testSetBasePointPointUserSpace() {
-        fail("Not yet implemented");
+        PointUserSpace expected = new PointUserSpace(10.0, 10.0);
+        model.setBasePoint(10.0, 10.0);
+        assertEquals(expected, model.getBasePoint());
     }
 
     /**
@@ -179,7 +208,9 @@ public class ElemModelTextTest {
      */
     @Test
     public void testSetBasePointDoubleDouble() {
-        fail("Not yet implemented");
+        PointUserSpace expected = new PointUserSpace(10.0, 10.0);
+        model.setBasePoint(10.0, 10.0);
+        assertEquals(expected, model.getBasePoint());
     }
 
     /**
@@ -189,7 +220,8 @@ public class ElemModelTextTest {
      */
     @Test
     public void testSetText() {
-        fail("Not yet implemented");
+        model.setText(new String[] {"test1", "test2"});
+        assertArrayEquals(new String[] {"test1", "test2"}, model.getText());
     }
 
     /**
@@ -198,7 +230,11 @@ public class ElemModelTextTest {
      */
     @Test
     public void testGetBasePoint() {
-        fail("Not yet implemented");
+        PointUserSpace expected = new PointUserSpace(10.0, 10.0);
+        model.setBasePoint(new PointUserSpace(10.0, 10.0));
+        PointUserSpace base = new PointUserSpace();
+        model.getBasePoint(base);
+        assertEquals(expected, base);
     }
 
     /**
@@ -208,7 +244,10 @@ public class ElemModelTextTest {
      */
     @Test
     public void testGetTransformation() {
-        fail("Not yet implemented");
+        AffineTransformX transform = new AffineTransformX();
+        transform.translate(10.0, 10.0);        
+        model.transform(transform);
+        assertEquals(transform, model.getTransformation());
     }
 
 }
