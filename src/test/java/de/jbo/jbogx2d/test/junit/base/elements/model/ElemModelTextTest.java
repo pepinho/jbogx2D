@@ -8,6 +8,7 @@
 package de.jbo.jbogx2d.test.junit.base.elements.model;
 
 import static org.junit.Assert.*;
+import static org.junit.Assume.assumeTrue;
 
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -19,6 +20,7 @@ import de.jbo.jbogx2d.base.elements.model.ElemModelText;
 import de.jbo.jbogx2d.base.geom.AffineTransformX;
 import de.jbo.jbogx2d.base.geom.BoundsUserSpace;
 import de.jbo.jbogx2d.base.geom.PointUserSpace;
+import de.jbo.jbogx2d.base.util.OSUtil;
 
 /**
  * @author Josef Baro (jbo)
@@ -55,6 +57,8 @@ public class ElemModelTextTest {
      */
     @Test
     public void testCalculateBounds() {
+        assumeTrue("we only execute this on Windows due to pixel-comparison", OSUtil.isWindows());
+        
         BoundsUserSpace boundsExpected = new BoundsUserSpace(0.0, -1.00537109375, 1.583984375, 1.2578125);        
         BoundsUserSpace bounds = new BoundsUserSpace();
         text.getBounds(bounds);
@@ -83,6 +87,8 @@ public class ElemModelTextTest {
      */
     @Test
     public void testGetDistanceTo() {
+        assumeTrue("we only execute this on Windows due to pixel-comparison", OSUtil.isWindows());
+        
         double expected = 8.416015625;
         PointUserSpace pointDistanceTo = new PointUserSpace(10.0, 10.0);
         double distanceTo = model.getDistanceTo(pointDistanceTo);

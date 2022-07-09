@@ -283,7 +283,7 @@ public class Version {
         String className = clazz.getSimpleName() + ".class";
         String classPath = clazz.getResource(className).toString();
         String packageName = clazz.getPackage().getName();
-        packageName = packageName.replace("\\.", "/");
+        packageName = packageName.replace(".", "/");
         int indexOfPackageStart = classPath.indexOf(packageName);
         String manifestPath = classPath.substring(0, indexOfPackageStart) + "/META-INF/MANIFEST.MF";
         version = getVersionFromManifest(manifestPath);
@@ -306,7 +306,7 @@ public class Version {
             String manifestBuild = attr.getValue(MANIFEST_IMPLEMENTATION_BUILD);
             version = new Version(manifestVersion, manifestBuild);
         } catch (Exception ex) {
-            ex.printStackTrace();
+            version = new Version(0, 0, 0, new GregorianCalendar());
         }
         return version;
     }

@@ -167,6 +167,7 @@ public class Jbogx2DTest {
      */
     @Test
     public void testGetAttributeHandler() {
+        Jbogx2D.init();
         assertNotNull("The attribute-handler was not set correctly.", Jbogx2D.getAttributeHandler());
     }
 

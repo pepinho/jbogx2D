@@ -11,6 +11,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assume.assumeTrue;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -28,6 +29,7 @@ import de.jbo.jbogx2d.base.Jbogx2D;
 import de.jbo.jbogx2d.base.attrib.AttribText;
 import de.jbo.jbogx2d.base.elements.ElemText;
 import de.jbo.jbogx2d.base.elements.model.ElemModelText;
+import de.jbo.jbogx2d.base.util.OSUtil;
 
 /**
  * @author Josef Baro (jbo)
@@ -92,6 +94,8 @@ public class AttribTextTest {
      */
     @Test
     public void testUpdate() {
+        assumeTrue("we only execute this on Windows due to pixel-comparison", OSUtil.isWindows());
+        
         final float linefeed = 1.5f;
         final float size = 24.0f;
         final float sizeSystem = 1.1328125f;
