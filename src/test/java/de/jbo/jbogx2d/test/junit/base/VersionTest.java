@@ -105,7 +105,7 @@ public class VersionTest {
     private void setUpVersion1() {
         buildDate1 = new GregorianCalendar(BUILD_YEAR1, BUILD_MONTH1, BUILD_DAY1, BUILD_HOUR1, BUILD_MINUTES1, BUILD_SECONDS1);
         versionDate1 = new Version(VERSION_MAJOR, VERSION_MINOR, VERSION_BUGFIX, buildDate1);
-        StringBuffer buf = new StringBuffer();
+        StringBuilder buf = new StringBuilder();
         fillVersions(buf);
         fillBuildDate(buf, BUILD_YEAR1, BUILD_MONTH1 + 1, BUILD_DAY1, BUILD_HOUR1, BUILD_MINUTES1, BUILD_SECONDS1);
         versionString1 = buf.toString();
@@ -117,7 +117,7 @@ public class VersionTest {
     private void setUpVersion2() {
         buildDate2 = new GregorianCalendar(BUILD_YEAR2, BUILD_MONTH2, BUILD_DAY2, BUILD_HOUR2, BUILD_MINUTES2, BUILD_SECONDS2);
         versionDate2 = new Version(VERSION_MAJOR, VERSION_MINOR, VERSION_BUGFIX, buildDate2);
-        StringBuffer buf = new StringBuffer();
+        StringBuilder buf = new StringBuilder();
         fillVersions(buf);
         fillBuildDate(buf, BUILD_YEAR2, BUILD_MONTH2 + 1, BUILD_DAY2, BUILD_HOUR2, BUILD_MINUTES2, BUILD_SECONDS2);
         versionString2 = buf.toString();
@@ -127,7 +127,7 @@ public class VersionTest {
      * @param buf
      *            The buffer to be filled with the version numbers.
      */
-    private void fillVersions(StringBuffer buf) {
+    private void fillVersions(StringBuilder buf) {
         buf.append(VERSION_MAJOR);
         buf.append('.');
         buf.append(VERSION_MINOR);
@@ -152,7 +152,7 @@ public class VersionTest {
      * @param seconds
      *            The seconds.
      */
-    private void fillBuildDate(StringBuffer buf, int year, int month, int day, int hours, int minutes, int seconds) {
+    private void fillBuildDate(StringBuilder buf, int year, int month, int day, int hours, int minutes, int seconds) {
         final int length2 = 2;
         final int length4 = 4;
         buf.append(' ');
