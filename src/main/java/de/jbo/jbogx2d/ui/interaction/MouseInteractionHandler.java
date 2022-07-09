@@ -7,6 +7,7 @@
 //
 package de.jbo.jbogx2d.ui.interaction;
 
+import java.awt.event.InputEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
@@ -41,7 +42,7 @@ public final class MouseInteractionHandler implements MouseListener, MouseMotion
     private ViewHandler viewHandler = null;
 
     /** List of XOR elements. */
-    private final Collection<IMouseInteractionXorElement> xorElements = new TreeSet<IMouseInteractionXorElement>();
+    private final Collection<IMouseInteractionXorElement> xorElements = new TreeSet<>();
 
     /**
      * Creates a new instance.
@@ -150,7 +151,7 @@ public final class MouseInteractionHandler implements MouseListener, MouseMotion
             } else {
                 xorElements.addAll(paintRequest.getXorElements());
             }
-            if (doPaint || (xorElements.size() > 0)) {
+            if (doPaint || (!xorElements.isEmpty())) {
                 repaint();
             }
 
@@ -162,29 +163,26 @@ public final class MouseInteractionHandler implements MouseListener, MouseMotion
      */
     @Override
     public void mouseClicked(MouseEvent e) {
-        if (mouseInteraction != null) {
-            if (e.getClickCount() == 2) {
-                PaintRequest paintRequest = null;
-                PointUserSpace mousePos = convertMousePosition(e.getX(), e.getY());
-                int keyMask = MouseInteractionUtils.getKeyMask(e);
-                switch (getButton(e)) {
-                case MouseEvent.BUTTON1:
-                    paintRequest = mouseInteraction.handleMouseDoubleclickLeft(mousePos, keyMask);
-                    break;
-                case MouseEvent.BUTTON2:
-                    paintRequest = mouseInteraction.handleMouseDoubleclickMiddle(mousePos, keyMask);
-                    break;
-                case MouseEvent.BUTTON3:
-                    paintRequest = mouseInteraction.handleMouseDoubleclickRight(mousePos, keyMask);
-                    break;
-                default:
-                    // nothing to do
-                    break;
-                }
-                handlePaintRequest(paintRequest);
+        if (mouseInteraction != null && e.getClickCount() == 2) {
+            PaintRequest paintRequest = null;
+            PointUserSpace mousePos = convertMousePosition(e.getX(), e.getY());
+            int keyMask = MouseInteractionUtils.getKeyMask(e);
+            switch (getButton(e)) {
+            case MouseEvent.BUTTON1:
+                paintRequest = mouseInteraction.handleMouseDoubleclickLeft(mousePos, keyMask);
+                break;
+            case MouseEvent.BUTTON2:
+                paintRequest = mouseInteraction.handleMouseDoubleclickMiddle(mousePos, keyMask);
+                break;
+            case MouseEvent.BUTTON3:
+                paintRequest = mouseInteraction.handleMouseDoubleclickRight(mousePos, keyMask);
+                break;
+            default:
+                // nothing to do
+                break;
             }
+            handlePaintRequest(paintRequest);
         }
-
     }
 
     /*
@@ -284,11 +282,9 @@ public final class MouseInteractionHandler implements MouseListener, MouseMotion
      */
     private int getButton(MouseEvent e) {
         int ret = MouseEvent.BUTTON1;
-        if ((e.getModifiersEx() & MouseEvent.BUTTON1_DOWN_MASK) == MouseEvent.BUTTON1_DOWN_MASK) {
-            ret = MouseEvent.BUTTON1;
-        } else if ((e.getModifiersEx() & MouseEvent.BUTTON2_DOWN_MASK) == MouseEvent.BUTTON2_DOWN_MASK) {
+        if ((e.getModifiersEx() & InputEvent.BUTTON2_DOWN_MASK) == InputEvent.BUTTON2_DOWN_MASK) {
             ret = MouseEvent.BUTTON2;
-        } else if ((e.getModifiersEx() & MouseEvent.BUTTON3_DOWN_MASK) == MouseEvent.BUTTON3_DOWN_MASK) {
+        } else if ((e.getModifiersEx() & InputEvent.BUTTON3_DOWN_MASK) == InputEvent.BUTTON3_DOWN_MASK) {
             ret = MouseEvent.BUTTON3;
         }
         return ret;

@@ -33,8 +33,8 @@ public final class StringUtils {
      * @param buf
      *            The buffer to be filled.
      */
-    public static void fillWithLeadingZeros(int number, int length, StringBuffer buf) {
-        StringBuffer b = new StringBuffer(length);
+    public static void fillWithLeadingZeros(int number, int length, StringBuilder buf) {
+        StringBuilder b = new StringBuilder(length);
         b.append(number);
         while (b.length() < length) {
             b.insert(0, 0);

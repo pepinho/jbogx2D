@@ -56,7 +56,7 @@ public class CanvasBorderLayout implements LayoutManager2, java.io.Serializable 
      * @see #getLayoutAlignmentY
      * @see #removeLayoutComponent
      */
-    private Component north;
+    private Component componentNorth;
 
     /**
      * Constant to specify components location to be the west portion of the
@@ -69,7 +69,7 @@ public class CanvasBorderLayout implements LayoutManager2, java.io.Serializable 
      * @see #getLayoutAlignmentY
      * @see #removeLayoutComponent
      */
-    private Component west;
+    private Component componentWest;
 
     /**
      * Constant to specify components location to be the east portion of the
@@ -82,7 +82,7 @@ public class CanvasBorderLayout implements LayoutManager2, java.io.Serializable 
      * @see #getLayoutAlignmentY
      * @see #removeLayoutComponent
      */
-    private Component east;
+    private Component componentEast;
 
     /**
      * Constant to specify components location to be the south portion of the
@@ -95,7 +95,7 @@ public class CanvasBorderLayout implements LayoutManager2, java.io.Serializable 
      * @see #getLayoutAlignmentY
      * @see #removeLayoutComponent
      */
-    private Component south;
+    private Component componentSouth;
 
     /**
      * Constant to specify components location to be the center portion of the
@@ -108,7 +108,7 @@ public class CanvasBorderLayout implements LayoutManager2, java.io.Serializable 
      * @see #getLayoutAlignmentY
      * @see #removeLayoutComponent
      */
-    private Component center;
+    private Component componentCenter;
 
     /**
      * 
@@ -328,16 +328,16 @@ public class CanvasBorderLayout implements LayoutManager2, java.io.Serializable 
     @Override
     public void removeLayoutComponent(final Component comp) {
         synchronized (comp.getTreeLock()) {
-            if (comp == center) {
-                center = null;
-            } else if (comp == north) {
-                north = null;
-            } else if (comp == south) {
-                south = null;
-            } else if (comp == east) {
-                east = null;
-            } else if (comp == west) {
-                west = null;
+            if (comp == componentCenter) {
+                componentCenter = null;
+            } else if (comp == componentNorth) {
+                componentNorth = null;
+            } else if (comp == componentSouth) {
+                componentSouth = null;
+            } else if (comp == componentEast) {
+                componentEast = null;
+            } else if (comp == componentWest) {
+                componentWest = null;
             }
             if (comp == firstLine) {
                 firstLine = null;
@@ -367,15 +367,15 @@ public class CanvasBorderLayout implements LayoutManager2, java.io.Serializable 
      */
     public Component getLayoutComponent(final Object constraints) {
         if (CENTER.equals(constraints)) {
-            return center;
+            return componentCenter;
         } else if (NORTH.equals(constraints)) {
-            return north;
+            return componentNorth;
         } else if (SOUTH.equals(constraints)) {
-            return south;
+            return componentSouth;
         } else if (WEST.equals(constraints)) {
-            return west;
+            return componentWest;
         } else if (EAST.equals(constraints)) {
-            return east;
+            return componentEast;
         } else if (PAGE_START.equals(constraints)) {
             return firstLine;
         } else if (PAGE_END.equals(constraints)) {
@@ -418,21 +418,15 @@ public class CanvasBorderLayout implements LayoutManager2, java.io.Serializable 
         Component result = null;
 
         if (NORTH.equals(constraints)) {
-            result = (firstLine != null) ? firstLine : north;
+            result = getChildNorth();
         } else if (SOUTH.equals(constraints)) {
-            result = (lastLine != null) ? lastLine : south;
+            result = getChildSouth();
         } else if (WEST.equals(constraints)) {
-            result = ltr ? firstItem : lastItem;
-            if (result == null) {
-                result = west;
-            }
+            result = getChildWest(ltr);
         } else if (EAST.equals(constraints)) {
-            result = ltr ? lastItem : firstItem;
-            if (result == null) {
-                result = east;
-            }
+            result = getChildEast(ltr);
         } else if (CENTER.equals(constraints)) {
-            result = center;
+            result = componentCenter;
         } else {
             throw new IllegalArgumentException("cannot get component: invalid constraint: " + constraints);
         }
@@ -456,15 +450,15 @@ public class CanvasBorderLayout implements LayoutManager2, java.io.Serializable 
         if (comp == null) {
             return null;
         }
-        if (comp == center) {
+        if (comp == componentCenter) {
             return CENTER;
-        } else if (comp == north) {
+        } else if (comp == componentNorth) {
             return NORTH;
-        } else if (comp == south) {
+        } else if (comp == componentSouth) {
             return SOUTH;
-        } else if (comp == west) {
+        } else if (comp == componentWest) {
             return WEST;
-        } else if (comp == east) {
+        } else if (comp == componentEast) {
             return EAST;
         } else if (comp == firstLine) {
             return PAGE_START;
@@ -687,26 +681,50 @@ public class CanvasBorderLayout implements LayoutManager2, java.io.Serializable 
     private Component getChild(final String key, final boolean ltr) {
         Component result = null;
 
-        if (key == NORTH) {
-            result = (firstLine != null) ? firstLine : north;
-        } else if (key == SOUTH) {
-            result = (lastLine != null) ? lastLine : south;
-        } else if (key == WEST) {
-            result = ltr ? firstItem : lastItem;
-            if (result == null) {
-                result = west;
-            }
-        } else if (key == EAST) {
-            result = ltr ? lastItem : firstItem;
-            if (result == null) {
-                result = east;
-            }
-        } else if (key == CENTER) {
-            result = center;
+        if (NORTH.equals(key)) {
+            result = getChildNorth();
+        } else if (SOUTH.equals(key)) {
+            result = getChildSouth();
+        } else if (WEST.equals(key)) {
+            result = getChildWest(ltr);
+        } else if (EAST.equals(key)) {
+            result = getChildEast(ltr);
+        } else if (CENTER.equals(key)) {
+            result = componentCenter;
         }
         if ((result != null) && !result.isVisible()) {
             result = null;
         }
+        return result;
+    }
+
+    private Component getChildEast(final boolean ltr) {
+        Component result;
+        result = ltr ? lastItem : firstItem;
+        if (result == null) {
+            result = componentEast;
+        }
+        return result;
+    }
+
+    private Component getChildWest(final boolean ltr) {
+        Component result;
+        result = ltr ? firstItem : lastItem;
+        if (result == null) {
+            result = componentWest;
+        }
+        return result;
+    }
+
+    private Component getChildSouth() {
+        Component result;
+        result = (lastLine != null) ? lastLine : componentSouth;
+        return result;
+    }
+
+    private Component getChildNorth() {
+        Component result;
+        result = (firstLine != null) ? firstLine : componentNorth;
         return result;
     }
 
@@ -721,22 +739,22 @@ public class CanvasBorderLayout implements LayoutManager2, java.io.Serializable 
         synchronized (comp.getTreeLock()) {
             /* Special case: treat null the same as "Center". */
             if (name == null) {
-                name = "Center";
+                name = CENTER;
             }
 
             /*
              * Assign the component to one of the known regions of the layout.
              */
-            if ("Center".equals(name)) {
-                center = comp;
-            } else if ("North".equals(name)) {
-                north = comp;
-            } else if ("South".equals(name)) {
-                south = comp;
-            } else if ("East".equals(name)) {
-                east = comp;
-            } else if ("West".equals(name)) {
-                west = comp;
+            if (CENTER.equals(name)) {
+                componentCenter = comp;
+            } else if (NORTH.equals(name)) {
+                componentNorth = comp;
+            } else if (SOUTH.equals(name)) {
+                componentSouth = comp;
+            } else if (EAST.equals(name)) {
+                componentEast = comp;
+            } else if (WEST.equals(name)) {
+                componentWest = comp;
             } else if (BEFORE_FIRST_LINE.equals(name)) {
                 firstLine = comp;
             } else if (AFTER_LAST_LINE.equals(name)) {
@@ -805,6 +823,6 @@ public class CanvasBorderLayout implements LayoutManager2, java.io.Serializable 
      */
     @Override
     public void invalidateLayout(Container target) {
-
+        // ntbd
     }
 }

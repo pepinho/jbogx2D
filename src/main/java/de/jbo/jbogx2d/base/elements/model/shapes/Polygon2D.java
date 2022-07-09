@@ -56,7 +56,8 @@ public class Polygon2D extends Polyline2D {
 
         double lastx = points[npoints - 1].x;
         double lasty = points[npoints - 1].y;
-        double curx, cury;
+        double curx;
+        double cury;
 
         // Walk the edges of the polygon
         for (int i = 0; i < npoints; lastx = curx, lasty = cury, i++) {
@@ -80,7 +81,8 @@ public class Polygon2D extends Polyline2D {
                 leftx = lastx;
             }
 
-            double test1, test2;
+            double test1;
+            double test2;
             if (cury < lasty) {
                 if (y < cury || y >= lasty) {
                     continue;
@@ -143,11 +145,7 @@ public class Polygon2D extends Polyline2D {
         // lower-left
         x1 = x;
         y1 = y + h;
-        if (contains(x1, y1)) {
-            return true;
-        }
-        
-        return false;
+        return contains(x1, y1);        
     }
 
     /*

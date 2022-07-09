@@ -216,7 +216,7 @@ public class Version {
         final int length2 = 2;
         final int length4 = 4;
         int temp = 0;
-        StringBuffer buffer = new StringBuffer();
+        StringBuilder buffer = new StringBuilder();
 
         buffer.append(getVersionMajor());
         buffer.append('.');
@@ -283,7 +283,7 @@ public class Version {
         String className = clazz.getSimpleName() + ".class";
         String classPath = clazz.getResource(className).toString();
         String packageName = clazz.getPackage().getName();
-        packageName = packageName.replaceAll("\\.", "/");
+        packageName = packageName.replace("\\.", "/");
         int indexOfPackageStart = classPath.indexOf(packageName);
         String manifestPath = classPath.substring(0, indexOfPackageStart) + "/META-INF/MANIFEST.MF";
         version = getVersionFromManifest(manifestPath);
