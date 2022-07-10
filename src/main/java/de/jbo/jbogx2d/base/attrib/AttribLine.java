@@ -26,7 +26,7 @@ import de.jbo.jbogx2d.base.elements.model.ElemModel;
  * @author Josef Baro (jbo) <br>
  * @version 1.0 29.02.2004: jbo created <br>
  */
-public class AttribLine extends AttribBase {
+public class AttribLine implements AttribBase {
     /** The width of the pen. */
     private float width = 1.0f;
 

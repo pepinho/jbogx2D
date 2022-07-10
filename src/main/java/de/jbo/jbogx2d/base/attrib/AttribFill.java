@@ -30,7 +30,7 @@ import de.jbo.jbogx2d.base.geom.BoundsUserSpace;
  * @author Josef Baro (jbo) <br>
  * @version 1.0 29.02.2004: jbo created <br>
  */
-public class AttribFill extends AttribBase {
+public class AttribFill implements AttribBase {
     /**
      * Default texture code. In the default mapping this represents a solid
      * fill-texture.

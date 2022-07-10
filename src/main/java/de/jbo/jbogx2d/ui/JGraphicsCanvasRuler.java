@@ -77,10 +77,10 @@ final class JGraphicsCanvasRuler extends JPanel implements IZoomListener, IScrol
     private final BoundsUserSpace visibleBounds = new BoundsUserSpace();
 
     /** Ruler units in x-direction. */
-    private final LinkedList<RulerUnit> rulerUnitsX = new LinkedList<RulerUnit>();
+    private final LinkedList<RulerUnit> rulerUnitsX = new LinkedList<>();
 
     /** Ruler units in y-direction. */
-    private final LinkedList<RulerUnit> rulerUnitsY = new LinkedList<RulerUnit>();
+    private final LinkedList<RulerUnit> rulerUnitsY = new LinkedList<>();
 
     /**
      * Creates a new instance.

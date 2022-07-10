@@ -44,8 +44,7 @@ public class AttribFontMap {
      * @return The created font.
      */
     private static Font createFont(String fontFamily) {
-        Font font = new Font(fontFamily, Font.PLAIN, 1);
-        return font;
+        return new Font(fontFamily, Font.PLAIN, 1);        
     }
 
     /**

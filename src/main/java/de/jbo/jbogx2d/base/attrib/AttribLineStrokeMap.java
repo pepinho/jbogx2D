@@ -87,7 +87,7 @@ public class AttribLineStrokeMap {
     public static final float[] DEFAULT_DASH06_06 = { 6.0f, 6.0f };
 
     /** Map storing the stroke-mappings. */
-    private final ArrayListX<float[]> strokeMap = new ArrayListX<float[]>();
+    private final ArrayListX<float[]> strokeMap = new ArrayListX<>();
 
     /**
      * Creates a new default stroke-map.

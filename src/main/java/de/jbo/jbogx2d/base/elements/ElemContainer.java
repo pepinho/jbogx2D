@@ -9,6 +9,7 @@
 package de.jbo.jbogx2d.base.elements;
 
 import java.util.LinkedList;
+import java.util.List;
 import java.util.ListIterator;
 
 import de.jbo.jbogx2d.base.drawing.Drawing;
@@ -78,7 +79,7 @@ public class ElemContainer extends ElemBase {
      * @param elems
      *            The list of elements to be added.
      */
-    public void addElemsLast(LinkedList<ElemBase> elems) {
+    public void addElemsLast(List<ElemBase> elems) {
         ListIterator<ElemBase> iterator = elems.listIterator();
         ElemBase elem = null;
 
@@ -112,7 +113,7 @@ public class ElemContainer extends ElemBase {
      * @param elems
      *            The list of elements to be added.
      */
-    public void addElemsFirst(LinkedList<ElemBase> elems) {
+    public void addElemsFirst(List<ElemBase> elems) {
         ListIterator<ElemBase> iterator = elems.listIterator();
         ElemBase elem = null;
 
@@ -153,7 +154,7 @@ public class ElemContainer extends ElemBase {
      * @param position
      *            The position to add the elements at.
      */
-    public void addElemsAt(LinkedList<ElemBase> elems, int position) {
+    public void addElemsAt(List<ElemBase> elems, int position) {
         ListIterator<ElemBase> iterator = elems.listIterator();
         ElemBase elem = null;
 
@@ -189,7 +190,7 @@ public class ElemContainer extends ElemBase {
      * @param elems
      *            The elements to be removed.
      */
-    public synchronized void removeElems(LinkedList<ElemBase> elems) {
+    public synchronized void removeElems(List<ElemBase> elems) {
         ListIterator<ElemBase> iterator = elems.listIterator();
         ElemBase elem = null;
 
@@ -206,61 +207,67 @@ public class ElemContainer extends ElemBase {
         removeElems(childList);
     }
 
+    private boolean canIterate(ListIterator<ElemBase> iterator, boolean isFirstToLast) {
+        return (isFirstToLast) ? iterator.hasNext() : iterator.hasPrevious();
+    }
+
+    private short iterate(ElementTraverser traverser) {
+        boolean isFirstToLast = traverser.isDirectionFirstToLast();
+        short state = ElementTraverser.CONTINUE;
+        ListIterator<ElemBase> iterator = childList.listIterator();
+
+        while (canIterate(iterator, isFirstToLast) && (state != ElementTraverser.STOP)) {
+            ElemBase elem = (isFirstToLast) ? iterator.next() : iterator.previous();
+            state = elem.traverse(traverser);
+        }
+        return state;
+    }
+
     /*
      * @see
      * 
-     * de.jbo.jbogx2d.base.elements.ElemBase#traverse(de.jbo.jbogx2d.base.drawing
-     * .traversing.ElementTraverser)
+     * de.jbo.jbogx2d.base.elements.ElemBase#traverse(de.jbo.jbogx2d.base.
+     * drawing .traversing.ElementTraverser)
      */
     @Override
     public short traverse(ElementTraverser traverser) {
-        short state = ElementTraverser.CONTINUE;
-
-        ListIterator<ElemBase> iterator = null;
-        ElemBase elem = null;
+        short state;
 
         if (traverser.isHandleContainerBeforeChilds()) {
             state = traverser.handleElement(this);
-        }
-
-        if (state == ElementTraverser.CONTINUE) {
-            state = traverser.handleBeforeContainerChilds(this);
-            if (state == ElementTraverser.CONTINUE) {
-                // Shall we visit our childs?
-                if (traverser.isVisitContainerChilds()) {
-                    // Traverse from beginning to end...
-                    if (traverser.isDirectionFirstToLast()) {
-                        iterator = childList.listIterator();
-
-                        while (iterator.hasNext() && (state != ElementTraverser.STOP)) {
-                            elem = iterator.next();
-                            state = elem.traverse(traverser);
-                        }
-                    } else {
-                        iterator = childList.listIterator(childList.size());
-
-                        while (iterator.hasPrevious() && (state != ElementTraverser.STOP)) {
-                            elem = iterator.previous();
-                            state = elem.traverse(traverser);
-                        }
-                    }
-                }
-                if (state == ElementTraverser.CONTINUE) {
-                    state = traverser.handleAfterContainerChilds(this);
-                }
-
-                if ((state == ElementTraverser.CONTINUE) && !traverser.isHandleContainerBeforeChilds()) {
-                    state = traverser.handleElement(this);
-                }
+            if (state != ElementTraverser.CONTINUE) {
+                return evaluateTraversionState(state);
             }
         }
+
+        state = traverser.handleBeforeContainerChilds(this);
+        if (state != ElementTraverser.CONTINUE) {
+            return evaluateTraversionState(state);
+        }
+
+        // Shall we visit our childs?
+        if (traverser.isVisitContainerChilds()) {
+            state = iterate(traverser);
+        }
+        if (state == ElementTraverser.CONTINUE) {
+            state = traverser.handleAfterContainerChilds(this);
+        }
+
+        if ((state == ElementTraverser.CONTINUE) && !traverser.isHandleContainerBeforeChilds()) {
+            state = traverser.handleElement(this);
+        }
+
+        return evaluateTraversionState(state);
+    }
+
+    private short evaluateTraversionState(short state) {
         return (state == ElementTraverser.STOP_CONTAINER) ? ElementTraverser.CONTINUE : state;
     }
 
     /**
      * @return The child list.
      */
-    public LinkedList<ElemBase> getElems() {
+    public List<ElemBase> getElems() {
         return childList;
     }
 }

@@ -17,14 +17,7 @@ import de.jbo.jbogx2d.base.elements.model.ElemModel;
  * @author Josef Baro (jbo) <br>
  * @version 1.0 28.02.2004: jbo created <br>
  */
-public abstract class AttribBase {
-    /**
-     * Creates a new Instance.
-     */
-    public AttribBase() {
-        super();
-    }
-
+interface AttribBase {
     /**
      * Updates the attributes from logical values to system values used for
      * drawing. <br>

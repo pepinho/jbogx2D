@@ -16,6 +16,7 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.NoSuchElementException;
 
 import org.junit.Test;
 
@@ -176,7 +177,13 @@ public class ArrayListXTest {
             it.next();
         }
         assertFalse("Iterator should have reached the end.", it.hasNext());
-        assertNull(it.next());
+        boolean exceptionThrown = false;
+        try {
+            assertNull(it.next());            
+        } catch (NoSuchElementException ex) {
+            exceptionThrown = true;
+        }
+        assertTrue("Exception should have been thrown.", exceptionThrown);
         it.remove();
         it = list.iterator();
         it.remove();

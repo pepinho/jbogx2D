@@ -92,8 +92,7 @@ public class ElemHandlesBase extends ElemHandles {
      */
     @Override
     protected Shape createHandleShape(final PointUserSpace handlePoint, final double width, final double height) {
-        Circle2D shape = new Circle2D(handlePoint, width);
-        return shape;
+        return new Circle2D(handlePoint, width);        
     }
 
 }

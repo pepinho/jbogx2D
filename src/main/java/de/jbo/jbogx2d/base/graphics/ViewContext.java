@@ -432,8 +432,7 @@ public abstract class ViewContext implements ImageObserver {
      * @return The created image.
      */
     protected Image createImage(final int width, final int height) {
-        Image img = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
-        return img;
+        return new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);        
     }
 
     /**

@@ -35,7 +35,7 @@ import de.jbo.jbogx2d.base.elements.model.ElemModel;
  * @author Josef Baro (jbo) <br>
  * @version 1.0 10.03.2004: jbo created <br>
  */
-public class AttribText extends AttribBase {
+public class AttribText implements AttribBase {
     /**
      * 
      */

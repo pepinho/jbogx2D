@@ -11,6 +11,7 @@ package de.jbo.jbogx2d.base.drawing;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.ListIterator;
 
 import de.jbo.jbogx2d.base.drawing.traversing.ElementTraverser;
@@ -34,10 +35,10 @@ public class Drawing {
     private final BoundsUserSpace boundsUserSpace = new BoundsUserSpace(0, 0, 297, 210);
 
     /** List containing the drawing's layers. */
-    private final LinkedList<DrawingLayer> layerList = new LinkedList<DrawingLayer>();
+    private final LinkedList<DrawingLayer> layerList = new LinkedList<>();
 
     /** Modification listeners. */
-    private final LinkedList<IDrawingModifiedListener> modificationListeners = new LinkedList<IDrawingModifiedListener>();
+    private final LinkedList<IDrawingModifiedListener> modificationListeners = new LinkedList<>();
 
     /**
      * Creates a new empty drawing with a default layer.
@@ -287,7 +288,7 @@ public class Drawing {
      * @return The elements found.
      */
     public Collection<ElemBase> getElementsByBounds(BoundsUserSpace bounds, boolean visibleOnly) {
-        LinkedList<ElemBase> list = new LinkedList<ElemBase>();
+        LinkedList<ElemBase> list = new LinkedList<>();
         Iterator<DrawingLayer> it = layerList.iterator();
         while (it.hasNext()) {
             DrawingLayer l = it.next();
@@ -307,14 +308,11 @@ public class Drawing {
      *            The layer to be traversed.
      */
     public void traverse(ElementTraverser traverser, DrawingLayer layer) {
-        short state = ElementTraverser.CONTINUE;
-        ElemBase elem = null;
-        LinkedList<ElemBase> elems = null;
-        ListIterator<ElemBase> iterator = null;
+        List<ElemBase> elems = null;
 
         if (traverser.init()) {
             if (layer == null) {
-                elems = new LinkedList<ElemBase>();
+                elems = new LinkedList<>();
                 Iterator<DrawingLayer> it = layerList.iterator();
                 while (it.hasNext()) {
                     DrawingLayer l = it.next();
@@ -325,20 +323,27 @@ public class Drawing {
                 elems = layer.getElems();
             }
 
-            if (traverser.isDirectionFirstToLast()) {
-                iterator = elems.listIterator();
-                while (iterator.hasNext() && (state == ElementTraverser.CONTINUE)) {
-                    elem = iterator.next();
-                    state = elem.traverse(traverser);
-                }
-            } else {
-                iterator = elems.listIterator(elems.size());
-                while (iterator.hasPrevious() && (state == ElementTraverser.CONTINUE)) {
-                    elem = iterator.previous();
-                    state = elem.traverse(traverser);
-                }
-            }
+            traverseElements(traverser, elems);
             traverser.close();
+        }
+    }
+
+    private void traverseElements(ElementTraverser traverser, List<ElemBase> elems) {
+        ElemBase elem;
+        ListIterator<ElemBase> iterator;
+        short state = ElementTraverser.CONTINUE;
+        if (traverser.isDirectionFirstToLast()) {
+            iterator = elems.listIterator();
+            while (iterator.hasNext() && (state == ElementTraverser.CONTINUE)) {
+                elem = iterator.next();
+                state = elem.traverse(traverser);
+            }
+        } else {
+            iterator = elems.listIterator(elems.size());
+            while (iterator.hasPrevious() && (state == ElementTraverser.CONTINUE)) {
+                elem = iterator.previous();
+                state = elem.traverse(traverser);
+            }
         }
     }
 

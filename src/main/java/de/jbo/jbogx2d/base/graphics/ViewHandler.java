@@ -16,7 +16,6 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.LinkedList;
 
-import de.jbo.jbogx2d.base.Jbogx2D;
 import de.jbo.jbogx2d.base.drawing.Drawing;
 import de.jbo.jbogx2d.base.drawing.IDrawingModifiedListener;
 import de.jbo.jbogx2d.base.elements.ElemBase;
@@ -91,8 +90,8 @@ public class ViewHandler implements IDrawingModifiedListener {
         viewScreen = new ViewContextScreen(screenComponent);
         mouseInteractionHandler = new MouseInteractionHandler(viewScreen, this);
 
-        zoomListeners = new LinkedList<IZoomListener>();
-        scrollListeners = new LinkedList<IScrollListener>();
+        zoomListeners = new LinkedList<>();
+        scrollListeners = new LinkedList<>();
     }
 
     /**
@@ -274,6 +273,10 @@ public class ViewHandler implements IDrawingModifiedListener {
         timer.stop("initElementViewList()");
     }
 
+    private boolean isModifiedDrawingBoundsIntersectsVisibleUserSpace() {
+        return (modifiedDrawingBounds != null && modifiedDrawingBounds.intersects(visibleUserSpace));
+    }
+
     /**
      * Renders this instance to the given graphics-context.
      * 
@@ -281,78 +284,77 @@ public class ViewHandler implements IDrawingModifiedListener {
      *            The graphics-context to render to.
      */
     public void paint(Graphics g) {
-        if (isInitialized()) {
-            BoundsUserSpace flushBounds = null;
-            Dimension currentScreenSize = screenComponent.getSize();
-            updateAttributes();
-
-            if (!currentScreenSize.equals(screenSize)) {
-                setVisibleUserSpace(visibleUserSpace, true);
-
-                /*
-                 * Clear with background-color
-                 */
-                viewBuffer.clearView();
-
-                /*
-                 * Grid?
-                 */
-                if (viewDrawingGrid.isVisible()) {
-                    viewDrawingGrid.updateAttributes(viewBuffer);
-                    viewDrawingGrid.paint(viewBuffer);
-                }
-
-                /*
-                 * Paint the relevant quadrants of the view...
-                 */
-                draw(viewElements, viewBuffer);
-
-                screenSize.setSize(currentScreenSize);
-
-                modifiedDrawingBounds = null;
-                isBufferNeedRefresh = false;
-            } else if ((modifiedDrawingBounds != null) || isBufferNeedRefresh) {
-                if (isBufferNeedRefresh || modifiedDrawingBounds.intersects(visibleUserSpace)) {
-                    Collection<ElemBase> elems = null;
-
-                    if (modifiedDrawingBounds != null) {
-                        elems = drawing.getElementsByBounds(modifiedDrawingBounds, true);
-                    } else {
-                        elems = viewElements;
-                    }
-                    /*
-                     * Clear with background-color
-                     */
-                    viewBuffer.clearView(modifiedDrawingBounds);
-
-                    /*
-                     * Grid?
-                     */
-                    if (viewDrawingGrid.isVisible()) {
-                        viewDrawingGrid.updateAttributes(viewBuffer);
-                        viewDrawingGrid.paint(viewBuffer);
-                    }
-
-                    /*
-                     * Paint the relevant quadrants of the view...
-                     */
-                    draw(elems, viewBuffer);
-
-                    flushBounds = modifiedDrawingBounds;
-                    modifiedDrawingBounds = null;
-                    isBufferNeedRefresh = false;
-                }
-            }
-            viewXor.flushView(flushBounds, viewBuffer);
-            mouseInteractionHandler.paintXorElemens(viewXor);
-            viewScreen.setGraphicsContext((Graphics2D) g, true);
-
-            viewScreen.flushView(flushBounds, viewXor);
-
-            viewScreen.resetGraphicsContext();
-        } else {
-            Jbogx2D.getErrorHandler().handleFatalError(new Exception("ViewHandler was not initialized"), true, false);
+        if (!isInitialized()) {
+            return;
         }
+        BoundsUserSpace flushBounds = null;
+        Dimension currentScreenSize = screenComponent.getSize();
+        updateAttributes();
+
+        if (!currentScreenSize.equals(screenSize)) {
+            paintResize(currentScreenSize);
+        } else if (isBufferNeedRefresh || isModifiedDrawingBoundsIntersectsVisibleUserSpace()) {
+            Collection<ElemBase> elems = null;
+
+            if (modifiedDrawingBounds != null) {
+                elems = drawing.getElementsByBounds(modifiedDrawingBounds, true);
+            } else {
+                elems = viewElements;
+            }
+            /*
+             * Clear with background-color
+             */
+            viewBuffer.clearView(modifiedDrawingBounds);
+
+            /*
+             * Grid?
+             */
+            if (viewDrawingGrid.isVisible()) {
+                viewDrawingGrid.updateAttributes(viewBuffer);
+                viewDrawingGrid.paint(viewBuffer);
+            }
+
+            /*
+             * Paint the relevant quadrants of the view...
+             */
+            draw(elems, viewBuffer);
+
+            flushBounds = modifiedDrawingBounds;
+            modifiedDrawingBounds = null;
+            isBufferNeedRefresh = false;
+        }
+        viewXor.flushView(flushBounds, viewBuffer);
+        mouseInteractionHandler.paintXorElemens(viewXor);
+        viewScreen.setGraphicsContext((Graphics2D) g, true);
+        viewScreen.flushView(flushBounds, viewXor);
+        viewScreen.resetGraphicsContext();
+    }
+
+    private void paintResize(Dimension currentScreenSize) {
+        setVisibleUserSpace(visibleUserSpace, true);
+
+        /*
+         * Clear with background-color
+         */
+        viewBuffer.clearView();
+
+        /*
+         * Grid?
+         */
+        if (viewDrawingGrid.isVisible()) {
+            viewDrawingGrid.updateAttributes(viewBuffer);
+            viewDrawingGrid.paint(viewBuffer);
+        }
+
+        /*
+         * Paint the relevant quadrants of the view...
+         */
+        draw(viewElements, viewBuffer);
+
+        screenSize.setSize(currentScreenSize);
+
+        modifiedDrawingBounds = null;
+        isBufferNeedRefresh = false;
     }
 
     /**
@@ -487,14 +489,11 @@ public class ViewHandler implements IDrawingModifiedListener {
      *            True to activate the grid, otherwise False.
      */
     public void setGridVisible(boolean visible) {
-        if (isInitialized()) {
-            if (visible) {
-                BoundsUserSpace b = new BoundsUserSpace();
-
-                drawing.getUserSpaceBounds(b);
-                viewDrawingGrid.setDrawingBounds(b, viewBuffer);
-                viewDrawingGrid.updateVisibleUserSpace(viewBuffer);
-            }
+        if (isInitialized() && visible) {
+            BoundsUserSpace b = new BoundsUserSpace();
+            drawing.getUserSpaceBounds(b);
+            viewDrawingGrid.setDrawingBounds(b, viewBuffer);
+            viewDrawingGrid.updateVisibleUserSpace(viewBuffer);
         }
         viewDrawingGrid.setVisible(visible);
         isBufferNeedRefresh = true;

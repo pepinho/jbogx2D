@@ -112,7 +112,7 @@ public final class Jbogx2D {
 
         try {
             /*
-             * TODO: add initialization here...
+             * Add initialization here...
              */
             attributeHandler = new AttributeHandler();
             properties = new Properties();
@@ -147,11 +147,11 @@ public final class Jbogx2D {
 
         try {
             /*
-             * TODO: add un-initialization here...
+             * add un-initialization here...
              */
 
             /*
-             * End of un-initialization
+             * end of un-initialization
              */
             state = true;
             isInitialized = false;

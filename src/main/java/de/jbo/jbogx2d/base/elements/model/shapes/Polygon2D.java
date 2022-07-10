@@ -14,6 +14,8 @@ import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 
 import de.jbo.jbogx2d.base.geom.PointUserSpace;
+import de.jbo.jbogx2d.base.util.lang.WrapperDouble;
+import de.jbo.jbogx2d.base.util.lang.WrapperInteger;
 
 /**
  * Implements a polygon shape.
@@ -39,79 +41,79 @@ public class Polygon2D extends Polyline2D {
         super();
     }
 
+    private boolean containsCalculateLeftX(double curx, double lastx, double x, WrapperDouble leftxOut) {
+        if (curx < lastx) {
+            if (x >= lastx) {
+                return false;
+            }
+            leftxOut.setValue(curx);
+        } else {
+            if (x >= curx) {
+                return false;
+            }
+            leftxOut.setValue(lastx);
+        }
+        return true;
+    }
+
+    private boolean containsCalculateTestHits(PointUserSpace current, PointUserSpace point, double leftx, PointUserSpace yGreaterSmaller, WrapperInteger hits, PointUserSpace test) {
+        if (point.y < yGreaterSmaller.x || point.y >= yGreaterSmaller.y) {
+            return false;
+        }
+        if (point.x < leftx) {
+            hits.setValue(hits.getValue() + 1);
+            return false;
+        }
+        test.x = (point.x - current.x);
+        test.y = (point.y - current.y);
+        return true;
+    }
+
     /*
      * @see
      * de.jbo.jbogx2d.base.elements.model.shapes.Polyline2D#contains(double,
      * double)
      */
     @Override
-    public boolean contains(double x, double y) {        
+    public boolean contains(double x, double y) {
         PointUserSpace[] points = getPoints();
-        int npoints = points.length;
+        PointUserSpace point = new PointUserSpace(x, y);
 
-        if (points.length <= 2 || !getBounds2D().contains(x, y)) {
+        if (isOutOfBoundsOrNoArea(x, y, points)) {
             return false;
         }
-        int hits = 0;
+        int npoints = points.length;
+        WrapperInteger hits = new WrapperInteger(0);
 
+        PointUserSpace current = new PointUserSpace(x, y);
         double lastx = points[npoints - 1].x;
         double lasty = points[npoints - 1].y;
-        double curx;
-        double cury;
 
         // Walk the edges of the polygon
-        for (int i = 0; i < npoints; lastx = curx, lasty = cury, i++) {
-            curx = points[i].x;
-            cury = points[i].y;
+        for (int i = 0; i < npoints; lastx = current.x, lasty = current.y, i++) {
+            current.set(points[i]);
 
-            if (cury == lasty) {
+            if (current.y == lasty) {
                 continue;
             }
 
-            double leftx;
-            if (curx < lastx) {
-                if (x >= lastx) {
-                    continue;
-                }
-                leftx = curx;
-            } else {
-                if (x >= curx) {
-                    continue;
-                }
-                leftx = lastx;
-            }
+            WrapperDouble leftxOut = new WrapperDouble();
+            if (containsCalculateLeftX(current.x, lastx, current.x, leftxOut)) {
+                PointUserSpace test = new PointUserSpace();
 
-            double test1;
-            double test2;
-            if (cury < lasty) {
-                if (y < cury || y >= lasty) {
-                    continue;
+                if (current.y < lasty && containsCalculateTestHits(current, point, leftxOut.getValue(), new PointUserSpace(current.y, lasty), hits, test)
+                        && containsCalculateTestHits(current, point, leftxOut.getValue(), new PointUserSpace(lasty, current.y), hits, test) && test.x < (test.y / (lasty - current.y) * (lastx - current.x))) {
+                    hits.setValue(hits.getValue() + 1);
                 }
-                if (x < leftx) {
-                    hits++;
-                    continue;
-                }
-                test1 = x - curx;
-                test2 = y - cury;
-            } else {
-                if (y < lasty || y >= cury) {
-                    continue;
-                }
-                if (x < leftx) {
-                    hits++;
-                    continue;
-                }
-                test1 = x - lastx;
-                test2 = y - lasty;
-            }
-
-            if (test1 < (test2 / (lasty - cury) * (lastx - curx))) {
-                hits++;
             }
         }
 
-        return ((hits & 1) != 0);
+        return ((hits.getValue() & 1) != 0);
 
+    }
+
+    private boolean isOutOfBoundsOrNoArea(double x, double y, PointUserSpace[] points) {
+        return points.length <= 2 || !getBounds2D().contains(x, y);
     }
 
     /*
@@ -123,29 +125,29 @@ public class Polygon2D extends Polyline2D {
     public boolean contains(double x, double y, double w, double h) {
         double x1 = x;
         double y1 = y;
-        
+
         // upper-left
         if (contains(x1, y1)) {
             return true;
         }
-        
+
         // upper-right
         x1 = x + w;
         if (contains(x1, y1)) {
             return true;
         }
-        
+
         // lower-right
         x1 = x + w;
         y1 = y + h;
         if (contains(x1, y1)) {
             return true;
         }
-        
+
         // lower-left
         x1 = x;
         y1 = y + h;
-        return contains(x1, y1);        
+        return contains(x1, y1);
     }
 
     /*

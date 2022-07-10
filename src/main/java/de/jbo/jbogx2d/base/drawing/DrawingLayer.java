@@ -9,7 +9,7 @@
 package de.jbo.jbogx2d.base.drawing;
 
 import java.util.Collection;
-import java.util.LinkedList;
+import java.util.List;
 
 import de.jbo.jbogx2d.base.elements.ElemBase;
 import de.jbo.jbogx2d.base.geom.AffineTransformX;
@@ -28,6 +28,12 @@ import de.jbo.jbogx2d.base.graphics.ViewQuadTreeNode;
 public class DrawingLayer {
     /** Default name of a newly created layer. */
     public static final String NAME_DEFAULT = "Default";
+    
+    /**
+     * Defines the maximum quadrant-tree depth, e.g. depth of 8 defines 64
+     * Quadrants in total.
+     */
+    private static final int MAX_QUADRANT_TREE_DEPTH = 8;
 
     /**
      * Indicates if this layer is currently filtered. Filtered layers and its
@@ -44,11 +50,7 @@ public class DrawingLayer {
     /** The quad-tree root handling the elements. */
     private ViewQuadTreeNode quadTreeRoot = null;
 
-    /**
-     * Defines the maximum quadrant-tree depth, e.g. depth of 8 defines 64
-     * Quadrants in total.
-     */
-    private final int maxQuadrantTreeDepth = 8;
+    
 
     /**
      * Creates a new layer.
@@ -81,7 +83,7 @@ public class DrawingLayer {
         drawing.getUserSpaceBounds(drawingUserSpace);
 
         if (quadTreeRoot == null) {
-            quadTreeRoot = new ViewQuadTreeNode(maxQuadrantTreeDepth, null, drawingUserSpace);
+            quadTreeRoot = new ViewQuadTreeNode(MAX_QUADRANT_TREE_DEPTH, null, drawingUserSpace);
         } else {
             quadTreeRoot.reset(drawingUserSpace);
         }
@@ -169,7 +171,7 @@ public class DrawingLayer {
      * @see de.jbo.jbogx2d.base.elements.ElemContainer#addElemsAt(java.util.LinkedList,
      *      int)
      */
-    public void addElemsAt(final LinkedList<ElemBase> elems, final int position) {
+    public void addElemsAt(final List<ElemBase> elems, final int position) {
         elements.addElemsAt(elems, position);
     }
 
@@ -180,7 +182,7 @@ public class DrawingLayer {
      *            The elements to be added.
      * @see de.jbo.jbogx2d.base.elements.ElemContainer#addElemsFirst(java.util.LinkedList)
      */
-    public void addElemsFirst(final LinkedList<ElemBase> elems) {
+    public void addElemsFirst(final List<ElemBase> elems) {
         elements.addElemsFirst(elems);
     }
 
@@ -191,7 +193,7 @@ public class DrawingLayer {
      *            The elements to be added.
      * @see de.jbo.jbogx2d.base.elements.ElemContainer#addElemsLast(java.util.LinkedList)
      */
-    public void addElemsLast(final LinkedList<ElemBase> elems) {
+    public void addElemsLast(final List<ElemBase> elems) {
         elements.addElemsLast(elems);
     }
 
@@ -213,7 +215,7 @@ public class DrawingLayer {
      *            The elements to be removed.
      * @see de.jbo.jbogx2d.base.elements.ElemContainer#removeElems(java.util.LinkedList)
      */
-    public void removeElems(final LinkedList<ElemBase> elems) {
+    public void removeElems(final List<ElemBase> elems) {
         elements.removeElems(elems);
     }
 
@@ -232,7 +234,7 @@ public class DrawingLayer {
      * @return The layer's elements
      * @see de.jbo.jbogx2d.base.elements.ElemContainer#getElems()
      */
-    public LinkedList<ElemBase> getElems() {
+    public List<ElemBase> getElems() {
         return elements.getElems();
     }
 

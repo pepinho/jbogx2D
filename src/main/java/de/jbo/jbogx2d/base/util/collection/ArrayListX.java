@@ -11,6 +11,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.NoSuchElementException;
 
 /**
  * Implements an array based collection. As a difference to Java's standard
@@ -274,7 +275,7 @@ public class ArrayListX<E> implements Collection<E> {
      * @return Collection of not-null-elements in this collection.
      */
     private Collection<E> getNotNullElements() {
-        Collection<E> ret = new LinkedList<E>();
+        Collection<E> ret = new LinkedList<>();
 
         for (E obj : data) {
             if (obj != null) {
@@ -292,8 +293,7 @@ public class ArrayListX<E> implements Collection<E> {
      */
     @Override
     public Object[] toArray() {
-        Object[] array = getNotNullElements().toArray();
-        return array;
+        return getNotNullElements().toArray();        
     }
 
     /*
@@ -381,6 +381,8 @@ public class ArrayListX<E> implements Collection<E> {
             E ret = null;
             if (index < data.length) {
                 ret = data[index++];
+            } else {
+                throw new NoSuchElementException("Index " + index + " greater or equal than length " + data.length);
             }
             return ret;
         }
