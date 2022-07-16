@@ -15,6 +15,7 @@ import java.awt.BasicStroke;
 
 import org.junit.Test;
 
+import de.jbo.jbogx2d.base.attrib.AttribLineStroke;
 import de.jbo.jbogx2d.base.attrib.AttribLineStrokeMap;
 
 /**
@@ -44,13 +45,13 @@ public class AttribLineStrokeMapTest {
         AttribLineStrokeMap map = new AttribLineStrokeMap();
         BasicStroke stroke = map.getStroke((short) 2, 3.0f);
         assertNotNull(stroke);
-        assertArrayEquals(AttribLineStrokeMap.DEFAULT_DOTTED, stroke.getDashArray(), 0.0f);
+        assertArrayEquals(AttribLineStroke.DEFAULT_DOTTED.getPattern(), stroke.getDashArray(), 0.0f);
         assertEquals(3.0f, stroke.getLineWidth(), 0.0f);
 
         final short invalidIndex = 1000;
         stroke = map.getStroke(invalidIndex, 1.0f);
         assertNotNull(stroke);
-        assertArrayEquals(AttribLineStrokeMap.DEFAULT_SOLID, stroke.getDashArray(), 0.0f);
+        assertArrayEquals(AttribLineStroke.DEFAULT_SOLID.getPattern(), stroke.getDashArray(), 0.0f);
         assertEquals(1.0f, stroke.getLineWidth(), 0.0f);
     }
 
@@ -63,10 +64,10 @@ public class AttribLineStrokeMapTest {
     public void testSetStroke() {
         final short id = 2;
         AttribLineStrokeMap map = new AttribLineStrokeMap();
-        map.setStroke(id, AttribLineStrokeMap.DEFAULT_DASH02_06);
+        map.setStroke(id, AttribLineStroke.DEFAULT_DASH02_06.getPattern());
         BasicStroke stroke = map.getStroke(id, 3.0f);
         assertNotNull(stroke);
-        assertArrayEquals(AttribLineStrokeMap.DEFAULT_DASH02_06, stroke.getDashArray(), 0.0f);
+        assertArrayEquals(AttribLineStroke.DEFAULT_DASH02_06.getPattern(), stroke.getDashArray(), 0.0f);
         assertEquals(3.0f, stroke.getLineWidth(), 0.0f);
 
     }

@@ -8,6 +8,7 @@
 
 package de.jbo.jbogx2d.base.attrib;
 
+import static de.jbo.jbogx2d.base.attrib.AttribLineStroke.*;
 import java.awt.BasicStroke;
 
 import de.jbo.jbogx2d.base.util.collection.ArrayListX;
@@ -19,72 +20,7 @@ import de.jbo.jbogx2d.base.util.collection.ArrayListX;
  * @author Josef Baro (jbo) <br>
  * @version 1.0 29.02.2004: jbo created <br>
  */
-public class AttribLineStrokeMap {
-    /** Default pattern. */
-    public static final float[] DEFAULT_HIDDEN = { 0.0f, 10.0f };
-
-    /** Default pattern. */
-    public static final float[] DEFAULT_SOLID = { 20.0f, 0.0f };
-
-    /** Default pattern. */
-    public static final float[] DEFAULT_DOTTED = { 3.0f, 3.0f };
-
-    /** Default pattern. */
-    public static final float[] DEFAULT_DASHED = { 17.0f, 6.0f };
-
-    /** Default pattern. */
-    public static final float[] DEFAULT_DASHED_DOTTED = { 9.0f, 6.0f, 3.0f, 6.0f };
-
-    /** Default pattern. */
-    public static final float[] DEFAULT_DASHED_DOT_DOT = { 10.0f, 3.0f, 3.0f, 3.0f, 3.0f, 3.0f };
-
-    /** Default pattern. */
-    public static final float[] DEFAULT_LONG_DASHED = { 20.0f, 10.0f };
-
-    /** Default pattern. */
-    public static final float[] DEFAULT_DASH_THREE_DOTTED = { 10.0f, 4.0f, 2.0f, 4.0f, 2.0f, 4.0f, 2.0f, 4.0f };
-
-    /** Default pattern. */
-    public static final float[] DEFAULT_TWO_DASH_TWO_DOTTED = { 10.0f, 4.0f, 10.0f, 4.0f, 2.0f, 4.0f, 2.0f, 4.0f };
-
-    /** Default pattern. */
-    public static final float[] DEFAULT_DASH02_02 = { 2.0f, 2.0f };
-
-    /** Default pattern. */
-    public static final float[] DEFAULT_DASH02_06 = { 2.0f, 6.0f };
-
-    /** Default pattern. */
-    public static final float[] DEFAULT_DASH02_14 = { 2.0f, 14.0f };
-
-    /** Default pattern. */
-    public static final float[] DEFAULT_DASH04_06 = { 4.0f, 6.0f };
-
-    /** Default pattern. */
-    public static final float[] DEFAULT_DASH04_12 = { 4.0f, 12.0f };
-
-    /** Default pattern. */
-    public static final float[] DEFAULT_DASH08_08 = { 8.0f, 8.0f };
-
-    /** Default pattern. */
-    public static final float[] DEFAULT_DASH10_06 = { 10.0f, 6.0f };
-
-    /** Default pattern. */
-    public static final float[] DEFAULT_DASH12_03 = { 12.0f, 3.0f };
-
-    /** Default pattern. */
-    public static final float[] DEFAULT_DASH04_02 = { 4.0f, 2.0f };
-
-    /** Default pattern. */
-    public static final float[] DEFAULT_DASH02_10 = { 2.0f, 10.0f };
-
-    /** Default pattern. */
-    public static final float[] DEFAULT_DASH10_10 = { 10.0f, 10.0f };
-
-    /** Default pattern. */
-    public static final float[] DEFAULT_DASH10_06_02_06 = { 10.0f, 6.0f, 2.0f, 6.0f };
-
-    /** Default pattern. */
-    public static final float[] DEFAULT_DASH06_06 = { 6.0f, 6.0f };
+public class AttribLineStrokeMap {    
 
     /** Map storing the stroke-mappings. */
     private final ArrayListX<float[]> strokeMap = new ArrayListX<>();
@@ -101,28 +37,28 @@ public class AttribLineStrokeMap {
      * Initializes the map with default stroke-values.
      */
     private void initDefaults() {
-        strokeMap.add(DEFAULT_HIDDEN);
-        strokeMap.add(DEFAULT_SOLID);
-        strokeMap.add(DEFAULT_DOTTED);
-        strokeMap.add(DEFAULT_DASHED);
-        strokeMap.add(DEFAULT_DASHED_DOTTED);
-        strokeMap.add(DEFAULT_DASHED_DOT_DOT);
-        strokeMap.add(DEFAULT_LONG_DASHED);
-        strokeMap.add(DEFAULT_DASH_THREE_DOTTED);
-        strokeMap.add(DEFAULT_TWO_DASH_TWO_DOTTED);
-        strokeMap.add(DEFAULT_DASH02_02);
-        strokeMap.add(DEFAULT_DASH02_06);
-        strokeMap.add(DEFAULT_DASH02_14);
-        strokeMap.add(DEFAULT_DASH04_06);
-        strokeMap.add(DEFAULT_DASH04_12);
-        strokeMap.add(DEFAULT_DASH08_08);
-        strokeMap.add(DEFAULT_DASH10_06);
-        strokeMap.add(DEFAULT_DASH12_03);
-        strokeMap.add(DEFAULT_DASH04_02);
-        strokeMap.add(DEFAULT_DASH02_10);
-        strokeMap.add(DEFAULT_DASH10_10);
-        strokeMap.add(DEFAULT_DASH10_06_02_06);
-        strokeMap.add(DEFAULT_DASH06_06);
+        strokeMap.add(DEFAULT_HIDDEN.getPattern());
+        strokeMap.add(DEFAULT_SOLID.getPattern());
+        strokeMap.add(DEFAULT_DOTTED.getPattern());
+        strokeMap.add(DEFAULT_DASHED.getPattern());
+        strokeMap.add(DEFAULT_DASHED_DOTTED.getPattern());
+        strokeMap.add(DEFAULT_DASHED_DOT_DOT.getPattern());
+        strokeMap.add(DEFAULT_LONG_DASHED.getPattern());
+        strokeMap.add(DEFAULT_DASH_THREE_DOTTED.getPattern());
+        strokeMap.add(DEFAULT_TWO_DASH_TWO_DOTTED.getPattern());
+        strokeMap.add(DEFAULT_DASH02_02.getPattern());
+        strokeMap.add(DEFAULT_DASH02_06.getPattern());
+        strokeMap.add(DEFAULT_DASH02_14.getPattern());
+        strokeMap.add(DEFAULT_DASH04_06.getPattern());
+        strokeMap.add(DEFAULT_DASH04_12.getPattern());
+        strokeMap.add(DEFAULT_DASH08_08.getPattern());
+        strokeMap.add(DEFAULT_DASH10_06.getPattern());
+        strokeMap.add(DEFAULT_DASH12_03.getPattern());
+        strokeMap.add(DEFAULT_DASH04_02.getPattern());
+        strokeMap.add(DEFAULT_DASH02_10.getPattern());
+        strokeMap.add(DEFAULT_DASH10_10.getPattern());
+        strokeMap.add(DEFAULT_DASH10_06_02_06.getPattern());
+        strokeMap.add(DEFAULT_DASH06_06.getPattern());
     }
 
     /**
@@ -135,18 +71,7 @@ public class AttribLineStrokeMap {
      * @return The mapped stroke is returned.
      */
     public final synchronized BasicStroke getStroke(final short id, final float lineWidth) {
-
-        float[] strokePattern = null;
-        BasicStroke stroke = null;
-
-        strokePattern = strokeMap.get(id);
-
-        if (strokePattern == null) {
-            strokePattern = AttribLineStrokeMap.DEFAULT_SOLID;
-        }
-        stroke = new BasicStroke(lineWidth, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL, 1.0f, strokePattern, 1.0f);
-
-        return stroke;
+        return AttribLineStroke.getStroke(strokeMap.get(id), lineWidth);
     }
 
     /**

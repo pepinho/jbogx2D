@@ -9,6 +9,7 @@
 package de.jbo.jbogx2d.base.elements.model;
 
 import java.util.LinkedList;
+import java.util.List;
 import java.util.ListIterator;
 
 import de.jbo.jbogx2d.base.attrib.AttribFill;
@@ -27,7 +28,7 @@ import de.jbo.jbogx2d.base.geom.PointUserSpace;
  */
 public class ElemModelContainer extends ElemModel {
     /** List of child elements. */
-    private final LinkedList<ElemBase> childList = new LinkedList<ElemBase>();
+    private final LinkedList<ElemBase> childList = new LinkedList<>();
 
     /**
      * Creates a new instance.
@@ -42,7 +43,7 @@ public class ElemModelContainer extends ElemModel {
     /**
      * @return The list of child elements.
      */
-    public LinkedList<ElemBase> getChildList() {
+    public List<ElemBase> getChildList() {
         return childList;
     }
 
@@ -81,11 +82,9 @@ public class ElemModelContainer extends ElemModel {
      */
     @Override
     public double getDistanceTo(PointUserSpace point) {
-        double distance = 0.0;
         BoundsUserSpace bounds = new BoundsUserSpace();
         getBounds(bounds);
-        distance = bounds.getDistanceTo(point);
-        return distance;
+        return bounds.getDistanceTo(point);
     }
 
     /*

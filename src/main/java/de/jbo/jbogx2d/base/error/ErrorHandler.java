@@ -8,7 +8,8 @@
 
 package de.jbo.jbogx2d.base.error;
 
-import java.util.Vector;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Implements the abstract base-class for the error-handling.
@@ -19,7 +20,7 @@ import java.util.Vector;
  */
 public abstract class ErrorHandler {
     /** The vector storing stacked non-fatal Exceptions during an operation. */
-    private final Vector<Throwable> exceptionStack = new Vector<Throwable>();
+    private final List<Throwable> exceptionStack = new ArrayList<>();
 
     /**
      * Returns the count of exceptions currently stored in the exception stack.
@@ -27,7 +28,7 @@ public abstract class ErrorHandler {
      * @return The count of exceptions currently stored.
      */
     public final boolean isErrorAvailable() {
-        return (exceptionStack.size() > 0);
+        return (!exceptionStack.isEmpty());
     }
 
     /**

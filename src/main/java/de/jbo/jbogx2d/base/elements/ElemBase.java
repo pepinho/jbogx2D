@@ -40,7 +40,7 @@ public abstract class ElemBase {
     /**
      * Creates a new instance.
      */
-    public ElemBase() {
+    protected ElemBase() {
         setModel(createModel());
     }
 
@@ -100,14 +100,10 @@ public abstract class ElemBase {
     public ElemBase getParent(final short level) {
         ElemBase p = null;
 
-        if (level >= Drawing.LEVEL_ROOT) {
-            if (getLevel() != level) {
-                p = parent;
-                if (p != null) {
-                    if (p.getLevel() != level) {
-                        p = p.getParent(level);
-                    }
-                }
+        if (level >= Drawing.LEVEL_ROOT && level != getLevel()) {
+            p = parent;
+            if (p != null && p.getLevel() != level) {
+                p = p.getParent(level);
             }
         }
 

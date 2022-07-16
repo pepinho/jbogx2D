@@ -9,6 +9,7 @@
 package de.jbo.jbogx2d.base.drawing.traversing;
 
 import java.util.LinkedList;
+import java.util.List;
 
 import de.jbo.jbogx2d.base.elements.ElemBase;
 
@@ -58,7 +59,7 @@ public abstract class ElementTraverserCollectElements extends ElementTraverser {
     /**
      * @return The list with collected elements.
      */
-    public LinkedList<ElemBase> getElementsList() {
+    public List<ElemBase> getElementsList() {
         return elementsList;
     }
 

@@ -34,7 +34,7 @@ public class ElemContainer extends ElemBase {
      */
     public ElemContainer() {
         super();
-        childList = ((ElemModelContainer) getModel()).getChildList();
+        childList = (LinkedList<ElemBase>) ((ElemModelContainer) getModel()).getChildList();
     }
 
     /*

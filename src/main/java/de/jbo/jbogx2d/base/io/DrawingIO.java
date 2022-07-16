@@ -22,12 +22,12 @@ import de.jbo.jbogx2d.base.io.event.IDrawingIOListener;
 public abstract class DrawingIO {
 
     /** List of registered IO listeners. */
-    private Collection<IDrawingIOListener> drawingIoListeners = new LinkedList<IDrawingIOListener>();
+    private Collection<IDrawingIOListener> drawingIoListeners = new LinkedList<>();
 
     /**
      * Creates a new instance.
      */
-    public DrawingIO() {
+    protected DrawingIO() {
 
     }
 
