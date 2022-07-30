@@ -75,4 +75,48 @@ public final class CurvedPolyUtil {
         }
         controlPoint.addPolar(distance * CONTROL_POINT_DIST_FACTOR, angle);
     }
+
+    /**
+     * Updates control points on insert.
+     * @param poly Object to handle.
+     * @param index Index inserted.
+     * @param x Coordinate
+     * @param y Coordinate
+     * @return True on success.
+     */
+    public static boolean updateControlPointsOnInsert(Polyline2D poly, int index, double x, double y) {
+        return updateControlPoints(Math.max(0, index - 1), Math.min(index + 1, poly.getPointCount() - 1), poly.getPoints(), poly.getPointCount());
+    }
+    
+    /**
+     * Updates control points on remove.
+     * @param poly Object to handle.
+     * @param index Index removed.
+     * @return True on success.
+     */
+    public static boolean updateControlPointsOnRemove(Polyline2D poly, int index) {
+        return updateControlPoints(Math.max(0, index - 1), index, poly.getPoints(), poly.getPointCount());
+    }
+    
+    /**
+     * Updates control points on set.
+     * @param poly Object to handle.
+     * @param index Index being set.
+     * @param x Coordinate.
+     * @param y Coordinate.
+     * @return True on success.
+     */
+    public static boolean updateControlPointsOnSet(Polyline2D poly, int index, double x, double y) {
+        return updateControlPoints(Math.max(0, index - 1), Math.min(index + 1, poly.getPointCount() - 1), poly.getPoints(), poly.getPointCount());
+    }
+    
+    /**
+     * Updates control points on set.
+     * @param poly Object to handle.
+     * @param points Points being set.
+     * @return True on success.
+     */
+    public static boolean updateControlPointsOnSet(Polyline2D poly, PointUserSpace[] points) {
+        return updateControlPoints(0, points.length - 1, poly.getPoints(), poly.getPointCount());
+    }
 }

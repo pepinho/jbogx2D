@@ -80,13 +80,11 @@ public class CurvedPolygon2D extends Polygon2D {
      */
     @Override
     public boolean insertPoint(int index, double x, double y) {
-        boolean ret = super.insertPoint(index, x, y);
-
-        if (ret) {
-            ret = CurvedPolyUtil.updateControlPoints(Math.max(0, index - 1), Math.min(index + 1, getPointCount() - 1), getPoints(), getPointCount());
+        if(super.insertPoint(index, x, y)) {
+            return CurvedPolyUtil.updateControlPointsOnInsert(this, index, x, y);
         }
 
-        return ret;
+        return false;
     }
 
     /*
@@ -97,13 +95,11 @@ public class CurvedPolygon2D extends Polygon2D {
      */
     @Override
     public boolean removePoint(int index) {
-        boolean ret = super.removePoint(index);
-
-        if (ret) {
-            ret = CurvedPolyUtil.updateControlPoints(Math.max(0, index - 1), index, getPoints(), getPointCount());
+        if (super.removePoint(index)) {
+            return CurvedPolyUtil.updateControlPointsOnRemove(this, index);
         }
 
-        return ret;
+        return false;
     }
 
     /*
@@ -114,13 +110,11 @@ public class CurvedPolygon2D extends Polygon2D {
      */
     @Override
     public boolean setPoint(int index, double x, double y) {
-        boolean ret = super.setPoint(index, x, y);
-
-        if (ret) {
-            ret = CurvedPolyUtil.updateControlPoints(Math.max(0, index - 1), Math.min(index + 1, getPointCount() - 1), getPoints(), getPointCount());
+        if(super.setPoint(index, x, y)) {
+            return CurvedPolyUtil.updateControlPointsOnSet(this, index, x, y);
         }
 
-        return ret;
+        return false;
     }
 
     /*
@@ -134,7 +128,7 @@ public class CurvedPolygon2D extends Polygon2D {
     public void setPoints(PointUserSpace[] p) {
         super.setPoints(p);
 
-        CurvedPolyUtil.updateControlPoints(0, p.length - 1, getPoints(), getPointCount());
+        CurvedPolyUtil.updateControlPointsOnSet(this, p);
     }
 
    
