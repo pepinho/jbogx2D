@@ -23,16 +23,16 @@ import de.jbo.jbogx2d.base.geom.PointUserSpace;
  */
 public class PathIteratorCurvedPolyline implements PathIterator {
     /** The polyline being rendered. */
-    private CurvedPolyline2D line;
+    private Polyline2D line;
 
     /** Transformation used for rendering. */
     private AffineTransform affine;
 
     /** End-index used for iteration. */
-    private int endIndex = 0;
+    protected int endIndex = 0;
 
     /** Index used for iteration. */
-    private int index = -1;
+    protected int index = -1;
 
     /**
      * Creates a new instance.
@@ -42,7 +42,7 @@ public class PathIteratorCurvedPolyline implements PathIterator {
      * @param transform
      *            The transformation being used.
      */
-    public PathIteratorCurvedPolyline(final CurvedPolyline2D theLine, final AffineTransform transform) {
+    public PathIteratorCurvedPolyline(final Polyline2D theLine, final AffineTransform transform) {
         super();
         this.line = theLine;
         endIndex = theLine.getPointCount();
@@ -61,17 +61,17 @@ public class PathIteratorCurvedPolyline implements PathIterator {
         PointUserSpace[] points = line.getPoints();
         if (index == 0) {
             type = SEG_MOVETO;
-            coords[0] = (float) points[index].x;
-            coords[1] = (float) points[index].y;
+            coords[0] = points[index].x;
+            coords[1] = points[index].y;
             // GeneralPathIterator
         } else if (index < line.getPointCount()) {
             type = SEG_QUADTO;
-            coords[0] = (float) points[index - 1].x;
-            coords[1] = (float) points[index - 1].y;
-            coords[2] = (float) points[index].x;
-            coords[3] = (float) points[index].y;
-            coords[4] = (float) points[index].x;
-            coords[5] = (float) points[index].y;
+            coords[0] = points[index - 1].x;
+            coords[1] = points[index - 1].y;
+            coords[2] = points[index].x;
+            coords[3] = points[index].y;
+            coords[4] = points[index].x;
+            coords[5] = points[index].y;
         }
 
         if (affine != null) {
