@@ -164,7 +164,7 @@ public abstract class MouseInteractionAdapter implements IMouseInteraction {
         return null;
     }
 
-    /*
+    /**
      * @see
      * de.jbo.jbogx2d.ui.interaction.IMouseInteraction#handleMouseReleasedMiddle
      * (de.jbo.jbogx2d.base.geom.PointUserSpace, int)
@@ -175,7 +175,7 @@ public abstract class MouseInteractionAdapter implements IMouseInteraction {
         return null;
     }
 
-    /*
+    /**
      * @see
      * de.jbo.jbogx2d.ui.interaction.IMouseInteraction#handleMouseReleasedRight
      * (de.jbo.jbogx2d.base.geom.PointUserSpace, int)
@@ -186,7 +186,7 @@ public abstract class MouseInteractionAdapter implements IMouseInteraction {
         return null;
     }
 
-    /*
+    /**
      * @see
      * de.jbo.jbogx2d.ui.interaction.IMouseInteraction#handleMouseWheel
      * (de.jbo.jbogx2d.base.geom.PointUserSpace, int, int, int, int, int)

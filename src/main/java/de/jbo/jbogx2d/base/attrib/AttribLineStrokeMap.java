@@ -71,7 +71,11 @@ public class AttribLineStrokeMap {
      * @return The mapped stroke is returned.
      */
     public final synchronized BasicStroke getStroke(final short id, final float lineWidth) {
-        return AttribLineStroke.getStroke(strokeMap.get(id), lineWidth);
+        float[] pattern = strokeMap.get(id);
+        if (pattern == null) {
+            pattern = DEFAULT_SOLID.getPattern();
+        }
+        return AttribLineStroke.getStroke(pattern, lineWidth);
     }
 
     /**

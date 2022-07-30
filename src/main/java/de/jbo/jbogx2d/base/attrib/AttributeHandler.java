@@ -66,8 +66,12 @@ public class AttributeHandler {
      * @return The color currently mapped under the given index.
      */
     public final synchronized Color getColor(final short colorIndex, double alpha) {
-        Color base = colorMap.getColor(colorIndex);
-        return new Color(base.getRed(), base.getGreen(), base.getBlue(), (int) (alpha * ALPHA_MODIFIER));
+        NamedColor base = colorMap.getColor(colorIndex);
+        if (alpha >= 1.0) {
+            return base;
+        }
+        
+        return new NamedColor(base.toString(), base.getRed(), base.getGreen(), base.getBlue(), (int) (alpha * ALPHA_MODIFIER));        
     }
 
     /**

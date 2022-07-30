@@ -8,8 +8,6 @@
 
 package de.jbo.jbogx2d.base.attrib;
 
-import java.awt.Color;
-
 import de.jbo.jbogx2d.base.util.collection.ArrayListX;
 
 /**
@@ -247,8 +245,8 @@ public class AttribColorMap {
      *            The color index to return the mapped Color for.
      * @return The color currently mapped under the given index.
      */
-    public final synchronized Color getColor(final int colorIndex) {
-        Color c = colorMap.get(colorIndex);
+    public final synchronized NamedColor getColor(final int colorIndex) {
+        NamedColor c = colorMap.get(colorIndex);
 
         if (c == null) {
             c = AttribColorMap.DEFAULT;
