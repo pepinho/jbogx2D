@@ -21,9 +21,7 @@ import de.jbo.jbogx2d.base.geom.PointUserSpace;
  * @version 1.0 14.03.2004: jbo created <br>
  */
 public class CurvedPolyline2D extends Polyline2D {
-    /** Distance factor for control-points. */
-    protected static final double CONTROL_POINT_DIST_FACTOR = 0.5;
-
+   
     /**
      * Creates a new instance.
      * 
@@ -84,7 +82,7 @@ public class CurvedPolyline2D extends Polyline2D {
         boolean ret = super.insertPoint(index, x, y);
 
         if (ret) {
-            ret = updateControlPoints(Math.max(0, index - 1), Math.min(index + 1, getPointCount() - 1));
+            ret = CurvedPolyUtil.updateControlPoints(Math.max(0, index - 1), Math.min(index + 1, getPointCount() - 1), getPoints(), getPointCount());
         }
 
         return ret;
@@ -101,7 +99,7 @@ public class CurvedPolyline2D extends Polyline2D {
         boolean ret = super.removePoint(index);
 
         if (ret) {
-            ret = updateControlPoints(Math.max(0, index - 1), index);
+            ret = CurvedPolyUtil.updateControlPoints(Math.max(0, index - 1), index, getPoints(), getPointCount());
         }
 
         return ret;
@@ -118,7 +116,7 @@ public class CurvedPolyline2D extends Polyline2D {
         boolean ret = super.setPoint(index, x, y);
 
         if (ret) {
-            ret = updateControlPoints(Math.max(0, index - 1), Math.min(index + 1, getPointCount() - 1));
+            ret = CurvedPolyUtil.updateControlPoints(Math.max(0, index - 1), Math.min(index + 1, getPointCount() - 1), getPoints(), getPointCount());
         }
 
         return ret;
@@ -135,57 +133,8 @@ public class CurvedPolyline2D extends Polyline2D {
     public void setPoints(PointUserSpace[] p) {
         super.setPoints(p);
 
-        updateControlPoints(0, p.length - 1);
+        CurvedPolyUtil.updateControlPoints(0, p.length - 1, getPoints(), getPointCount());
     }
 
-    /**
-     * Updates the control-points.
-     * 
-     * @param startIndex
-     *            The start-index to update for.
-     * @param stopIndex
-     *            The stop-index to update for.
-     * @return True if updated successfully.
-     */
-    private boolean updateControlPoints(int startIndex, int stopIndex) {
-        boolean ret = false;
-        int index = startIndex;
-        int count = getPointCount();
-
-        int newStopIndex = (stopIndex >= count) ? count - 1 : stopIndex;
-
-        for (; index <= newStopIndex; index++) {
-            updateControlPoint(index);
-        }
-
-        ret = true;
-
-        return ret;
-    }
-
-    /**
-     * Updates a single control-point.
-     * 
-     * @param index
-     *            The point to be updated.
-     */
-    private void updateControlPoint(int index) {
-        PointUserSpace[] points = getPoints();
-        PointUserSpaceCurved p1 = (PointUserSpaceCurved) points[index];
-       
-
-        if (index < (getPointCount() - 1)) {
-            PointUserSpace p2 = points[index + 1];
-            double distance = p1.distance(p2);
-            double angle = p1.angle(p2);
-            PointUserSpace controlPoint = p1.getControlPoint();
-            if (controlPoint == null) {
-                controlPoint = new PointUserSpace(p1.x, p1.y);
-                p1.setControlPoint(controlPoint);
-            } else {
-                controlPoint.set(p1.x, p1.y);
-            }
-            controlPoint.addPolar(distance * CONTROL_POINT_DIST_FACTOR, angle);
-        }
-    }
+  
 }
