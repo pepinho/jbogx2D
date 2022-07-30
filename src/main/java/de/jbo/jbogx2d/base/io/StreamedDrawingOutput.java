@@ -31,7 +31,7 @@ public abstract class StreamedDrawingOutput extends DrawingOutput {
      * @param ostream
      *            The outputstream to write the drawing data to.
      */
-    public StreamedDrawingOutput(OutputStream ostream) {
+    protected StreamedDrawingOutput(OutputStream ostream) {
         super();
         Jbogx2D.getErrorHandler().reset();
         setOutputStream(ostream);

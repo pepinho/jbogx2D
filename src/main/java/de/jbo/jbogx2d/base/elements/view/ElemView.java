@@ -43,7 +43,7 @@ public abstract class ElemView {
      * @param m
      *            The model to be rendered.
      */
-    public ElemView(ElemModel m) {
+    protected ElemView(ElemModel m) {
         super();
         setModel(m);
     }

@@ -93,18 +93,14 @@ public class AttribFillTest {
         Paint gradient = fill.getSystemGradient();
         TexturePaint texture = fill.getSystemTexture();
 
-        assertNull(backGround);
-        assertNull(foreGround);
-        assertNull(gradient);
-        assertNull(texture);
+        assertAllNull(backGround, foreGround, gradient, texture);;
 
         fill.setFillType(AttribFillType.TYPE_TEXTURE);
         elem.updateAttributes();
 
         backGround = fill.getSystemColorBackground();
         foreGround = fill.getSystemColorForeground();
-        assertEquals(AttribColorMap.WHITE, backGround);
-        assertEquals(AttribColorMap.BLACK, foreGround);
+        assertDefaultColors(backGround, foreGround);
 
         texture = fill.getSystemTexture();
         assertTexture(textureMap, fill.getTexture(), texture.getImage(), foreGround, backGround);
@@ -156,8 +152,7 @@ public class AttribFillTest {
 
         backGround = fill.getSystemColorBackground();
         foreGround = fill.getSystemColorForeground();
-        assertEquals(AttribColorMap.WHITE, backGround);
-        assertEquals(AttribColorMap.BLACK, foreGround);
+        assertDefaultColors(backGround, foreGround);
 
         final double alpha = 0.5;
         final int alphaModifier = 255;
@@ -170,6 +165,18 @@ public class AttribFillTest {
         Color expectedForeGround = new Color(AttribColorMap.BLACK.getRed(), AttribColorMap.BLACK.getGreen(), AttribColorMap.BLACK.getBlue(), (int) (alphaModifier * alpha));
         assertEquals(expectedBackGround, backGround);
         assertEquals(expectedForeGround, foreGround);
+    }
+
+    private void assertDefaultColors(Color backGround, Color foreGround) {
+        assertEquals(AttribColorMap.WHITE, backGround);
+        assertEquals(AttribColorMap.BLACK, foreGround);
+    }
+
+    private void assertAllNull(Color backGround, Color foreGround, Paint gradient, TexturePaint texture) {
+        assertNull(backGround);
+        assertNull(foreGround);
+        assertNull(gradient);
+        assertNull(texture);
     }
 
     /**

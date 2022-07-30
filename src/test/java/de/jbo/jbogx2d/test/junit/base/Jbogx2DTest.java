@@ -140,13 +140,17 @@ public class Jbogx2DTest {
      * {@link de.jbo.jbogx2d.base.Jbogx2D#setErrorHandler(de.jbo.jbogx2d.base.error.ErrorHandler)}
      * .
      */
-    @Test(expected = IllegalArgumentException.class)
     public void testSetErrorHandler() {
         MyErrorHandler eh = new MyErrorHandler();
         Jbogx2D.setErrorHandler(eh);
         assertNotNull("The error-handler was not set correctly.", Jbogx2D.getErrorHandler());
         assertEquals("The error-handler was not set correctly.", eh, Jbogx2D.getErrorHandler());
 
+        
+    }
+    
+    @Test(expected = IllegalArgumentException.class)
+    public void testSetErrorHandlerNull() {
         Jbogx2D.setErrorHandler(null);
     }
 

@@ -92,13 +92,9 @@ public class ElemModelCircle extends ElemModel {
      */
     @Override
     public double getDistanceTo(PointUserSpace point) {
-        double distance = 0.0;
         BoundsUserSpace bounds = new BoundsUserSpace();
-
         getBounds(bounds);
-        distance = bounds.getDistanceTo(point);
-
-        return distance;
+        return bounds.getDistanceTo(point);
     }
 
     /*

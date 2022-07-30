@@ -44,16 +44,6 @@ public class JGraphicsCanvas extends JPanel {
     private JGraphicsRenderPanel renderPanel = null;
 
     /**
-     * Ruler for x-axis.
-     */
-    private JGraphicsCanvasRuler rulerX = null;
-
-    /**
-     * Ruler for y-axis.
-     */
-    private JGraphicsCanvasRuler rulerY = null;
-
-    /**
      * Creates a new canvas.
      */
     public JGraphicsCanvas() {
@@ -67,10 +57,8 @@ public class JGraphicsCanvas extends JPanel {
     private void initUI() {
         renderPanel = new JGraphicsRenderPanel();
         add(renderPanel, CanvasBorderLayout.CENTER);
-        rulerX = new JGraphicsCanvasRuler(this, CanvasRulerMode.X_AXIS);
-        rulerY = new JGraphicsCanvasRuler(this, CanvasRulerMode.Y_AXIS);
-        add(rulerX, CanvasBorderLayout.NORTH);
-        add(rulerY, CanvasBorderLayout.WEST);
+        add(new JGraphicsCanvasRuler(this, CanvasRulerMode.X_AXIS), CanvasBorderLayout.NORTH);
+        add(new JGraphicsCanvasRuler(this, CanvasRulerMode.Y_AXIS), CanvasBorderLayout.WEST);
     }
 
     /**

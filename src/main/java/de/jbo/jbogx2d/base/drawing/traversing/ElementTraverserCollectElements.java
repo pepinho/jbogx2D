@@ -36,7 +36,7 @@ public abstract class ElementTraverserCollectElements extends ElementTraverser {
      * @param elementsCollection
      *            The result list for collected elements.
      */
-    public ElementTraverserCollectElements(LinkedList<ElemBase> elementsCollection) {
+    protected ElementTraverserCollectElements(List<ElemBase> elementsCollection) {
         super();
         setElementsList(elementsCollection);
     }
@@ -75,8 +75,11 @@ public abstract class ElementTraverserCollectElements extends ElementTraverser {
      * @param list
      *            Sets the result list to store collected elements in.
      */
-    public void setElementsList(LinkedList<ElemBase> list) {
-        elementsList = list;
+    public void setElementsList(List<ElemBase> list) {
+        if (! (list instanceof LinkedList)) {
+            throw new IllegalArgumentException("Please provide a list of type 'LinkedList'");
+        }
+        elementsList = (LinkedList<ElemBase>)list;
     }
 
     /**

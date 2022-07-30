@@ -9,6 +9,7 @@
 package de.jbo.jbogx2d.base.attrib;
 
 import java.awt.Color;
+import java.util.Objects;
 
 /**
  * Implements a color instance with a specific name defined by the user, e.g.
@@ -47,7 +48,7 @@ public class NamedColor extends Color {
      */
     public NamedColor(final String name, final int r, final int g, final int b, final int a) {
         super(r, g, b, a);
-        colorName = new String(name);
+        colorName = name;
     }
 
     /**
@@ -78,4 +79,26 @@ public class NamedColor extends Color {
     public final String toString() {
         return colorName;
     }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = super.hashCode();
+        result = prime * result + Objects.hash(colorName);
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (!super.equals(obj))
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        NamedColor other = (NamedColor) obj;
+        return Objects.equals(colorName, other.colorName);
+    }
+    
+    
 }

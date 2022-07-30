@@ -37,7 +37,7 @@ final class JGraphicsRenderPanel extends JPanel {
     /**
      * The view rendering handler.
      */
-    private ViewHandler viewHandler = null;
+    private transient ViewHandler viewHandler = null;
 
     /**
      * Creates a new instance.

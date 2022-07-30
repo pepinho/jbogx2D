@@ -104,14 +104,12 @@ public class AffineTransformX extends AffineTransform {
      *            world-coordinates.
      */
     public void windowTransform(BoundsUserSpace b1, BoundsUserSpace b2) {
-        double m00, m01, m02, m10, m11, m12;
-
-        m00 = b2.width / b1.width;
-        m02 = b2.x - m00 * b1.x;
-        m11 = b2.height / b1.height;
-        m12 = b2.y - m11 * b1.y;
-        m01 = 0.0;
-        m10 = 0.0;
+        double m00 = b2.width / b1.width;
+        double m02 = b2.x - m00 * b1.x;
+        double m11 = b2.height / b1.height;
+        double m12 = b2.y - m11 * b1.y;
+        double m01 = 0.0;
+        double m10 = 0.0;
 
         setTransform(m00, m10, m01, m11, m02, m12);
     }
@@ -126,15 +124,13 @@ public class AffineTransformX extends AffineTransform {
      *            The area defining the current window bounds in
      *            screen-coordinates.
      */
-    public void windowTransform(BoundsUserSpace world, BoundsScreen view) {
-        double m00, m01, m02, m10, m11, m12;
-
-        m00 = view.width / world.width;
-        m02 = view.x - m00 * world.x;
-        m11 = view.height / world.height;
-        m12 = view.y - m11 * world.y;
-        m01 = 0.0;
-        m10 = 0.0;
+    public void windowTransform(BoundsUserSpace world, BoundsScreen view) {       
+        double m00 = view.width / world.width;
+        double m02 = view.x - m00 * world.x;
+        double m11 = view.height / world.height;
+        double m12 = view.y - m11 * world.y;
+        double m01 = 0.0;
+        double m10 = 0.0;
 
         setTransform(m00, m10, m01, m11, m02, m12);
     }
@@ -150,14 +146,12 @@ public class AffineTransformX extends AffineTransform {
      *            The area of the bounds to be transformed
      */
     public void windowTransform(BoundsScreen view, BoundsUserSpace world) {
-        double m00, m01, m02, m10, m11, m12;
-
-        m00 = world.width / view.width;
-        m02 = world.x - m00 * view.x;
-        m11 = world.height / view.height;
-        m12 = world.y - m11 * view.y;
-        m01 = 0.0;
-        m10 = 0.0;
+        double m00 = world.width / view.width;
+        double m02 = world.x - m00 * view.x;
+        double m11 = world.height / view.height;
+        double m12 = world.y - m11 * view.y;
+        double m01 = 0.0;
+        double m10 = 0.0;
 
         setTransform(m00, m10, m01, m11, m02, m12);
     }

@@ -313,7 +313,7 @@ public class AttribFillTextureMap {
             { true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true }, };
 
     /** Map storing the texture-patterns. */
-    private final ArrayListX<boolean[][]> patternMap = new ArrayListX<boolean[][]>();
+    private final ArrayListX<boolean[][]> patternMap = new ArrayListX<>();
 
     /** Internal variable. */
     private final Color[] radialGradientColors = new Color[2];

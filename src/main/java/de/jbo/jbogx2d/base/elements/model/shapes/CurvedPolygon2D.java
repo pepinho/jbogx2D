@@ -173,16 +173,14 @@ public class CurvedPolygon2D extends Polygon2D {
         PointUserSpaceCurved p1 = (PointUserSpaceCurved) points[index];
         PointUserSpace p2 = null;
         int count = getPointCount();
-        double angle = 0.0;
-        double distance = 0.0;
 
         if (index < (count - 1)) {
             p2 = points[index + 1];
         } else {
             p2 = points[0];
         }
-        distance = p1.distance(p2);
-        angle = p1.angle(p2);
+        double distance = p1.distance(p2);
+        double angle = p1.angle(p2);
         PointUserSpace controlPoint = p1.getControlPoint();
         if (controlPoint == null) {
             controlPoint = new PointUserSpace(p1.x, p1.y);

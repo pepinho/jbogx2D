@@ -188,7 +188,7 @@ public class AttribColorMap {
     public static final NamedColor DEFAULT = new NamedColor("default", 0, 0, 0);
 
     /** Map storing the color-mappings. */
-    private final ArrayListX<NamedColor> colorMap = new ArrayListX<NamedColor>(256);
+    private final ArrayListX<NamedColor> colorMap = new ArrayListX<>(256);
 
     /**
      * Creates a new default color-map.

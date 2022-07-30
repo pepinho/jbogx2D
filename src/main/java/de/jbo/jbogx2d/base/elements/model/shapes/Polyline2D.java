@@ -360,12 +360,10 @@ public class Polyline2D implements Shape {
             double x2 = x1;
             double y1 = points[0].y;
             double y2 = y1;
-            double x = 0.0;
-            double y = 0.0;
 
             for (int i = 1; i < count; i++) {
-                x = points[i].x;
-                y = points[i].y;
+                double x = points[i].x;
+                double y = points[i].y;
 
                 if (x < x1) {
                     x1 = x;
@@ -414,12 +412,12 @@ public class Polyline2D implements Shape {
      * @see java.awt.Shape#intersects(java.awt.geom.Rectangle2D)
      */
     public boolean intersects(Rectangle2D r) {
-        for(int i = 0; i < points.length - 1; i++) {
+        for (int i = 0; i < points.length - 1; i++) {
             double x1 = points[i].x;
             double y1 = points[i].y;
             double x2 = points[i + 1].x;
             double y2 = points[i + 1].y;
-            
+
             if (r.intersectsLine(x1, y1, x2, y2)) {
                 return true;
             }

@@ -8,7 +8,7 @@
 package de.jbo.jbogx2d.test.junit.base;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 
 import java.util.Calendar;
@@ -242,8 +242,8 @@ public class VersionTest {
     @Test
     public void testEquals() {
         Version v = new Version("5.5.6", "b2000100523010101");
-        assertFalse(versionDate1.equals(v));
-        assertFalse(v.equals(null));
+        assertNotEquals(v, versionDate1);
+        assertNotEquals(v, null);
     }
 
     /**

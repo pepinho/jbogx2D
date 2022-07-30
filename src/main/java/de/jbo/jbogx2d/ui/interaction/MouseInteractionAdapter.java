@@ -19,8 +19,8 @@ public abstract class MouseInteractionAdapter implements IMouseInteraction {
     /*
      * @see
      * 
-     * de.jbo.jbogx2d.ui.interaction.IMouseInteraction#handleMouseDoubleclickLeft
-     * (de.jbo.jbogx2d.base.geom.PointUserSpace, int)
+     * de.jbo.jbogx2d.ui.interaction.IMouseInteraction#
+     * handleMouseDoubleclickLeft (de.jbo.jbogx2d.base.geom.PointUserSpace, int)
      */
     @Override
     public PaintRequest handleMouseDoubleclickLeft(PointUserSpace mousePos, int keyMask) {
@@ -31,8 +31,9 @@ public abstract class MouseInteractionAdapter implements IMouseInteraction {
     /*
      * @see
      * 
-     * de.jbo.jbogx2d.ui.interaction.IMouseInteraction#handleMouseDoubleclickMiddle
-     * (de.jbo.jbogx2d.base.geom.PointUserSpace, int)
+     * de.jbo.jbogx2d.ui.interaction.IMouseInteraction#
+     * handleMouseDoubleclickMiddle (de.jbo.jbogx2d.base.geom.PointUserSpace,
+     * int)
      */
     @Override
     public PaintRequest handleMouseDoubleclickMiddle(PointUserSpace mousePos, int keyMask) {
@@ -43,8 +44,9 @@ public abstract class MouseInteractionAdapter implements IMouseInteraction {
     /*
      * @see
      * 
-     * de.jbo.jbogx2d.ui.interaction.IMouseInteraction#handleMouseDoubleclickRight
-     * (de.jbo.jbogx2d.base.geom.PointUserSpace, int)
+     * de.jbo.jbogx2d.ui.interaction.IMouseInteraction#
+     * handleMouseDoubleclickRight (de.jbo.jbogx2d.base.geom.PointUserSpace,
+     * int)
      */
     @Override
     public PaintRequest handleMouseDoubleclickRight(PointUserSpace mousePos, int keyMask) {
@@ -186,12 +188,11 @@ public abstract class MouseInteractionAdapter implements IMouseInteraction {
 
     /*
      * @see
-     * de.jbo.jbogx2d.ui.interaction.IMouseInteraction#handleMouseWheel(de.jbo
-     * .jbogx2d.base.geom.PointUserSpace, int, int, int, int, int)
+     * de.jbo.jbogx2d.ui.interaction.IMouseInteraction#handleMouseWheel
+     * (de.jbo.jbogx2d.base.geom.PointUserSpace, int, int, int, int, int)
      */
     @Override
     public PaintRequest handleMouseWheel(PointUserSpace mousePos, int keyMask, int wheelRotation, int scrollAmount, int scrollType, int unitsToScroll) {
-
         return null;
     }
 

@@ -8,7 +8,7 @@
 
 package de.jbo.jbogx2d.base.drawing.traversing;
 
-import java.util.LinkedList;
+import java.util.List;
 
 import de.jbo.jbogx2d.base.elements.ElemBase;
 import de.jbo.jbogx2d.base.elements.ElemContainer;
@@ -51,7 +51,7 @@ public class ElementTraverserCollectByBounds extends ElementTraverserCollectElem
      *            given bounds or only elements that reside completely within
      *            the given bounds.
      */
-    public ElementTraverserCollectByBounds(final LinkedList<ElemBase> elementsCollection, final BoundsUserSpace b, final boolean collectContainers, final boolean collectIntersections) {
+    public ElementTraverserCollectByBounds(final List<ElemBase> elementsCollection, final BoundsUserSpace b, final boolean collectContainers, final boolean collectIntersections) {
         super(elementsCollection);
         bounds.set(b);
         this.isCollectContainers = collectContainers;

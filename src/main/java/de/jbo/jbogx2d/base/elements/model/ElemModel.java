@@ -40,7 +40,7 @@ public abstract class ElemModel {
      * @param elem
      *            The element to create the model for.
      */
-    public ElemModel(final ElemBase elem) {
+    protected ElemModel(final ElemBase elem) {
         super();
         setElement(elem);
     }
@@ -82,10 +82,8 @@ public abstract class ElemModel {
     public void setBoundsDirty(final boolean b) {
         isBoundsDirty = b;
         ElemView view = element.getView();
-        if (view != null) {
-            if (view.isHandlesVisible()) {
-                view.updateHandles();
-            }
+        if (view != null && view.isHandlesVisible()) {
+            view.updateHandles();
         }
     }
 

@@ -28,14 +28,7 @@ public final class MetadataFile {
     private Version fileVersion = null;
 
     /** Drawing layers. */
-    private Collection<MetadataLayer> layers = new LinkedList<MetadataLayer>();
-
-    /**
-     * Creates a new instance.
-     */
-    public MetadataFile() {
-
-    }
+    private Collection<MetadataLayer> layers = new LinkedList<>();
 
     /**
      * @param newFileVersion

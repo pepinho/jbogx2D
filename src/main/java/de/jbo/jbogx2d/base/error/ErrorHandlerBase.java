@@ -8,6 +8,9 @@
 
 package de.jbo.jbogx2d.base.error;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * Implements the default error-handler for the base module of jbogx2D. <br>
  * Errors stacktraces are printed to the standard err-console and fatal-error
@@ -17,14 +20,15 @@ package de.jbo.jbogx2d.base.error;
  * @version 1.0 28.02.2004: jbo created <br>
  */
 public class ErrorHandlerBase extends ErrorHandler {
-
+    private static final Logger LOGGER = LoggerFactory.getLogger(ErrorHandlerBase.class);
+    
     /*
      * @see
      * de.jbo.jbogx2d.base.error.ErrorHandler#handleError(java.lang.Throwable)
      */
     @Override
     protected void handleError(Throwable ex) {
-        ex.printStackTrace();
+        LOGGER.error(ex.getMessage(), ex);
     }
 
     /*
@@ -34,7 +38,7 @@ public class ErrorHandlerBase extends ErrorHandler {
      */
     @Override
     protected void handleFatalError(Throwable ex) {
-        ex.printStackTrace();
+        LOGGER.error(ex.getMessage(), ex);
         System.exit(-1);
     }
 

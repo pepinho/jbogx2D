@@ -15,9 +15,7 @@ import java.awt.geom.Point2D;
  * @version 27.10.2004 Josef Baro - created <br>
  */
 public class PointUserSpace extends Point2D.Double {
-    /**
-     * 
-     */
+   
     private static final long serialVersionUID = 202982060652560593L;
 
     /**
@@ -222,12 +220,7 @@ public class PointUserSpace extends Point2D.Double {
      *            The direction angle to add the distance value to this point
      *            instance.
      */
-    public void addPolar(double distance, double angle) {
-        double x1, y1;
-
-        x1 = Math.cos(angle) * distance;
-        y1 = Math.sin(angle) * distance;
-
-        add(x1, y1);
+    public void addPolar(double distance, double angle) {       
+        add(Math.cos(angle) * distance, Math.sin(angle) * distance);
     }
 }

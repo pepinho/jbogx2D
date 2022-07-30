@@ -103,6 +103,7 @@ public class JbogxDrawingOutput extends StreamedDrawingOutput {
             String name = layer.getName();
             metaData.addLayer(new MetadataLayer(name, filePos));
             // XXX write quad-tree with elements for each layer...
+            ret = true;
         }
         return ret;
     }

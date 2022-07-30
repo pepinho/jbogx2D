@@ -20,7 +20,7 @@ import de.jbo.jbogx2d.base.util.collection.ArrayListX;
  */
 public class AttribFontMap {
     /** Map storing the font-mappings. */
-    private final ArrayListX<Font> fontMap = new ArrayListX<Font>();
+    private final ArrayListX<Font> fontMap = new ArrayListX<>();
 
     /** The default font-name. */
     public static final String DEFAULT_FONT_FAMILY = "Default";

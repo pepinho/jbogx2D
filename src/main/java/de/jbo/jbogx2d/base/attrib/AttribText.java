@@ -15,6 +15,7 @@ import java.awt.font.LineMetrics;
 import java.awt.font.TextAttribute;
 import java.awt.geom.AffineTransform;
 import java.util.HashMap;
+import java.util.Map;
 
 import de.jbo.jbogx2d.base.Jbogx2D;
 import de.jbo.jbogx2d.base.elements.model.ElemModel;
@@ -81,7 +82,7 @@ public class AttribText implements AttribBase {
     private double lineFeed = 1.0;
 
     /** Map containing the attributes of the text for the render engine. */
-    private final HashMap<TextAttribute, Object> systemAttributes = new HashMap<TextAttribute, Object>();
+    private final Map<TextAttribute, Object> systemAttributes = new HashMap<>();
 
     /**
      * Creates a new instance. The following default values are used: <br>
@@ -193,7 +194,7 @@ public class AttribText implements AttribBase {
     /**
      * @return The system-attributes.
      */
-    public final HashMap<TextAttribute, Object> getSystemAttributes() {
+    public final Map<TextAttribute, Object> getSystemAttributes() {
         return systemAttributes;
     }
 

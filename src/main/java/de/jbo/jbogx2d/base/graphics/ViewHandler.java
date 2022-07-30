@@ -16,6 +16,9 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.LinkedList;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import de.jbo.jbogx2d.base.drawing.Drawing;
 import de.jbo.jbogx2d.base.drawing.IDrawingModifiedListener;
 import de.jbo.jbogx2d.base.elements.ElemBase;
@@ -34,6 +37,8 @@ import de.jbo.jbogx2d.ui.interaction.MouseInteractionHandler;
  * @version 1.0 01.03.2004: jbo created <br>
  */
 public class ViewHandler implements IDrawingModifiedListener {
+    private static final Logger LOGGER = LoggerFactory.getLogger(ViewHandler.class);
+    
     /** The component to render to. */
     private Component screenComponent = null;
 
@@ -369,7 +374,7 @@ public class ViewHandler implements IDrawingModifiedListener {
         Iterator<ElemBase> iterator = elemViews.iterator();
         ElemBase elem = null;
 
-        System.out.println("Drawing " + elemViews.size() + " elements...");
+        LOGGER.trace("Drawing {} elements...", elemViews.size());
 
         while (iterator.hasNext()) {
             elem = iterator.next();

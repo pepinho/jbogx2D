@@ -67,14 +67,10 @@ public class ElemModelPolyline extends ElemModel {
      * .base.geom.PointUserSpace)
      */
     @Override
-    public double getDistanceTo(PointUserSpace point) {
-        double distance = 0.0;
+    public double getDistanceTo(PointUserSpace point) {        
         BoundsUserSpace bounds = new BoundsUserSpace();
-
         getBounds(bounds);
-        distance = bounds.getDistanceTo(point);
-
-        return distance;
+        return bounds.getDistanceTo(point);
     }
 
     /*

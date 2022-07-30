@@ -172,14 +172,12 @@ public class CurvedPolyline2D extends Polyline2D {
     private void updateControlPoint(int index) {
         PointUserSpace[] points = getPoints();
         PointUserSpaceCurved p1 = (PointUserSpaceCurved) points[index];
-        PointUserSpace p2 = null;
-        double angle = 0.0;
-        double distance = 0.0;
+       
 
         if (index < (getPointCount() - 1)) {
-            p2 = points[index + 1];
-            distance = p1.distance(p2);
-            angle = p1.angle(p2);
+            PointUserSpace p2 = points[index + 1];
+            double distance = p1.distance(p2);
+            double angle = p1.angle(p2);
             PointUserSpace controlPoint = p1.getControlPoint();
             if (controlPoint == null) {
                 controlPoint = new PointUserSpace(p1.x, p1.y);

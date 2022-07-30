@@ -42,7 +42,7 @@ public abstract class ElemHandles {
     /**
      * Creates a new instance.
      */
-    public ElemHandles() {
+    protected ElemHandles() {
         super();
     }
 

@@ -279,7 +279,7 @@ public class BoundsUserSpace extends Rectangle2D.Double {
      */
     public final double getDistanceTo(PointUserSpace point) {
         int outcode = outcode(point.x, point.y);
-        double distance = 0.0;
+        double distance;
         double minDistance = java.lang.Double.MAX_VALUE;
 
         // Oberkante

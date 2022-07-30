@@ -12,6 +12,9 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.LinkedList;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import de.jbo.jbogx2d.base.elements.ElemBase;
 import de.jbo.jbogx2d.base.geom.BoundsUserSpace;
 import de.jbo.jbogx2d.base.util.collection.ArrayListX;
@@ -21,11 +24,13 @@ import de.jbo.jbogx2d.base.util.collection.ArrayListX;
  * @version 1.0 01.03.2004: jbo created <br>
  */
 public class ViewQuadTreeNode {
+    private static final Logger LOGGER = LoggerFactory.getLogger(ViewQuadTreeNode.class);
+    
     /** The user-space bounds of the node's quadrant. */
     private final BoundsUserSpace quadrantBounds = new BoundsUserSpace();
 
     /** List of elements stored directly under this node. */
-    private LinkedList<ElemBase> elemList = new LinkedList<ElemBase>();
+    private LinkedList<ElemBase> elemList = new LinkedList<>();
 
     /** The parent tree-node. */
     private ViewQuadTreeNode parent = null;
@@ -198,7 +203,7 @@ public class ViewQuadTreeNode {
             count += quad.getElemCount(recursively);
         }
 
-        list = new ArrayListX<ElemBase>(count);
+        list = new ArrayListX<>(count);
         getElems(list, (quad == null), bounds);
 
         if (quad != null) {
@@ -331,7 +336,7 @@ public class ViewQuadTreeNode {
     public void trace() {
         int level = 1;
 
-        System.out.println("--- Quad-tree trace start ---");
+        LOGGER.trace("--- Quad-tree trace start ---");
         trace(level);
     }
 
@@ -342,8 +347,8 @@ public class ViewQuadTreeNode {
      *            The tree-level to dump.
      */
     protected void trace(int level) {
-        System.out.println("Level: " + level);
-        System.out.println("Root elems: " + elemList.size());
+        LOGGER.trace("Level: {}", level);
+        LOGGER.trace("Root elems: {}", elemList.size());
         if (!isLeaf()) {
             quadrantNE.trace(level + 1);
             quadrantNW.trace(level + 1);

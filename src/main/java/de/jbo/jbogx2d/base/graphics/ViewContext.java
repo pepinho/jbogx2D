@@ -21,6 +21,7 @@ import java.awt.image.BufferedImage;
 import java.awt.image.ImageObserver;
 import java.text.AttributedString;
 import java.util.HashMap;
+import java.util.Map;
 
 import de.jbo.jbogx2d.base.Jbogx2D;
 import de.jbo.jbogx2d.base.attrib.AttribFill;
@@ -79,7 +80,7 @@ public abstract class ViewContext implements ImageObserver {
     private Color backgroundColorSystem = Color.white;
 
     /** Map storing the renderingHints for the graphics context. */
-    private final HashMap<RenderingHints.Key, Object> mapRenderingHints = new HashMap<RenderingHints.Key, Object>();
+    private final HashMap<RenderingHints.Key, Object> mapRenderingHints = new HashMap<>();
 
     /** Indicates if the graphics context was set from external source. */
     private boolean isExternalGraphicsSet = false;
@@ -87,7 +88,7 @@ public abstract class ViewContext implements ImageObserver {
     /**
      * Creates a new instance.
      */
-    public ViewContext() {
+    protected ViewContext() {
         super();
         mapRenderingHints.put(RenderingHints.KEY_FRACTIONALMETRICS, RenderingHints.VALUE_FRACTIONALMETRICS_ON);
     }
@@ -330,7 +331,7 @@ public abstract class ViewContext implements ImageObserver {
             } else {
                 b.set(bounds);
             }
-            bitBlt(b.x, b.y, b.width, b.height, sourceView, b.x, b.y);
+            bitBlt(b.x, b.y, b.width, b.height, sourceView);
             sourceView.dispose();
         }
     }
@@ -417,7 +418,7 @@ public abstract class ViewContext implements ImageObserver {
             } else {
                 BoundsScreen b = new BoundsScreen();
                 transformUserSpaceToScreen(bounds, b);
-                bitBlt(b.x, b.y, b.width, b.height, sourceView, b.x, b.y);
+                bitBlt(b.x, b.y, b.width, b.height, sourceView);
             }
         }
     }
@@ -484,7 +485,7 @@ public abstract class ViewContext implements ImageObserver {
      * @param ySrc
      *            The upper-left y-position of the area on the source view.
      */
-    private void bitBlt(final int xDest, final int yDest, final int wDest, final int hDest, final ViewContext src, final int xSrc, final int ySrc) {
+    private void bitBlt(final int xDest, final int yDest, final int wDest, final int hDest, final ViewContext src) {
         Image img = src.getImage();
 
         if (img != null) {
@@ -743,7 +744,7 @@ public abstract class ViewContext implements ImageObserver {
     /**
      * @return the mapRenderingHints
      */
-    public final HashMap<RenderingHints.Key, Object> getRenderingHints() {
+    public final Map<RenderingHints.Key, Object> getRenderingHints() {
         return mapRenderingHints;
     }
 

@@ -33,19 +33,12 @@ public class PaintRequest {
     /**
      * XOR elements to be rendered.
      */
-    private final Collection<IMouseInteractionXorElement> xorElements = new TreeSet<IMouseInteractionXorElement>();
+    private final Collection<IMouseInteractionXorElement> xorElements = new TreeSet<>();
 
     /**
      * True if xor-element is to re resetted again after paint.
      */
     private boolean isResetXor = false;
-
-    /**
-     * Creates a new instance.
-     */
-    public PaintRequest() {
-
-    }
 
     /**
      * @return the isResetXor

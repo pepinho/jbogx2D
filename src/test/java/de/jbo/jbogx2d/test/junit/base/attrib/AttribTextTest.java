@@ -8,7 +8,7 @@
 package de.jbo.jbogx2d.test.junit.base.attrib;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assume.assumeTrue;
@@ -17,7 +17,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.font.TextAttribute;
 import java.awt.geom.AffineTransform;
-import java.util.HashMap;
+import java.util.Map;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -101,7 +101,7 @@ public class AttribTextTest {
         final float sizeSystem = 1.1328125f;
         final float ascent = 0.83251953f;
         final float descent = 0.30029297f;
-        final HashMap<TextAttribute, Object> systemAttributes = attrib.getSystemAttributes();
+        final Map<TextAttribute, Object> systemAttributes = attrib.getSystemAttributes();
         final Font font = Jbogx2D.getAttributeHandler().getFont((short) 1);
         final AffineTransform transform = new AffineTransform();
 
@@ -158,8 +158,8 @@ public class AttribTextTest {
     public void testAddStyle() {
         attrib.addStyle(AttribText.STYLE_BOLD);
 
-        assertTrue((attrib.getStyle() & AttribText.STYLE_BOLD) == AttribText.STYLE_BOLD);
-        assertFalse((attrib.getStyle() & AttribText.STYLE_ITALIC) == AttribText.STYLE_ITALIC);
+        assertEquals(AttribText.STYLE_BOLD, (short)(attrib.getStyle() & AttribText.STYLE_BOLD));
+        assertNotEquals((short)(attrib.getStyle() & AttribText.STYLE_ITALIC), AttribText.STYLE_ITALIC);
     }
 
     /**
@@ -172,8 +172,8 @@ public class AttribTextTest {
         attrib.addStyle(AttribText.STYLE_ITALIC);
         attrib.removeStyle(AttribText.STYLE_ITALIC);
 
-        assertTrue((attrib.getStyle() & AttribText.STYLE_BOLD) == AttribText.STYLE_BOLD);
-        assertFalse((attrib.getStyle() & AttribText.STYLE_ITALIC) == AttribText.STYLE_ITALIC);
+        assertEquals(AttribText.STYLE_BOLD, (short)(attrib.getStyle() & AttribText.STYLE_BOLD));
+        assertNotEquals((short)(attrib.getStyle() & AttribText.STYLE_ITALIC), AttribText.STYLE_ITALIC);
     }
 
     /**
@@ -214,8 +214,8 @@ public class AttribTextTest {
         attrib.addStyle(AttribText.STYLE_ITALIC);
         attrib.removeStyle(AttribText.STYLE_ITALIC);
 
-        assertTrue((attrib.getStyle() & AttribText.STYLE_BOLD) == AttribText.STYLE_BOLD);
-        assertFalse((attrib.getStyle() & AttribText.STYLE_ITALIC) == AttribText.STYLE_ITALIC);
+        assertEquals(AttribText.STYLE_BOLD, (attrib.getStyle() & AttribText.STYLE_BOLD));
+        assertNotEquals(AttribText.STYLE_ITALIC, (short)(attrib.getStyle() & AttribText.STYLE_ITALIC));
     }
 
     /**

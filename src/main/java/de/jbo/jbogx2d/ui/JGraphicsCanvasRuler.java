@@ -183,71 +183,74 @@ final class JGraphicsCanvasRuler extends JPanel implements IZoomListener, IScrol
      */
     private void updateValuesY(final int newGridSpacingPixelX, final int gridSpacingPixelY, final double gridSpacingUserSpace, final BoundsUserSpace newVisibleBounds, final BoundsUserSpace drawingBounds) {
         Dimension size = getSize();
-        if (size.height > 0) {
-            Insets insets = getInsets();
-            WrapperDouble firstUnitY = new WrapperDouble();
-            int firstTickY = calculateFirstGridTickY(gridSpacingUserSpace, newVisibleBounds, drawingBounds, firstUnitY);
+        if (size.height <= 0) {
+            return;
+        }
 
-            /*
-             * Calculate rounding scales
-             */
-            BigDecimal decimal = new BigDecimal(gridSpacingUserSpace);
-            int scaleGrid = decimal.scale();
-            decimal = new BigDecimal(drawingBounds.x);
-            int scaleOrigin = decimal.scale();
-            int roundingScaleY = Math.max(scaleGrid, scaleOrigin);
+        Insets insets = getInsets();
+        WrapperDouble firstUnitY = new WrapperDouble();
+        int firstTickY = calculateFirstGridTickY(gridSpacingUserSpace, newVisibleBounds, drawingBounds, firstUnitY);
 
-            int correctionFactor = ViewDrawingGrid.checkForMinimumScreenSpacing(newGridSpacingPixelX, gridSpacingPixelY);
+        /*
+         * Calculate rounding scales
+         */
+        BigDecimal decimal = BigDecimal.valueOf(gridSpacingUserSpace);
+        int scaleGrid = decimal.scale();
+        decimal = BigDecimal.valueOf(drawingBounds.x);
+        int scaleOrigin = decimal.scale();
+        int roundingScaleY = Math.max(scaleGrid, scaleOrigin);
 
-            int tick = firstTickY;
-            double unit = firstUnitY.getValue();
-            String widestUnit = "";
+        int correctionFactor = ViewDrawingGrid.checkForMinimumScreenSpacing(newGridSpacingPixelX, gridSpacingPixelY);
 
-            rulerUnitsY.clear();
+        int tick = firstTickY;
+        double unit = firstUnitY.getValue();
+        String widestUnit = "";
 
-            Graphics2D g2D = (Graphics2D) getGraphics();
-            if (g2D != null) {
-                while (tick <= size.height) {
-                    RulerUnit rulerUnit = new RulerUnit();
-                    int x1 = size.width - insets.right - scaleTickSize;
-                    int x2 = size.width - insets.right;
+        rulerUnitsY.clear();
 
-                    rulerUnit.positionTickX1 = x1;
-                    rulerUnit.positionTickX2 = x2;
-                    rulerUnit.positionTickY1 = tick;
-                    rulerUnit.positionTickY2 = tick;
+        Graphics2D g2D = (Graphics2D) getGraphics();
+        if (g2D == null) {
+            return;
+        }
+        while (tick <= size.height) {
+            RulerUnit rulerUnit = new RulerUnit();
+            int x1 = size.width - insets.right - scaleTickSize;
+            int x2 = size.width - insets.right;
 
-                    rulerUnit.unitText = MathUtils.roundToString(unit, roundingScaleY);
+            rulerUnit.positionTickX1 = x1;
+            rulerUnit.positionTickX2 = x2;
+            rulerUnit.positionTickY1 = tick;
+            rulerUnit.positionTickY2 = tick;
 
-                    rulerUnit.positionUnitX = x1 - 1;
-                    rulerUnit.positionUnitY = tick;
+            rulerUnit.unitText = MathUtils.roundToString(unit, roundingScaleY);
 
-                    rulerUnitsY.add(rulerUnit);
+            rulerUnit.positionUnitX = x1 - 1;
+            rulerUnit.positionUnitY = tick;
 
-                    if (rulerUnit.unitText.length() > widestUnit.length()) {
-                        widestUnit = rulerUnit.unitText;
-                    }
+            rulerUnitsY.add(rulerUnit);
 
-                    tick += gridSpacingPixelY * correctionFactor;
-                    unit += gridSpacingUserSpace * correctionFactor;
-                    if ((gridSpacingPixelY == 0) || (correctionFactor == 0)) {
-                        return;
-                    }
-                }
-                /*
-                 * Check widest unit text. Is it too wide to be displayed
-                 * without overlapping its neighbour, we skip each 2nd unit-text
-                 * to avoid overlapping...
-                 */
-                int skips = 0;
-
-                Rectangle2D textBounds = getFont().getStringBounds(widestUnit, g2D.getFontRenderContext());
-                double maxWidth = textBounds.getWidth() + TEXT_WIDTH_SPACING;
-                skips = (int) maxWidth / (gridSpacingPixelY * correctionFactor);
-                if (skips > 0) {
-                    skipTexts(skips, rulerUnitsY);
-                }
+            if (rulerUnit.unitText.length() > widestUnit.length()) {
+                widestUnit = rulerUnit.unitText;
             }
+
+            tick += gridSpacingPixelY * correctionFactor;
+            unit += gridSpacingUserSpace * correctionFactor;
+            if ((gridSpacingPixelY == 0) || (correctionFactor == 0)) {
+                return;
+            }
+        }
+        /*
+         * Check widest unit text. Is it too wide to be displayed without
+         * overlapping its neighbour, we skip each 2nd unit-text to avoid
+         * overlapping...
+         */
+        int skips = 0;
+
+        Rectangle2D textBounds = getFont().getStringBounds(widestUnit, g2D.getFontRenderContext());
+        double maxWidth = textBounds.getWidth() + TEXT_WIDTH_SPACING;
+        skips = (int) maxWidth / (gridSpacingPixelY * correctionFactor);
+        if (skips > 0) {
+            skipTexts(skips, rulerUnitsY);
         }
     }
 
@@ -267,75 +270,76 @@ final class JGraphicsCanvasRuler extends JPanel implements IZoomListener, IScrol
      */
     private void updateValuesX(final int gridSpacingPixelX, final int gridSpacingPixelY, final double gridSpacingUserSpace, final BoundsUserSpace newVisibleBounds, final BoundsUserSpace drawingBounds) {
         Dimension size = getSize();
-        if (size.width > 0) {
-            Insets insets = getInsets();
-            WrapperDouble firstUnitX = new WrapperDouble();
-            int firstTickX = calculateFirstGridTickX(gridSpacingUserSpace, newVisibleBounds, drawingBounds, firstUnitX);
+        if (size.width <= 0) {
+            return;
+        }
+        Insets insets = getInsets();
+        WrapperDouble firstUnitX = new WrapperDouble();
+        int firstTickX = calculateFirstGridTickX(gridSpacingUserSpace, newVisibleBounds, drawingBounds, firstUnitX);
 
-            /*
-             * Calculate rounding scales
-             */
-            BigDecimal decimal = new BigDecimal(gridSpacingUserSpace);
-            int scaleGrid = decimal.scale();
-            decimal = new BigDecimal(drawingBounds.x);
-            int scaleOrigin = decimal.scale();
-            int roundingScaleX = Math.max(scaleGrid, scaleOrigin);
+        /*
+         * Calculate rounding scales
+         */
+        BigDecimal decimal = BigDecimal.valueOf(gridSpacingUserSpace);
+        int scaleGrid = decimal.scale();
+        decimal = BigDecimal.valueOf(drawingBounds.x);
+        int scaleOrigin = decimal.scale();
+        int roundingScaleX = Math.max(scaleGrid, scaleOrigin);
 
-            int correctionFactor = ViewDrawingGrid.checkForMinimumScreenSpacing(gridSpacingPixelX, gridSpacingPixelY);
+        int correctionFactor = ViewDrawingGrid.checkForMinimumScreenSpacing(gridSpacingPixelX, gridSpacingPixelY);
 
-            int tick = firstTickX;
-            double unit = firstUnitX.getValue();
-            String widestUnit = "";
+        int tick = firstTickX;
+        double unit = firstUnitX.getValue();
+        String widestUnit = "";
 
-            rulerUnitsX.clear();
+        rulerUnitsX.clear();
 
-            Graphics2D g2D = (Graphics2D) getGraphics();
-            if (g2D != null) {
+        Graphics2D g2D = (Graphics2D) getGraphics();
+        if (g2D == null) {
+            return;
+        }
+        while (tick <= size.width) {
+            RulerUnit rulerUnit = new RulerUnit();
+            int y1 = size.height - insets.bottom - scaleTickSize;
+            int y2 = size.height - insets.bottom;
 
-                while (tick <= size.width) {
-                    RulerUnit rulerUnit = new RulerUnit();
-                    int y1 = size.height - insets.bottom - scaleTickSize;
-                    int y2 = size.height - insets.bottom;
+            rulerUnit.positionTickX1 = tick;
+            rulerUnit.positionTickX2 = tick;
+            rulerUnit.positionTickY1 = y1;
+            rulerUnit.positionTickY2 = y2;
 
-                    rulerUnit.positionTickX1 = tick;
-                    rulerUnit.positionTickX2 = tick;
-                    rulerUnit.positionTickY1 = y1;
-                    rulerUnit.positionTickY2 = y2;
+            String text = MathUtils.roundToString(unit, roundingScaleX);
+            Rectangle2D textBounds = getFont().getStringBounds(text, g2D.getFontRenderContext());
 
-                    String text = MathUtils.roundToString(unit, roundingScaleX);
-                    Rectangle2D textBounds = getFont().getStringBounds(text, g2D.getFontRenderContext());
+            rulerUnit.positionUnitX = tick - (int) (textBounds.getWidth() / 2.0);
+            rulerUnit.positionUnitY = y1 - 1;
 
-                    rulerUnit.positionUnitX = tick - (int) (textBounds.getWidth() / 2.0);
-                    rulerUnit.positionUnitY = y1 - 1;
+            rulerUnit.unitText = text;
 
-                    rulerUnit.unitText = new String(text);
+            rulerUnitsX.add(rulerUnit);
 
-                    rulerUnitsX.add(rulerUnit);
-
-                    if (rulerUnit.unitText.length() > widestUnit.length()) {
-                        widestUnit = rulerUnit.unitText;
-                    }
-
-                    tick += gridSpacingPixelX * correctionFactor;
-                    unit += gridSpacingUserSpace * correctionFactor;
-                    if ((gridSpacingPixelX == 0) || (correctionFactor == 0)) {
-                        return;
-                    }
-                }
-                /*
-                 * Check widest unit text. Is it too wide to be displayed
-                 * without overlapping its neighbour, we skip each 2nd unit-text
-                 * to avoid overlapping...
-                 */
-                int skips = 0;
-
-                Rectangle2D textBounds = getFont().getStringBounds(widestUnit, g2D.getFontRenderContext());
-                double maxWidth = textBounds.getWidth() + TEXT_WIDTH_SPACING;
-                skips = (int) maxWidth / (gridSpacingPixelX * correctionFactor);
-                if (skips > 0) {
-                    skipTexts(skips, rulerUnitsX);
-                }
+            if (rulerUnit.unitText.length() > widestUnit.length()) {
+                widestUnit = rulerUnit.unitText;
             }
+
+            tick += gridSpacingPixelX * correctionFactor;
+            unit += gridSpacingUserSpace * correctionFactor;
+            if ((gridSpacingPixelX == 0) || (correctionFactor == 0)) {
+                return;
+            }
+        }
+        /*
+         * Check widest unit text. Is it too wide to be displayed without
+         * overlapping its neighbour, we skip each 2nd unit-text to avoid
+         * overlapping...
+         */
+        int skips = 0;
+
+        Rectangle2D textBounds = getFont().getStringBounds(widestUnit, g2D.getFontRenderContext());
+        double maxWidth = textBounds.getWidth() + TEXT_WIDTH_SPACING;
+        skips = (int) maxWidth / (gridSpacingPixelX * correctionFactor);
+        if (skips > 0) {
+            skipTexts(skips, rulerUnitsX);
         }
     }
 
@@ -512,6 +516,10 @@ final class JGraphicsCanvasRuler extends JPanel implements IZoomListener, IScrol
      */
     @Override
     public void onZoomEnd(final ViewHandler source, final BoundsUserSpace boundsBefore, final BoundsUserSpace boundsAfter) {
+        updateAndRepaint();
+    }
+
+    private void updateAndRepaint() {
         updateValues();
         repaint();
     }
@@ -536,8 +544,7 @@ final class JGraphicsCanvasRuler extends JPanel implements IZoomListener, IScrol
      */
     @Override
     public void onScrollEnd(final ViewHandler source, final BoundsUserSpace boundsBefore, final BoundsUserSpace boundsAfter) {
-        updateValues();
-        repaint();
+        updateAndRepaint();
     }
 
     /*

@@ -51,7 +51,7 @@ public abstract class ElementTraverser {
     /**
      * Creates a new instance.
      */
-    public ElementTraverser() {
+    protected ElementTraverser() {
         super();
     }
 

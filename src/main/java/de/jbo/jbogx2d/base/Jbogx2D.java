@@ -121,7 +121,7 @@ public final class Jbogx2D {
              */
             state = true;
             isInitialized = state;
-        } catch (Throwable ex) {
+        } catch (Exception ex) {
             getErrorHandler().handleError(ex, true, true);
         }
 
@@ -155,7 +155,7 @@ public final class Jbogx2D {
              */
             state = true;
             isInitialized = false;
-        } catch (Throwable ex) {
+        } catch (Exception ex) {
             getErrorHandler().handleError(ex, true, true);
         }
 

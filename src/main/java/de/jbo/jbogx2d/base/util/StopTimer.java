@@ -7,7 +7,8 @@
 //
 package de.jbo.jbogx2d.base.util;
 
-import java.io.PrintStream;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Utility class for timing of operations.
@@ -16,6 +17,8 @@ import java.io.PrintStream;
  * @version 09.06.2007 jbo - created
  */
 public class StopTimer {
+    private static final Logger LOGGER = LoggerFactory.getLogger(StopTimer.class);
+
     /** Start-time of this instance. */
     private long startTime = 0;
 
@@ -28,24 +31,11 @@ public class StopTimer {
     /** Counter of the last split-time. */
     private int splitCounter = 0;
 
-    /** PrintStream to be used. */
-    private PrintStream myStream = System.out;
-
     /**
      * Creates a new instance.
      */
     public StopTimer() {
         super();
-    }
-
-    /**
-     * Stream to be used.
-     * 
-     * @param stream
-     *            The stream.
-     */
-    public void setStream(PrintStream stream) {
-        this.myStream = stream;
     }
 
     /**
@@ -67,7 +57,7 @@ public class StopTimer {
     public void split(String message) {
         setStopTime(System.currentTimeMillis());
         splitCounter++;
-        myStream.println("StopTimer - split (" + splitCounter + ") - " + message + " -> " + (getStopTime() - getSplitTime()) + " ms");
+        LOGGER.trace("StopTimer - split ({}) - {} -> {} ms", splitCounter, message, (getStopTime() - getSplitTime()));
         setSplitTime(getStopTime());
     }
 
@@ -79,7 +69,7 @@ public class StopTimer {
      */
     public void stop(String message) {
         setStopTime(System.currentTimeMillis());
-        myStream.println("StopTimer - start -> stop - " + message + " -> " + (getStopTime() - getStartTime()) + " ms");
+        LOGGER.trace("StopTimer - start -> stop - {} -> {} ms", message, (getStopTime() - getStartTime()));
     }
 
     /**
