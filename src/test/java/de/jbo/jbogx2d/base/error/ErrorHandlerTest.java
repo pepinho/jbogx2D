@@ -17,8 +17,6 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import de.jbo.jbogx2d.base.error.ErrorHandler;
-
 /**
  * Tests ErrorHandler classes.
  * 

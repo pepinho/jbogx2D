@@ -14,9 +14,6 @@ import java.awt.Color;
 
 import org.junit.Test;
 
-import de.jbo.jbogx2d.base.attrib.AttribColorMap;
-import de.jbo.jbogx2d.base.attrib.NamedColor;
-
 /**
  * @author Josef Baro (jbo)
  * @version 03.11.2013 jbo - created

@@ -26,11 +26,6 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import de.jbo.jbogx2d.base.Jbogx2D;
-import de.jbo.jbogx2d.base.attrib.AttribColorMap;
-import de.jbo.jbogx2d.base.attrib.AttribFill;
-import de.jbo.jbogx2d.base.attrib.AttribFillTextureMap;
-import de.jbo.jbogx2d.base.attrib.AttribFillType;
-import de.jbo.jbogx2d.base.attrib.AttribGradientType;
 import de.jbo.jbogx2d.base.elements.ElemBase;
 import de.jbo.jbogx2d.base.elements.ElemCircle;
 import de.jbo.jbogx2d.base.elements.model.ElemModelCircle;

@@ -20,8 +20,6 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import de.jbo.jbogx2d.base.Jbogx2D;
-import de.jbo.jbogx2d.base.attrib.AttribColorMap;
-import de.jbo.jbogx2d.base.attrib.AttribLine;
 import de.jbo.jbogx2d.base.elements.ElemBase;
 import de.jbo.jbogx2d.base.elements.ElemCircle;
 

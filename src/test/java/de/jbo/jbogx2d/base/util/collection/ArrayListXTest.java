@@ -20,8 +20,6 @@ import java.util.NoSuchElementException;
 
 import org.junit.Test;
 
-import de.jbo.jbogx2d.base.util.collection.ArrayListX;
-
 /**
  * @author Josef Baro (jbo)
  * @version 02.11.2013 jbo - created

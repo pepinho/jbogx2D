@@ -15,9 +15,6 @@ import java.awt.BasicStroke;
 
 import org.junit.Test;
 
-import de.jbo.jbogx2d.base.attrib.AttribLineStroke;
-import de.jbo.jbogx2d.base.attrib.AttribLineStrokeMap;
-
 /**
  * @author Josef Baro (jbo)
  * @version 22.11.2013 jbo - created

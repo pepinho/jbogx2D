@@ -17,7 +17,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import de.jbo.jbogx2d.base.elements.ElemPolyline;
-import de.jbo.jbogx2d.base.elements.model.ElemModelPolyline;
 import de.jbo.jbogx2d.base.elements.model.shapes.Polyline2D;
 import de.jbo.jbogx2d.base.geom.AffineTransformX;
 import de.jbo.jbogx2d.base.geom.BoundsUserSpace;

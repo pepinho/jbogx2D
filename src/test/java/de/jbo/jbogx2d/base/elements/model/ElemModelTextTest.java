@@ -7,7 +7,12 @@
 //
 package de.jbo.jbogx2d.base.elements.model;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 import static org.junit.Assume.assumeTrue;
 
 import org.junit.Before;
@@ -16,7 +21,6 @@ import org.junit.Test;
 
 import de.jbo.jbogx2d.base.Jbogx2D;
 import de.jbo.jbogx2d.base.elements.ElemText;
-import de.jbo.jbogx2d.base.elements.model.ElemModelText;
 import de.jbo.jbogx2d.base.geom.AffineTransformX;
 import de.jbo.jbogx2d.base.geom.BoundsUserSpace;
 import de.jbo.jbogx2d.base.geom.PointUserSpace;

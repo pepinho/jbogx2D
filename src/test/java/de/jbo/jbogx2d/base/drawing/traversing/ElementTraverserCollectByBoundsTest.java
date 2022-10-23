@@ -15,8 +15,6 @@ import java.util.LinkedList;
 
 import org.junit.Test;
 
-import de.jbo.jbogx2d.base.drawing.traversing.ElementTraverser;
-import de.jbo.jbogx2d.base.drawing.traversing.ElementTraverserCollectByBounds;
 import de.jbo.jbogx2d.base.elements.ElemBase;
 import de.jbo.jbogx2d.base.elements.ElemContainer;
 import de.jbo.jbogx2d.base.elements.ElemPolyline;

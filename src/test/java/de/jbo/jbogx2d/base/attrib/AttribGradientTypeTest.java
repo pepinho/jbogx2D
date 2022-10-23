@@ -11,8 +11,6 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-import de.jbo.jbogx2d.base.attrib.AttribGradientType;
-
 /**
  * @author Josef Baro (jbo)
  * @version 22.11.2013 jbo - created

@@ -17,7 +17,6 @@ import java.util.GregorianCalendar;
 import org.junit.Before;
 import org.junit.Test;
 
-import de.jbo.jbogx2d.base.Version;
 import de.jbo.jbogx2d.base.util.StringUtils;
 
 /**

@@ -19,8 +19,6 @@ import java.util.Arrays;
 
 import org.junit.Test;
 
-import de.jbo.jbogx2d.base.attrib.AttribFillTextureMap;
-
 /**
  * @author Josef Baro (jbo)
  * @version 05.11.2013 jbo - created

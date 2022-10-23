@@ -11,10 +11,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 import java.awt.Font;
-
 import org.junit.Test;
-
-import de.jbo.jbogx2d.base.attrib.AttribFontMap;
 
 /**
  * @author Josef Baro (jbo)

@@ -14,7 +14,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import de.jbo.jbogx2d.base.elements.ElemCurvedPolyline;
-import de.jbo.jbogx2d.base.elements.model.ElemModelCurvedPolyline;
 import de.jbo.jbogx2d.base.elements.model.shapes.CurvedPolyline2D;
 import de.jbo.jbogx2d.base.geom.PointUserSpace;
 

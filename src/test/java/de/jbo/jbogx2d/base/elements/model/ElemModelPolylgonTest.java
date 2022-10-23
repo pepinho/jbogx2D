@@ -14,7 +14,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import de.jbo.jbogx2d.base.elements.ElemPolygon;
-import de.jbo.jbogx2d.base.elements.model.ElemModelPolygon;
 import de.jbo.jbogx2d.base.elements.model.shapes.Polygon2D;
 import de.jbo.jbogx2d.base.geom.PointUserSpace;
 

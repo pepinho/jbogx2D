@@ -53,7 +53,7 @@ public class MouseInteractionZoom extends MouseInteractionAdapter {
         this.viewHandler = view;
         xorRectangle.setPointCount(4);
         xorRectangle.getAttribFill().setFillType(AttribFillType.TYPE_HOLLOW);
-        xorRectangle.getAttribLine().setWidth(2);
+        xorRectangle.getAttribLine().setWidth(4);
         xorRectangle.getAttribLine().setStroke((short) 1);
         xorRectangle.getAttribLine().setColor((short) 17);
         xorRectangle.updateAttributes();

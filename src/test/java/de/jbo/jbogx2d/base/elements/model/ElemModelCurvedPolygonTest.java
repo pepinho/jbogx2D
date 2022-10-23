@@ -14,7 +14,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import de.jbo.jbogx2d.base.elements.ElemCurvedPolygon;
-import de.jbo.jbogx2d.base.elements.model.ElemModelCurvedPolygon;
 import de.jbo.jbogx2d.base.elements.model.shapes.CurvedPolygon2D;
 import de.jbo.jbogx2d.base.geom.PointUserSpace;
 

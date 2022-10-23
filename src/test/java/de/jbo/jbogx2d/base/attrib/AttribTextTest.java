@@ -26,7 +26,6 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import de.jbo.jbogx2d.base.Jbogx2D;
-import de.jbo.jbogx2d.base.attrib.AttribText;
 import de.jbo.jbogx2d.base.elements.ElemText;
 import de.jbo.jbogx2d.base.elements.model.ElemModelText;
 import de.jbo.jbogx2d.base.util.OSUtil;
