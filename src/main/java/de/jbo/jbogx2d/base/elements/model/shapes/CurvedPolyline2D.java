@@ -79,13 +79,13 @@ public class CurvedPolyline2D extends Polyline2D {
      */
     @Override
     public boolean insertPoint(int index, double x, double y) {
-        boolean ret = super.insertPoint(index, x, y);
+        boolean wasInserted = super.insertPoint(index, x, y);
 
-        if (ret) {
-            ret = CurvedPolyUtil.updateControlPointsOnInsert(this, index, x, y);
+        if (wasInserted) {
+            wasInserted = CurvedPolyUtil.updateControlPointsOnInsert(this, index, x, y);
         }
 
-        return ret;
+        return wasInserted;
     }
 
     /*
@@ -96,11 +96,12 @@ public class CurvedPolyline2D extends Polyline2D {
      */
     @Override
     public boolean removePoint(int index) {
-        if (super.removePoint(index)) {
-            return CurvedPolyUtil.updateControlPointsOnRemove(this, index);
+        boolean wasRemoved = super.removePoint(index);
+        if (wasRemoved) {
+            wasRemoved = CurvedPolyUtil.updateControlPointsOnRemove(this, index);
         }
 
-        return false;
+        return wasRemoved;
     }
 
     /*
@@ -111,11 +112,12 @@ public class CurvedPolyline2D extends Polyline2D {
      */
     @Override
     public boolean setPoint(int index, double x, double y) {
-        if(super.setPoint(index, x, y)) {
-            return CurvedPolyUtil.updateControlPointsOnSet(this, index, x, y);
+        boolean wasSet = super.setPoint(index, x, y); 
+        if(wasSet) {
+            wasSet = CurvedPolyUtil.updateControlPointsOnSet(this, index, x, y);
         }
 
-        return false;
+        return wasSet;
     }
 
     /*

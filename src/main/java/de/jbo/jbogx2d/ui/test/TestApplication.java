@@ -9,10 +9,6 @@
 package de.jbo.jbogx2d.ui.test;
 
 import java.awt.BorderLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -21,6 +17,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
+import javax.swing.WindowConstants;
 
 import de.jbo.jbogx2d.base.Jbogx2D;
 
@@ -55,66 +52,41 @@ public final class TestApplication {
      *            Command-line arguments.
      */
     public static void main(final String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-                } catch (ClassNotFoundException e1) {
-                    e1.printStackTrace();
-                } catch (InstantiationException e1) {
-                    e1.printStackTrace();
-                } catch (IllegalAccessException e1) {
-                    e1.printStackTrace();
-                } catch (UnsupportedLookAndFeelException e1) {
-                    e1.printStackTrace();
-                }
+        SwingUtilities.invokeLater(() -> {
+            try {
+                UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+            } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e1) {
+                e1.printStackTrace();
+            }  
 
-                Jbogx2D.init();
+            Jbogx2D.init();
 
-                JFrame frame = new JFrame("jbogx2D Version " + Jbogx2D.getVersion());
-                final JGraphicsPanel panel = new JGraphicsPanel();
-                frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            JFrame frame = new JFrame("jbogx2D Version " + Jbogx2D.getVersion());
+            final JGraphicsPanel panel = new JGraphicsPanel();
+            frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
-                JPanel buttonsPanel = new JPanel();
-                frame.getContentPane().add(buttonsPanel, BorderLayout.NORTH);
+            JPanel buttonsPanel = new JPanel();
+            frame.getContentPane().add(buttonsPanel, BorderLayout.NORTH);
 
-                JButton buttonZoomIn = new JButton("Zoom +");
-                buttonZoomIn.addActionListener(new ActionListener() {
-                    public void actionPerformed(final ActionEvent evt) {
-                        panel.zoomPlus();
-                    }
-                });
-                buttonsPanel.add(buttonZoomIn);
-                JButton buttonZoomOut = new JButton("Zoom -");
-                buttonZoomOut.addActionListener(new ActionListener() {
-                    public void actionPerformed(final ActionEvent evt) {
-                        panel.zoomMinus();
-                    }
-                });
-                buttonsPanel.add(buttonZoomOut);
+            JButton buttonZoomIn = new JButton("Zoom +");
+            buttonZoomIn.addActionListener(evt -> panel.zoomPlus());
+            buttonsPanel.add(buttonZoomIn);
+            JButton buttonZoomOut = new JButton("Zoom -");
+            buttonZoomOut.addActionListener(evt -> panel.zoomMinus());
+            buttonsPanel.add(buttonZoomOut);
 
-                JButton buttonZoomOriginal = new JButton("Zoom 1:1");
-                buttonZoomOriginal.addActionListener(new ActionListener() {
-                    public void actionPerformed(final ActionEvent evt) {
-                        panel.zoomOriginal();
-                    }
-                });
-                buttonsPanel.add(buttonZoomOriginal);
+            JButton buttonZoomOriginal = new JButton("Zoom 1:1");
+            buttonZoomOriginal.addActionListener(evt -> panel.zoomOriginal());
+            buttonsPanel.add(buttonZoomOriginal);
 
-                final JCheckBox checkAntiAliasing = new JCheckBox("anti-alias");
-                checkAntiAliasing.addItemListener(new ItemListener() {
-                    @Override
-                    public void itemStateChanged(final ItemEvent e) {
-                        panel.setAntiAliasing(checkAntiAliasing.isSelected());
-                    }
-                });
-                buttonsPanel.add(checkAntiAliasing);
+            final JCheckBox checkAntiAliasing = new JCheckBox("anti-alias");
+            checkAntiAliasing.addItemListener(e -> panel.setAntiAliasing(checkAntiAliasing.isSelected()));
+            buttonsPanel.add(checkAntiAliasing);
 
-                frame.getContentPane().add(panel, BorderLayout.CENTER);
+            frame.getContentPane().add(panel, BorderLayout.CENTER);
 
-                frame.setSize(WIDTH, HEIGHT);
-                frame.setVisible(true);
-            }
+            frame.setSize(WIDTH, HEIGHT);
+            frame.setVisible(true);
         });
 
     }

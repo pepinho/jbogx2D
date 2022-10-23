@@ -38,7 +38,7 @@ public class JGraphicsPanel extends JPanel {
     private static final long serialVersionUID = -1354359952030701699L;
 
     /** The drawing. */
-    private final Drawing drawing = new Drawing();
+    private final transient  Drawing drawing = new Drawing();
 
     /** The view canvas for display. */
     private JGraphicsCanvas canvas = null;
@@ -105,9 +105,9 @@ public class JGraphicsPanel extends JPanel {
                 ElemPolygon polygon = new ElemPolygon();
                 polygon.setPointCount(4);
                 polygon.setPoint(0, new PointUserSpace(x, y));
-                polygon.setPoint(1, new PointUserSpace(x + width, y));
-                polygon.setPoint(2, new PointUserSpace(x + width, y + width));
-                polygon.setPoint(3, new PointUserSpace(x, y + width));
+                polygon.setPoint(1, new PointUserSpace(x + (double)width, y));
+                polygon.setPoint(2, new PointUserSpace(x +(double) width, y + (double)width));
+                polygon.setPoint(3, new PointUserSpace(x, y + (double)width));
                 polygon.getAttribFill().setColorBackground(fill.getColorBackground());
                 polygon.getAttribFill().setColorForeground(fill.getColorForeground());
                 polygon.getAttribFill().setFillType(fill.getFillType());
